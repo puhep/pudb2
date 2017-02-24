@@ -7,12 +7,21 @@
 <br>
 <h1>Purdue CMS FPix Phase II R&D Database</h1>
 
-<h2>Part List</h2>
+<h2>Part Information</h2>
 
 <input type=button onClick="location.href='part_list.php'" value='Part List'>
 
+<h2>Testing Information</h2>
+
+<input type=button onClick="location.href='test_list.php'" value='Test List'>
+
+<input type=button onClick="location.href='newtest.php'" value='New Test'>
+
+
+<!--
 <h2>Reference</h2>
 To Do: naming conventions, etc.
+-->
 
 <h2>Links</h2>
 
@@ -24,3 +33,9 @@ onclick="window.open('https://drive.google.com/drive/folders/0B04OIAGnMDYxbXBkTW
 
 </body>
 </html>
+
+
+
+<!-- 
+0MKshqtRV6Y
+-->
