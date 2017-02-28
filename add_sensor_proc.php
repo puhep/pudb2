@@ -9,6 +9,8 @@ $thermal_name=$_POST[''];
 $xpos=$_POST['xpos'];
 $ypos=$_POST['ypos'];
 $channel=$_POST['channel'];
+
+### link the test and sensor in the relational table
 $sql="INSERT INTO sensor_test (test_id,thermal_id) VALUES ($test_id, $thermal_id)";
 $db->query($sql);
 
@@ -31,6 +33,8 @@ $db->query($sql);
 }
 #echo "<br>";
 #echo $sql;
+
+### return to the add sensor page to expedite adding multiple sensors at once
 header("Location: add_sensor.php?id=$test_id");
 
 ?>

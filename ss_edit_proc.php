@@ -7,6 +7,7 @@ require_once("database.php");
 $id = $_POST['id'];
 $db = new Database();
 
+### update miscellaneous info if the fields have been filled
 if($_POST['name'] != ""){
   $sql = "update support_structure set name=\"".$_POST['name']."\" where id=$id";
   $db -> query($sql);
@@ -35,12 +36,14 @@ if($_POST['airex_stack'] != ""){
   $sql = "update support_structure set airex_stack=\"".$_POST['airex_stack']."\" where id=$id";
   $db -> query($sql);
 }
+
+### this concatenates existing notes, if any, with a new line including the date and the entered note text
 if($_POST['notes'] != ""){
   $sql = "update notes set notetext= CONCAT(IFNULL(notetext,''),DATE_FORMAT(NOW(),'%m-%d-%y %T'),\" ".$_POST['notes']."\",'\n') where part_id=$id AND part_type=\"support_structure\"";
   $db -> query($sql);
 }
 
-
+### if the name of the picture is not blank (i.e. a picture has been slotted to upload), perform several checks and upload
 if($_FILES['pic']['name'] != ""){
 $picupload=1;
 #echo "pic detected<br>";
@@ -70,10 +73,12 @@ fclose($fp);
 }
 }
 
+### if the name of the file is not blank (i.e. a file has been slotted to upload), attempt to upload
 if($_FILES['file']['name'] != ""){
 echo "file detected<br>";
 $targetdir = "../phase_2/files/support_structure/$id/";
 $targetfile = $targetdir.$_FILES['file']['name'];
+### if the directory for the structure does not exist, create it and make it editable
 if(!file_exists($targetdir)){
 	mkdir($targetdir);
 	chmod($targetdir,0777);
@@ -81,6 +86,7 @@ if(!file_exists($targetdir)){
 move_uploaded_file($_FILES['file']['tmp_name'], $targetfile);
 }
 
+### redirect to the structure summary page with the new information
 header("Location: ss_summary.php?id=$id");
 
 

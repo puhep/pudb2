@@ -2,6 +2,8 @@
 <?php
 require_once("database.php");
 
+   ### displays a list of files associated with a part as downloadable links
+   ### generalizable to any part type
 function show_files($part_type, $part_id){
 	 $dir = "../phase_2/files/".$part_type."/".$part_id;
 	 if(!file_exists($dir)){
@@ -23,6 +25,8 @@ function show_files($part_type, $part_id){
 
 }
 
+   ### show all pictures with their associated comments for a part in a table
+   ### generalizable for any part type
 function show_pictures($part_type, $part_id){
 	 $dir = "../phase_2/pics/".$part_type."/".$part_id;
 	 if(!file_exists($dir)){
@@ -52,7 +56,8 @@ function show_pictures($part_type, $part_id){
    echo "</table>";
    }
 }
-
+   ### show the sensors for a test in a table. On the edit page, make the fields
+   ### editable with placeholders for the current values
    function show_sensors($data, $edit=0){
    if($edit==0){
    echo "<table border=1 cellpadding=5>";
@@ -108,7 +113,8 @@ function show_pictures($part_type, $part_id){
 }
 
 
-
+   ### shorthand to make some of the other pages a little more readable
+   ### if the query returns only one line, it can be accessed with $data[0]
 function db_query($sql,$db){
 $db->query($sql);
 $i=0;
