@@ -1,22 +1,24 @@
 <html>
 <?php
-   require_once("database.php");
-   require_once("functions.php");
-   $db = new Database();
-   $sql="SELECT t.name as tname,t.id,s.*,s.id as sid,ss.id as ssid,ss.name as ss_name,st.xpos,st.ypos,st.channel FROM test t LEFT JOIN sensor_test st ON st.test_id=t.id LEFT JOIN thermal_sensor s ON st.thermal_id=s.id LEFT JOIN support_structure ss ON t.assoc_ss=ss.id where t.id=".$_GET['id'];
-   $db->query($sql);
+require_once("database.php");
+require_once("functions.php");
+$db = new Database();
+$sql="SELECT t.name as tname,t.id,s.*,s.id as sid,ss.id as ssid,ss.name as ss_name,st.xpos,st.ypos,st.channel FROM test t LEFT JOIN sensor_test st ON st.test_id=t.id LEFT JOIN thermal_sensor s ON st.thermal_id=s.id LEFT JOIN support_structure ss ON t.assoc_ss=ss.id where t.id=".$_GET['id'];
+$db->query($sql);
 $i=0;
 while($db->nextRecord()){
-$data[$i]=$db->Record;
-$i++;
+    $data[$i]=$db->Record;
+    $i++;
 }
+#print_r($data);
 $notstr="";
-if($i>0){
-$notstr=" WHERE id != 0";
-foreach($data as $ids){
-$notstr.=" AND id != ".$ids['sid'];
+if($i>1){
+    $notstr=" WHERE id != 0";
+    foreach($data as $ids){
+        $notstr.=" AND id != ".$ids['sid'];
+    }
 }
-}
+#echo $notstr;
 
    ?>
 
@@ -29,19 +31,19 @@ $notstr.=" AND id != ".$ids['sid'];
       <form action="add_sensor_proc.php" method="post" enctype="multipart/from-data">
 	<div style="width:280px;">
 	Sensor: <select name="thermal_id">  
-	    <?php
+<?php
+    
+    echo "<option value=\"NULL\">Select a Sensor</option>\n";
 
-	    echo "<option value=\"NULL\">Select a Sensor</option>\n";
-	    
-	    $sql="SELECT name,id FROM thermal_sensor".$notstr;
-	    $sensor_data=db_query($sql,$db);
-	    foreach($sensor_data as $row){
-	    $id=$row['id'];
-	    $name=$row['name'];
-	    echo "<option value=\"$id\">".$name."</option>\n";
-	    }
-	    echo "<input type='hidden' name='test_id' value='".$_GET['id']."'>";
-	    ?>
+$sql="SELECT name,id FROM thermal_sensor".$notstr;
+$sensor_data=db_query($sql,$db);
+foreach($sensor_data as $row){
+    $id=$row['id'];
+    $name=$row['name'];
+    echo "<option value=\"$id\">".$name."</option>\n";
+}
+echo "<input type='hidden' name='test_id' value='".$_GET['id']."'>";
+?>
 	</select>
 	<br><br>
 	X Position (cm): <input type="text" name="xpos" style="float:right">
