@@ -44,7 +44,7 @@ if($_POST['notes'] != ""){
 if($_FILES['pic']['name'] != ""){
 $picupload=1;
 #echo "pic detected<br>";
-$targetdir = "./pics/support_structure/$id/";
+$targetdir = "../phase_2/pics/support_structure/$id/";
 $targetfile = $targetdir.$_FILES['pic']['name'];
 $imageFileType = pathinfo($targetfile,PATHINFO_EXTENSION);
 if(!file_exists($targetdir)){
@@ -72,7 +72,7 @@ fclose($fp);
 
 if($_FILES['file']['name'] != ""){
 echo "file detected<br>";
-$targetdir = "./files/support_structure/$id/";
+$targetdir = "../phase_2/files/support_structure/$id/";
 $targetfile = $targetdir.$_FILES['file']['name'];
 if(!file_exists($targetdir)){
 	mkdir($targetdir);
