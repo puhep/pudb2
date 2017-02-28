@@ -3,7 +3,7 @@
 require_once("database.php");
 
 function show_files($part_type, $part_id){
-	 $dir = "./files/".$part_type."/".$part_id;
+	 $dir = "../phase_2/files/".$part_type."/".$part_id;
 	 if(!file_exists($dir)){
 		echo "No files found <br>";
 		return;
@@ -24,7 +24,7 @@ function show_files($part_type, $part_id){
 }
 
 function show_pictures($part_type, $part_id){
-	 $dir = "./pics/".$part_type."/".$part_id;
+	 $dir = "../phase_2/pics/".$part_type."/".$part_id;
 	 if(!file_exists($dir)){
 		echo "No pictures found <br>";
 		return;
