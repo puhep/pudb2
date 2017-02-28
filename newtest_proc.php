@@ -11,6 +11,8 @@ $sql = "SELECT MAX(id) FROM test";
 $db->query($sql);
 $db->singleRecord();
 $id= $db->Record['MAX(id)'];
+$sql = "INSERT INTO notes (part_id,part_type) VALUES ($id,'test')";
+$db->query($sql);
 header("Location: add_sensor.php?id=$id");
 
 ?>

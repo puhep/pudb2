@@ -53,11 +53,13 @@ function show_pictures($part_type, $part_id){
    }
 }
 
-function show_sensors($data){
+   function show_sensors($data, $edit=0){
+   if($edit==0){
    echo "<table border=1 cellpadding=5>";
-   echo "<th>Sensor Name</th>";
-   echo "<th>X</th>";
-   echo "<th>Y</th>";
+   echo "<th>Sensor</th>";
+   echo "<th>X (cm)</th>";
+   echo "<th>Y (cm)</th>";
+   echo "<th>Channel</th>";
    foreach($data as $row){
    echo "<tr>";
    echo "<td>";
@@ -69,9 +71,40 @@ function show_sensors($data){
    echo "<td>";
    echo $row['ypos'];
    echo "</td>";
+   echo "<td>";
+   echo $row['channel'];
+   echo "</td>";
    echo "</tr>";
    }
    echo "</table>";
+   }
+   else{
+   echo "<table border=1 cellpadding=5>";
+   echo "<th>Sensor</th>";
+   echo "<th>X (cm)</th>";
+   echo "<th>Y (cm)</th>";
+   echo "<th>Channel</th>";
+   $i=0;
+   foreach($data as $row){
+   echo "<tr>";
+   echo "<td>";
+   echo $row['name'];
+   echo "</td>";
+   echo "<td>";
+   echo "<input placeholder=\"".$row['xpos']."\" name=\"xpos[$i]\" type=\"text\" >";
+   echo "</td>";
+   echo "<td>";
+   echo "<input placeholder=\"".$row['ypos']."\" name=\"ypos[$i]\" type=\"text\" >";
+   echo "</td>";
+   echo "<td>";
+   echo "<input placeholder=\"".$row['channel']."\" name=\"channel[$i]\" type=\"text\" >";
+   echo "</td>";
+   echo "</tr>";
+   echo "<input type='hidden' name=\"thermal_id[$i]\" value='".$row['sid']."'>";
+   $i++;
+   }
+   echo "</table>";
+   }
 }
 
 

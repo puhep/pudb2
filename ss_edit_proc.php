@@ -1,7 +1,7 @@
 <?php
-ini_set('display_errors', 'On');
-error_reporting(E_ALL | E_STRICT);
-
+#ini_set('display_errors', 'On');
+#error_reporting(E_ALL | E_STRICT);
+$backmessage = "Please press back and try again.<br>";
 require_once("database.php");
 
 $id = $_POST['id'];
@@ -36,25 +36,38 @@ if($_POST['airex_stack'] != ""){
   $db -> query($sql);
 }
 if($_POST['notes'] != ""){
-  $sql = "update notes set notetext= CONCAT(notetext,DATE_FORMAT(NOW(),'%m-%d-%y %T'),\" ".$_POST['notes']."\",'\n') where part_id=$id & part_type=\"support_structure\"";
+  $sql = "update notes set notetext= CONCAT(IFNULL(notetext,''),DATE_FORMAT(NOW(),'%m-%d-%y %T'),\" ".$_POST['notes']."\",'\n') where part_id=$id AND part_type=\"support_structure\"";
   $db -> query($sql);
 }
 
 
 if($_FILES['pic']['name'] != ""){
-echo "pic detected<br>";
+$picupload=1;
+#echo "pic detected<br>";
 $targetdir = "./pics/support_structure/$id/";
 $targetfile = $targetdir.$_FILES['pic']['name'];
+$imageFileType = pathinfo($targetfile,PATHINFO_EXTENSION);
 if(!file_exists($targetdir)){
 	mkdir($targetdir);
 	chmod($targetdir,0777);
 	}
+if (file_exists($targetfile)) {
+    echo "Sorry, file already exists.<br>".$backmessage;
+    $picupload = 0;
+}
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<br>".$backmessage;
+    $picupload = 0;
+}
+if($picupload==1){
+#echo "ok to upload";
 move_uploaded_file($_FILES['pic']['tmp_name'], $targetfile);
 $fp = fopen(substr($targetfile,0,-3)."txt","w");
 $date = date("m-d-y H:i:s");
 #echo $date;
 fwrite($fp,$date." ".$_POST['picnotes']."\n");
 fclose($fp);
+}
 }
 
 if($_FILES['file']['name'] != ""){

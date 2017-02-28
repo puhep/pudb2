@@ -45,7 +45,7 @@ $i++;
    #echo "<a href=\"ss_edit.php?id=".$id."\">Edit Part</a>";
      
    echo "<h2>Misc Data</h2>";
-   echo "<p>ID: ".$id."</p>";
+   #echo "<p>ID: ".$id."</p>";
    echo "<p>Name: ".$name."</p>";
    echo "<p>Mass: ".$data['mass']."</p>";;
    echo "<p>Pipe Material: ".$data['pipe_material']."</p>";

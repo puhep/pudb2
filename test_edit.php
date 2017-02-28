@@ -3,59 +3,67 @@
 <?php
 
 require_once("database.php");
+require_once("functions.php");
 $db = new Database();
 
 $id=$_GET['id'];
-$sql = "SELECT * FROM test WHERE id = ".$id;
-$db->query($sql);
-$db->singleRecord();
-$data=$db->Record;
-$name=$data['name'];
-
-$sql = "SELECT name FROM support_structure WHERE id = ".$data['assoc_ss'];
-$db->query($sql);
-$db->singleRecord();
-$ss_name=$db->Record['name'];
-
-#$sql = "SELECT notetext FROM notes where part_id=$id and part_type=\"test\"";
-#$db->query($sql);
-#$db->singleRecord();
-#$notes=$db->Record['notetext'];
+$sql="SELECT t.name as tname,t.id,t.coolant_temp,s.*,s.id as sid,ss.id as ssid,ss.name as ss_name,st.xpos,st.ypos,st.channel FROM test t LEFT JOIN sensor_test st ON st.test_id=t.id LEFT JOIN thermal_sensor s ON st.thermal_id=s.id LEFT JOIN support_structure ss ON t.assoc_ss=ss.id where t.id=".$_GET['id'];
+   $db->query($sql);
+   $i=0;
+while($db->nextRecord()){
+$data[$i]=$db->Record;
+$i++;
+}
+$name=$data[0]['tname'];
+$ss_name=$data[0]['ss_name'];
+$coolant_temp=$data[0]['coolant_temp'];
 ?>
 
-<title>Edit <?php echo $name ?></title>
+<title>Edit Test <?php echo $name ?></title>
 
 <body>
-<h1>Edit <?php echo $name; ?></h1>
+<h1>Edit Test <?php echo $name; ?></h1>
 
-<?php
-
-echo "<p>Support Structure: ".$ss_name."</p>";
-
-?>
-
-<h2>Misc Data</h2>
+<h2>Sensor Data</h2>
 <form action="test_edit_proc.php" method="post" enctype="multipart/form-data">
    <div style="width:275px;">
      Name: <input placeholder= "<?php echo $name; ?>" name="name" type="text" style="float:right"><br><br>
-     
+     Coolant <br>Temp (°C): <input placeholder= "<?php echo $coolant_temp; ?>" name="coolant_temp" type="text" style="float:right"><br><br>     
 </div>
 
+   
+   Remove Sensor: <select name="remove_id">  
+    <?php
+   echo "<option value=\"NULL\">Select a Sensor</option>\n";
+   foreach($data as $row){
+   $id=$row['id'];
+   $name=$row['name'];
+   echo "<option value=\"$id\">".$name."</option>\n";
+   }
+   ?>
+</select>
+   <br><br>
 
-<!--
-<h2>Notes</h2>
+   <?php show_sensors($data,$edit=1); ?>
 
-<?php echo nl2br($notes); ?>
-
-<br>
+   <h2>Notes</h2>
+   <?php echo nl2br($notes); ?>
+   <br>
    <div style="width:225px;">
   Notes: <input name="notes" type="text" style="float:right"><br><br>
+   </div>
+   
+<h2>Pictures</h2>
+   <div style="width:340px;">
+Picture File: <input name="pic" type="file" style="float:right"><br><br>
 </div>
--->
+   <div style="width:275px;">
+  Picture Notes: <input name="picnotes" type="text" style="float:right"><br><br>
+</div>
 
-<?php echo "<input type='hidden' name='id' value='".$data['id']."'>"; ?>
+<?php echo "<input type='hidden' name='test_id' value='".$_GET['id']."'>"; ?>
 
-<br>
+<br><br>
    <input type="submit" name="submit" value="Submit">  
 </form>
 
@@ -64,7 +72,7 @@ echo "<p>Support Structure: ".$ss_name."</p>";
 	?>
   <input type="submit" value="Add Sensor">
 </form>
-<br>
+<br><br>
 <form method="get" action="test.php">
   <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>";
 	?>

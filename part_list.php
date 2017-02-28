@@ -40,11 +40,11 @@ foreach($ss as $structure){
  echo "</td><td>";     
 echo "<table border=1>";
 echo "<tr><th>Thermal Sensors</th></tr>";
-foreach($ts as $sensor){
-  echo "<tr><td>";
-      echo $sensor['name'];
-      echo "</td></tr>";
-}
+	foreach($ts as $sensor){
+	echo "<tr><td>";
+	    echo "<a href=\"thermal_sensor.php?id=$sensor[0]\">$sensor[1]</a>";
+	    echo "</td></tr>";
+	}
 	echo "</table><br>";
 
  echo "</td></tr>";     
