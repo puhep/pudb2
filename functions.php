@@ -1,4 +1,3 @@
-<html>
 <?php
 require_once("database.php");
 
@@ -112,7 +111,6 @@ function show_sensors($data, $edit=0){
     }
 }
 
-
 ### shorthand to make some of the other pages a little more readable
 ### if the query returns only one line, it can be accessed with $data[0]
 function db_query($sql,$db){
@@ -126,4 +124,3 @@ function db_query($sql,$db){
 }
 
 ?>
-</html>

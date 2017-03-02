@@ -31,18 +31,23 @@ $notes=$db->Record['notetext'];
 <h1>Test <?php echo $name; ?> Summary</h1>
 
 <?php
-   echo "<p>Support Structure: <a href='ss_summary.php?id=".$data[0]['ssid']."'>$ss_name</a></p>";
-   echo "<p>Coolant Temperature: ".$data[0]['coolant_temp']."°C</p>";
-   show_sensors($data);
-   echo "<h2>Notes</h2>";
-   if($notes!=""){
-   echo "<p>".nl2br($notes)."</p>";
-   }
-   else{
-   echo "No notes found";
-   }
-   echo "<h2>Pictures</h2>";
-   show_pictures("test",$id)
+echo "<p>Support Structure: <a href='ss_summary.php?id=".$data[0]['ssid']."'>$ss_name</a></p>";
+echo "<p>Coolant Temperature: ".$data[0]['coolant_temp']."°C</p>";
+echo "<h2>Sensor Data</h2>";
+show_sensors($data);
+echo "<br>";
+echo "<a href=\"test_geometry.php?id=$id\" target=\"blank\"><img src=\"test_geometry.php?id=$id\" width=\"300\" height=\"300\" ></a>";
+
+#show_geometry($data);
+echo "<h2>Notes</h2>";
+if($notes!=""){
+    echo "<p>".nl2br($notes)."</p>";
+}
+else{
+    echo "No notes found";
+}
+echo "<h2>Pictures</h2>";
+show_pictures("test",$id)
 
 ?>
 
