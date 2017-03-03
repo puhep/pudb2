@@ -12,10 +12,10 @@ while($db->nextRecord()){
 }
 #print_r($data);
 $notstr="";
-if($i>1){
+if($i>=1){
     $notstr=" WHERE id != 0";
     foreach($data as $ids){
-        $notstr.=" AND id != ".$ids['sid'];
+        if($ids['sid']){ $notstr.=" AND id != ".$ids['sid']; }
     }
 }
 #echo $notstr;

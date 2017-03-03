@@ -79,7 +79,7 @@ if($_FILES['pic']['name'] != ""){
 
 ### if the name of the file is not blank (i.e. a file has been slotted to upload), attempt to upload
 if($_FILES['file']['name'] != ""){
-    echo "file detected<br>";
+    #echo "file detected<br>";
     $targetdir = "../phase_2/files/support_structure/$id/";
     $targetfile = $targetdir.$_FILES['file']['name'];
     ### if the directory for the structure does not exist, create it and make it editable
