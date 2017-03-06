@@ -12,7 +12,7 @@ $pos=array();
 $i=0;
 foreach($data as $line){
     $x[$i]=$line['xpos'];
-    $y[$i]=-1*$line['ypos'];
+    $y[$i]=$line['ypos'];
     $name[$i]=$line['name'];
     #if($name[$i]
     #echo "Name: ".$name[$i];
@@ -41,24 +41,29 @@ function FCallback($aYVal,$aXVal) {
     return array($format[ strval($aXVal) ][ strval($aYVal) ][0],'',
                  $format[ strval($aXVal) ][ strval($aYVal) ][1],'','');
 }
-function cb_negate($aVal) {
-return round(-$aVal,2);
-}
+#function cb_negate($aVal) {
+#return round(-$aVal,2);
+#}
 
 #print_r($pos[0]);
 #print_r($pos[1]);
 $g = new Graph(800,800);
-$g->SetScale("linlin");
+$g->SetScale("linlin",0,15,0,15);
 $g->title->Set("Test ".$data[0]['tname']." Geometry");
 $g->title->SetFont(FF_FONT1,FS_BOLD);
-$g->yaxis->SetLabelFormatCallback("cb_negate");
+#$g->yaxis->SetLabelFormatCallback("cb_negate");
 #$g->yaxis->SetTitle("Y");
-$g->xaxis->title->Set("+X --->");
-$g->yaxis->title->Set("<--- +Y");
+#$g->xaxis->title->Set("X");
+#$g->yaxis->title->Set("Y");
  
 $g->yaxis->title->SetFont(FF_FONT1,FS_BOLD);
+$g->yaxis->SetFont(FF_FONT1,FS_BOLD);
+$g->yaxis->SetLabelMargin(15);
+$g->xaxis->SetFont(FF_FONT1,FS_BOLD);
+$g->xaxis->SetLabelMargin(15);
+
 $g->xaxis->title->SetFont(FF_FONT1,FS_BOLD);
-$g->xaxis->SetPos( 'min' );
+#$g->xaxis->SetPos( 'min' );
 
 $g->img->SetMargin(50,50,50,50);
 $g->SetMargin(50,50,50,50);

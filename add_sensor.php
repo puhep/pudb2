@@ -29,7 +29,7 @@ if($i>=1){
       <?php show_sensors($data); ?>
       <br>
       <form action="add_sensor_proc.php" method="post" enctype="multipart/from-data">
-	<div style="width:280px;">
+	<div style="width:290px;">
 	Sensor: <select name="thermal_id">  
 <?php
     

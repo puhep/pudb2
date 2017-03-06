@@ -94,7 +94,21 @@ if($_FILES['pic']['name'] != ""){
     fclose($fp);
 }
 }
-    
+
+    ### if the name of the file is not blank (i.e. a file has been slotted to upload), attempt to upload
+    if($_FILES['file']['name'] != ""){
+    #echo "file detected<br>";
+    $targetdir = "../phase_2/files/test/$test_id/";
+    $targetfile = $targetdir.$_FILES['file']['name'];
+    ### if the directory for the structure does not exist, create it and make it editable
+    if(!file_exists($targetdir)){
+    mkdir($targetdir);
+    chmod($targetdir,0777);
+}
+    if(!move_uploaded_file($_FILES['file']['tmp_name'], $targetfile)){
+    echo "Sorry, an error has occurred. Try again or bother Greg until he helps";
+}
+}
     ### redirect to the test summary page with the new information
     header("Location: test.php?id=$test_id");
 ?>

@@ -101,6 +101,7 @@ function show_sensors($data, $edit=0){
             echo "<input placeholder=\"".$row['ypos']."\" name=\"ypos[$i]\" type=\"text\" >";
             echo "</td>";
             echo "<td>";
+            if($row['channel'] == "" and $row['cur_channel'] != ""){ $row['channel'] = $row['cur_channel']." (Default)"; }
             echo "<input placeholder=\"".$row['channel']."\" name=\"channel[$i]\" type=\"text\" >";
             echo "</td>";
             echo "</tr>";

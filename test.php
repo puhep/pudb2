@@ -6,7 +6,7 @@ require_once("database.php");
 $db = new Database();
 
 $id=$_GET['id'];
-   $sql="SELECT t.name as tname,t.id,t.coolant_temp,s.*,s.id as sid,ss.id as ssid,ss.name as ss_name,st.xpos,st.ypos,st.channel FROM test t LEFT JOIN sensor_test st ON st.test_id=t.id LEFT JOIN thermal_sensor s ON st.thermal_id=s.id LEFT JOIN support_structure ss ON t.assoc_ss=ss.id where t.id=".$_GET['id'];
+   $sql="SELECT t.name as tname,t.id,t.coolant_temp,s.*,s.id as sid, s.cur_channel as cur_channel,ss.id as ssid,ss.name as ss_name,st.xpos,st.ypos,st.channel FROM test t LEFT JOIN sensor_test st ON st.test_id=t.id LEFT JOIN thermal_sensor s ON st.thermal_id=s.id LEFT JOIN support_structure ss ON t.assoc_ss=ss.id where t.id=".$_GET['id'];
    $db->query($sql);
    $i=0;
 while($db->nextRecord()){
@@ -47,7 +47,10 @@ else{
     echo "No notes found";
 }
 echo "<h2>Pictures</h2>";
-show_pictures("test",$id)
+show_pictures("test",$id);
+
+echo "<h2>Misc Files</h2>";
+show_files("test",$id);
 
 ?>
 

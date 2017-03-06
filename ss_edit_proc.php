@@ -62,36 +62,36 @@ if($_FILES['pic']['name'] != ""){
     }
     ### only picture type files are allowed
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
-        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<br>".$backmessage;
-        $picupload = 0;
-    }
+    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<br>".$backmessage;
+    $picupload = 0;
+}
     ### if none of the errors have been detected, proceed with the upload
     if($picupload==1){
-        #echo "ok to upload";
-        move_uploaded_file($_FILES['pic']['tmp_name'], $targetfile);
-        $fp = fopen(substr($targetfile,0,-3)."txt","w");
-        $date = date("m-d-y H:i:s");
-        #echo $date;
-        fwrite($fp,$date." ".$_POST['picnotes']."\n");
-        fclose($fp);
-    }
+    #echo "ok to upload";
+    move_uploaded_file($_FILES['pic']['tmp_name'], $targetfile);
+    $fp = fopen(substr($targetfile,0,-3)."txt","w");
+    $date = date("m-d-y H:i:s");
+    #echo $date;
+    fwrite($fp,$date." ".$_POST['picnotes']."\n");
+    fclose($fp);
 }
-
-### if the name of the file is not blank (i.e. a file has been slotted to upload), attempt to upload
-if($_FILES['file']['name'] != ""){
+}
+    
+    ### if the name of the file is not blank (i.e. a file has been slotted to upload), attempt to upload
+    if($_FILES['file']['name'] != ""){
     #echo "file detected<br>";
     $targetdir = "../phase_2/files/support_structure/$id/";
     $targetfile = $targetdir.$_FILES['file']['name'];
     ### if the directory for the structure does not exist, create it and make it editable
     if(!file_exists($targetdir)){
-        mkdir($targetdir);
-        chmod($targetdir,0777);
-	}
+    mkdir($targetdir);
+    chmod($targetdir,0777);
+}
     move_uploaded_file($_FILES['file']['tmp_name'], $targetfile);
 }
-
-### redirect to the structure summary page with the new information
-header("Location: ss_summary.php?id=$id");
-
-
+    
+    ### redirect to the structure summary page with the new information
+    header("Location: ss_summary.php?id=$id");
+    
+    
 ?>
