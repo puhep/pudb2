@@ -20,6 +20,8 @@ $heaters=db_query("SELECT * FROM heater",$db);
 
 $modules=db_query("SELECT * FROM mock_module",$db);
 
+$sheets=db_query("SELECT * FROM sheet",$db);
+
 echo "<table border=0 cellpadding=10 val=aligntop>";
 echo "<tr valign=top><td>";
 echo "<table border=1>";
@@ -69,6 +71,11 @@ echo "</td>";
 echo "<td>";
 echo "<table border=1>";
 echo "<th>Sheets</th>";
+foreach($sheets as $sheet){
+	echo "<tr><td>";
+    echo "<a href=\"sheet.php?id=$sheet[0]\">$sheet[1]</a>";
+    echo "</td></tr>";
+}
 echo "</table><br>";
 echo "</td>";
 
