@@ -112,6 +112,14 @@ function show_sensors($data, $edit=0){
     }
 }
 
+### another function written as shorthand. this complex sql query is used on several different pages
+### it also requires edits as the data evolves
+function test_data($id,$db){
+       $sql="SELECT t.name as tname,t.id,t.coolant_temp,s.*,s.id as sid, s.cur_channel as cur_channel,ss.id as ssid,ss.name as ss_name,st.xpos,st.ypos,st.channel FROM test t LEFT JOIN sensor_test st ON st.test_id=t.id LEFT JOIN thermal_sensor s ON st.thermal_id=s.id LEFT JOIN support_structure ss ON t.assoc_ss=ss.id where t.id=".$id;
+       $data = db_query($sql,$db);
+       return $data;
+}
+
 ### shorthand to make some of the other pages a little more readable
 ### if the query returns only one line, it can be accessed with $data[0]
 function db_query($sql,$db){

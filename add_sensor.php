@@ -3,14 +3,10 @@
 require_once("database.php");
 require_once("functions.php");
 $db = new Database();
-$sql="SELECT t.name as tname,t.id,s.*,s.id as sid,ss.id as ssid,ss.name as ss_name,st.xpos,st.ypos,st.channel FROM test t LEFT JOIN sensor_test st ON st.test_id=t.id LEFT JOIN thermal_sensor s ON st.thermal_id=s.id LEFT JOIN support_structure ss ON t.assoc_ss=ss.id where t.id=".$_GET['id'];
-$db->query($sql);
-$i=0;
-while($db->nextRecord()){
-    $data[$i]=$db->Record;
-    $i++;
-}
-#print_r($data);
+$id=$_GET['id'];
+
+$data = test_data($id,$db);
+
 $notstr="";
 if($i>=1){
     $notstr=" WHERE id != 0";

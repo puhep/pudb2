@@ -6,8 +6,9 @@ require_once("database.php");
 require_once("functions.php");
 $db = new Database();
 $id=$_GET['id'];
-$sql="SELECT t.name as tname,t.id,t.coolant_temp,s.*,s.id as sid,ss.id as ssid,ss.name as ss_name,st.xpos,st.ypos,st.channel FROM test t LEFT JOIN sensor_test st ON st.test_id=t.id LEFT JOIN thermal_sensor s ON st.thermal_id=s.id LEFT JOIN support_structure ss ON t.assoc_ss=ss.id where t.id=".$_GET['id'];
-$data=db_query($sql,$db);
+
+$data = test_data($id,$db);
+
 $pos=array();
 $i=0;
 foreach($data as $line){

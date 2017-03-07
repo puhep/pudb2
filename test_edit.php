@@ -7,13 +7,9 @@ require_once("functions.php");
 $db = new Database();
 
 $id=$_GET['id'];
-$sql="SELECT t.name as tname,t.id,t.coolant_temp,s.*,s.id as sid,ss.id as ssid,ss.name as ss_name,st.xpos,st.ypos,st.channel FROM test t LEFT JOIN sensor_test st ON st.test_id=t.id LEFT JOIN thermal_sensor s ON st.thermal_id=s.id LEFT JOIN support_structure ss ON t.assoc_ss=ss.id where t.id=".$_GET['id'];
-   $db->query($sql);
-   $i=0;
-while($db->nextRecord()){
-$data[$i]=$db->Record;
-$i++;
-}
+
+$data = test_data($id,$db);
+
 $name=$data[0]['tname'];
 $ss_name=$data[0]['ss_name'];
 $coolant_temp=$data[0]['coolant_temp'];
@@ -50,7 +46,8 @@ $coolant_temp=$data[0]['coolant_temp'];
    <?php echo nl2br($notes); ?>
    <br>
    <div style="width:225px;">
-  Notes: <input name="notes" type="text" style="float:right"><br><br>
+  <!--Notes: <input name="notes" type="text" style="float:right"><br><br>-->
+       Additional Notes: <textarea cols="40" rows="5" name="notes"></textarea><br>
    </div>
    
 <h2>Pictures</h2>

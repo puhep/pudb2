@@ -52,7 +52,9 @@ $notes=$db->Record['notetext'];
 
 <br>
    <div style="width:225px;">
-  Notes: <input name="notes" type="text" style="float:right"><br><br>
+    <!--Notes: <input name="notes" type="text" style="float:right" size="20"><br><br>-->
+    Additional Notes: <textarea cols="40" rows="5" name="notes"></textarea><br>
+
 </div>
 
 <h2>Pictures</h2>
