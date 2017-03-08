@@ -12,6 +12,7 @@ $data = test_data($id,$db);
 $pos=array();
 $i=0;
 foreach($data as $line){
+if($line['xpos'] !='' and $line['ypos'] !=''){
     $x[$i]=$line['xpos'];
     $y[$i]=$line['ypos'];
     $name[$i]=$line['name'];
@@ -31,9 +32,11 @@ $name[$i]="H";
         #echo "H<br>";
     }
     $format[ strval($x[$i]) ][ strval($y[$i]) ] = array($size, $color);
+
 #print_r($format);
 #echo "<br>";
     $i++;
+}
 }
 
 function FCallback($aYVal,$aXVal) {
