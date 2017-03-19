@@ -16,23 +16,24 @@ $notes=$db->Record['notetext'];
     <title><?php echo $name; ?> Summary</title>
     <body>
       <h1><?php echo $name; ?> Summary</h1>
-<p>Object Type: Sheet</p><p>Name: <?php echo $name; ?></p>
 <?php
-echo "<p>Ply: ".$data['ply']."</p>";
-echo "<p>Mass before backing (g): ".$data['mass_nb']."</p>";
-echo "<p>Cut by: ".$data['user_cut']."</p>";
-echo "<p>Bagged by: ".$data['user_bagged']."</p>";
-echo "<p># of wax coats: ".$data['num_wax_coats']."</p>";
-echo "<p>Curing stackup: ".$data['curing_stackup']."</p>";
-echo "<p>Checked (1) by: ".$data['user_check1']."</p>";
-echo "<p>Ramped up by: ".$data['user_ramp']."</p>";
-echo "<p>Checked (2) by: ".$data['user_check2']."</p>";
-echo "<p>Checked (3) by: ".$data['user_check3']."</p>";
-echo "<p>Removed by: ".$data['user_remove']."</p>";
-echo "<p>Mass after (g): ".$data['mass_after']."</p>";
-echo "<p>Measured by: ".$data['user_measure']."</p>";
-
-#echo "<p>Ply: ".$data['ply']."</p>";
+echo "<table border=1 cellpadding=5>";
+echo "<tr><td>Object Type </td><td>Sheet</td></tr>";
+echo "<tr><td>Name </td><td>".$data['name']."</td></tr>";
+echo "<tr><td>Ply </td><td>".$data['ply']."</td></tr>";
+echo "<tr><td>Mass before backing </td><td>".$data['mass_nb']." g</td></tr>";
+echo "<tr><td>Cut by </td><td>".$data['user_cut']."</td></tr>";
+echo "<tr><td>Bagged/oven turned on by </td><td>".$data['user_bagged']."</td></tr>";
+echo "<tr><td># of wax coats </td><td>".$data['num_wax_coats']."</td></tr>";
+echo "<tr><td>Curing stackup </td><td>".$data['curing_stackup']."</td></tr>";
+echo "<tr><td>Checked (1) by </td><td>".$data['user_check1']."</td></tr>";
+echo "<tr><td>Ramped up by </td><td>".$data['user_ramp']."</td></tr>";
+echo "<tr><td>Checked (2) by </td><td>".$data['user_check2']."</td></tr>";
+echo "<tr><td>Checked (3) by </td><td>".$data['user_check3']."</td></tr>";
+echo "<tr><td>Removed by </td><td>".$data['user_remove']."</td></tr>";
+echo "<tr><td>Mass after </td><td>".$data['mass_after']." g</td></tr>";
+echo "<tr><td>Measured by </td><td>".$data['user_measure']."</td></tr>";
+echo "</table>";
 
 echo "<h2>Notes</h2>";
 if($notes!=""){

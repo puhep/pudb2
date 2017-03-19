@@ -67,7 +67,7 @@ Picture File: <input name="pic" type="file" style="float:right"><br><br>
 
 <h2>Misc Files</h2>
    <div style="width:340px;">
-Misc File: <input name="file" type="file" style="float:right"><br><br>
+    Misc File(s): <input name="files[]" id="files" type="file" multiple="multiple"  style="float:right"><br><br>
 </div>
 
 <?php echo "<input type='hidden' name='id' value='".$data['id']."'>"; ?>

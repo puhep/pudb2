@@ -34,11 +34,12 @@ function show_pictures($part_type, $part_id){
     }
     if(file_exists($dir) && ($handle = opendir($dir))){
         echo "<table border=1>";
-        while(false !== ($entry=readdir($handle))){
+        while(false !== ($entry=(readdir($handle)))){
             if($entry != "." && $entry != ".." && substr($entry,-3) !="txt"){
+                $str = rawurlencode($entry);
                 echo "<tr>";
                 echo "<td>";
-                echo "<a href=$dir/$entry target=\"blank\"> <img src=\"$dir/$entry\" width=\"200\" height=\"200\"></a>";
+                echo "<a href=$dir/$str target=\"blank\"> <img src=\"$dir/$entry\" width=\"200\" height=\"200\"></a>";
                 echo "</td>";
                 echo "<td>";
                 $txt = $dir."/".substr($entry,0,-3)."txt";
@@ -109,6 +110,58 @@ function show_sensors($data, $edit=0){
             $i++;
         }
         echo "</table>";
+    }
+}
+
+function add_file($type,$id,$files){;
+    $targetdir = "../phase_2/files/$type/$id/";
+    ### if the directory for the structure does not exist, create it and make it editable
+    if(!file_exists($targetdir)){
+        mkdir($targetdir);
+        chmod($targetdir,0777);
+    }
+    #echo $targetdir."<br><br>";
+    foreach($files['name'] as $f => $name){
+        $targetfile = $targetdir.$name;
+        echo $targetfile."<br>";
+        print_r($files['tmp_name']);
+        echo "<br>";
+        if(!move_uploaded_file($files['tmp_name'][$f], $targetfile)){
+            echo "Sorry, an error has occurred. Try again or bother Greg until he helps<br>";
+        }
+    }
+}
+
+function add_pic($type,$id,$files,$notes){
+    $picupload=1;
+    #echo "pic detected<br>";
+    $targetdir = "../phase_2/pics/$type/$id/";
+    $targetfile = $targetdir.$files['pic']['name'];
+    $imageFileType = pathinfo($targetfile,PATHINFO_EXTENSION);
+    ### if the directory for the test does not exist, create it and make it editable
+    if(!file_exists($targetdir)){
+        mkdir($targetdir);
+        chmod($targetdir,0777);
+	}
+    ### don't allow duplicate uploads
+    if(file_exists($targetfile)){
+    echo "Sorry, file already exists.<br>".$backmessage;
+    $picupload = 0;
+}
+    ### only picture type files are allowed
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<br>".$backmessage;
+    $picupload = 0;
+}
+    ### if none of the errors have been detected, proceed with the upload
+    if($picupload==1){
+    #echo "ok to upload";
+    move_uploaded_file($files['pic']['tmp_name'], $targetfile);
+    $fp = fopen(substr($targetfile,0,-3)."txt","w");
+    $date = date("m-d-y H:i:s");
+    #echo $date;
+    fwrite($fp,$date." ".$notes."\n");
+    fclose($fp);
     }
 }
 

@@ -1,5 +1,6 @@
 <?php
 require_once("database.php");
+require_once("functions.php");
 $db = new Database();
 
 $test_id=$_POST['test_id'];
@@ -63,52 +64,14 @@ if($_POST['notes'] != ""){
 
 ### if the name of the picture is not blank (i.e. a picture has been slotted to upload), perform several checks and upload
 if($_FILES['pic']['name'] != ""){
-    $picupload=1;
-    #echo "pic detected<br>";
-    $targetdir = "../phase_2/pics/test/$test_id/";
-    $targetfile = $targetdir.$_FILES['pic']['name'];
-    $imageFileType = pathinfo($targetfile,PATHINFO_EXTENSION);
-    ### if the directory for the test does not exist, create it and make it editable
-    if(!file_exists($targetdir)){
-        mkdir($targetdir);
-        chmod($targetdir,0777);
-	}
-    ### don't allow duplicate uploads
-    if(file_exists($targetfile)){
-    echo "Sorry, file already exists.<br>".$backmessage;
-    $picupload = 0;
-}
-    ### only picture type files are allowed
-    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
-    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<br>".$backmessage;
-    $picupload = 0;
-}
-    ### if none of the errors have been detected, proceed with the upload
-    if($picupload==1){
-    #echo "ok to upload";
-    move_uploaded_file($_FILES['pic']['tmp_name'], $targetfile);
-    $fp = fopen(substr($targetfile,0,-3)."txt","w");
-    $date = date("m-d-y H:i:s");
-    #echo $date;
-    fwrite($fp,$date." ".$_POST['picnotes']."\n");
-    fclose($fp);
-}
+    add_pic("test",$id,$_FILES,$_POST['picnotes']);
 }
 
-    ### if the name of the file is not blank (i.e. a file has been slotted to upload), attempt to upload
-    if($_FILES['file']['name'] != ""){
-    #echo "file detected<br>";
-    $targetdir = "../phase_2/files/test/$test_id/";
-    $targetfile = $targetdir.$_FILES['file']['name'];
-    ### if the directory for the structure does not exist, create it and make it editable
-    if(!file_exists($targetdir)){
-    mkdir($targetdir);
-    chmod($targetdir,0777);
+### if the name of the file is not blank (i.e. a file has been slotted to upload), attempt to upload
+if(count($_FILES['files']['name'])){
+    add_file("test",$id,$_FILES['files']);
 }
-    if(!move_uploaded_file($_FILES['file']['tmp_name'], $targetfile)){
-    echo "Sorry, an error has occurred. Try again or bother Greg until he helps";
-}
-}
-    ### redirect to the test summary page with the new information
-    header("Location: test.php?id=$test_id");
+
+### redirect to the test summary page with the new information
+header("Location: test.php?id=$test_id");
 ?>
