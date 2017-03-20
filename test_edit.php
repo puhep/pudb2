@@ -20,14 +20,14 @@ $coolant_temp=$data[0]['coolant_temp'];
 <body>
 <h1>Edit Test <?php echo $name; ?></h1>
 
-<h2>Sensor Data</h2>
+
 <form action="test_edit_proc.php" method="post" enctype="multipart/form-data">
    <div style="width:275px;">
      Name: <input placeholder= "<?php echo $name; ?>" name="name" type="text" style="float:right"><br><br>
      Coolant <br>Temp (°C): <input placeholder= "<?php echo $coolant_temp; ?>" name="coolant_temp" type="text" style="float:right"><br><br>     
 </div>
 
-   
+   <h2>Sensor Data</h2>
    Remove Sensor: <select name="remove_id">  
     <?php
    echo "<option value=\"NULL\">Select a Sensor</option>\n";
