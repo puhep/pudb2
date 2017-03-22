@@ -123,9 +123,9 @@ function add_file($type,$id,$files){;
     #echo $targetdir."<br><br>";
     foreach($files['name'] as $f => $name){
         $targetfile = $targetdir.$name;
-        echo $targetfile."<br>";
-        print_r($files['tmp_name']);
-        echo "<br>";
+        #echo $targetfile."<br>";
+        #print_r($files['tmp_name']);
+        #echo "<br>";
         if(!move_uploaded_file($files['tmp_name'][$f], $targetfile)){
             echo "Sorry, an error has occurred. Try again or bother Greg until he helps<br>";
         }
