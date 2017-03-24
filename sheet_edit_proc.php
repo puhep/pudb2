@@ -80,6 +80,10 @@ if($_FILES['pic']['name'] != ""){
 
 ### if the name of the file is not blank (i.e. a file has been slotted to upload), attempt to upload
 if(count($_FILES['files']['name'])){
+    #echo "file found?<br>";
+    #print_r($_FILES['files']);
+    #echo "<br><br>";
+    #echo count($_FILES['files']['name']);
     add_file("sheet",$id,$_FILES['files']);
 }
     

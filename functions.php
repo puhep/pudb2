@@ -113,7 +113,7 @@ function show_sensors($data, $edit=0){
     }
 }
 
-function add_file($type,$id,$files){;
+function add_file($type,$id,$files){
     $targetdir = "../phase_2/files/$type/$id/";
     ### if the directory for the structure does not exist, create it and make it editable
     if(!file_exists($targetdir)){
