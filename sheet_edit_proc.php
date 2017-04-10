@@ -13,6 +13,10 @@ if($_POST['name'] != ""){
     $sql = "update sheet set name=\"".$_POST['name']."\" where id=$id";
     $db -> query($sql);
 }
+if($_POST['location'] != ""){
+    $sql = "update sheet set location = \"".$_POST['location']."\" where id=$id";
+    $db -> query($sql);
+}
 if($_POST['ply'] != ""){
     $sql = "update sheet set ply=".$_POST['ply']." where id=$id";
     $db -> query($sql);
@@ -66,7 +70,22 @@ if($_POST['user_remove'] != ""){
     $sql = "update sheet set user_remove=\"".$_POST['user_remove']."\" where id=$id";
     $db -> query($sql);
 }
-
+if($_POST['thickness1'] != ""){
+    $sql = "update sheet set thickness1=".$_POST['thickness1']." where id=$id";
+    $db -> query($sql);
+}
+if($_POST['thickness2'] != ""){
+    $sql = "update sheet set thickness2=".$_POST['thickness2']." where id=$id";
+    $db -> query($sql);
+}
+if($_POST['thickness3'] != ""){
+    $sql = "update sheet set thickness3=".$_POST['thickness3']." where id=$id";
+    $db -> query($sql);
+}
+if($_POST['thickness4'] != ""){
+    $sql = "update sheet set thickness4=".$_POST['thickness4']." where id=$id";
+    $db -> query($sql);
+}
 ### this concatenates existing notes, if any, with a new line including the date and the entered note text
 if($_POST['notes'] != ""){
     $sql = "update notes set notetext= CONCAT(IFNULL(notetext,''),DATE_FORMAT(NOW(),'%m-%d-%y %T'),\" ".$_POST['notes']."\",'\n') where part_id=$id AND part_type=\"sheet\"";

@@ -10,6 +10,10 @@ $sql = "SELECT notetext FROM notes where part_id=$id and part_type=\"sheet\"";
 $db->query($sql);
 $db->singleRecord();
 $notes=$db->Record['notetext'];
+if($data['thickness1'] != ""){
+    $thicknesses = $data['thickness1'].", ".$data['thickness2'].", ".$data['thickness3'].", ".$data['thickness4'];
+        }
+else{ $thicknesses = ""; }
 ?>
 <html>
   <head>
@@ -18,21 +22,41 @@ $notes=$db->Record['notetext'];
       <h1><?php echo $name; ?> Summary</h1>
 <?php
 echo "<table border=1 cellpadding=5>";
+
 echo "<tr><td>Object Type </td><td>Sheet</td></tr>";
+
 echo "<tr><td>Name </td><td>".$data['name']."</td></tr>";
+
+echo "<tr><td>Location </td><td>".$data['location']."</td></tr>";
+
 echo "<tr><td>Ply </td><td>".$data['ply']."</td></tr>";
-echo "<tr><td>Mass before backing </td><td>".$data['mass_nb']." g</td></tr>";
+
+echo "<tr><td>Mass before backing (g) </td><td>".$data['mass_nb']."</td></tr>";
+
 echo "<tr><td>Cut by </td><td>".$data['user_cut']."</td></tr>";
+
 echo "<tr><td>Bagged/oven turned on by </td><td>".$data['user_bagged']."</td></tr>";
-echo "<tr><td># of wax coats </td><td>".$data['num_wax_coats']."</td></tr>";
+
+echo "<tr><td>Number of wax coats </td><td>".$data['num_wax_coats']."</td></tr>";
+
 echo "<tr><td>Curing stackup </td><td>".$data['curing_stackup']."</td></tr>";
+
 echo "<tr><td>Checked (1) by </td><td>".$data['user_check1']."</td></tr>";
+
 echo "<tr><td>Ramped up by </td><td>".$data['user_ramp']."</td></tr>";
+
 echo "<tr><td>Checked (2) by </td><td>".$data['user_check2']."</td></tr>";
+
 echo "<tr><td>Checked (3) by </td><td>".$data['user_check3']."</td></tr>";
+
 echo "<tr><td>Removed by </td><td>".$data['user_remove']."</td></tr>";
-echo "<tr><td>Mass after </td><td>".$data['mass_after']." g</td></tr>";
+
+echo "<tr><td>Mass after (g) </td><td>".$data['mass_after']."</td></tr>";
+
 echo "<tr><td>Measured by </td><td>".$data['user_measure']."</td></tr>";
+
+echo "<tr><td>Edge Thicknesses (um): </td><td>".$thicknesses."</td></tr>";
+
 echo "</table>";
 
 echo "<h2>Notes</h2>";

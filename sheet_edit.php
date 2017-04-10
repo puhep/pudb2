@@ -23,6 +23,7 @@ $notes=$db->Record['notetext'];
 <form action="sheet_edit_proc.php" method="post" enctype="multipart/form-data">
    <div style="width:300px;">
 Name: <input placeholder= "<?php echo $data['name']; ?>" name="name" type="text" style="float:right"><br><br>
+Location: <input placeholder= "<?php echo $data['location']; ?>" name="location" type="text" style="float:right"><br><br>
 Ply: <input placeholder= "<?php echo $data['ply']; ?>" name="ply" type="text" style="float:right"><br><br>
     Mass before: <input placeholder= "<?php echo $data['mass_nb']; ?>" name="mass_nb" type="text" style="float:right"><br><br>
     Mass after: <input placeholder= "<?php echo $data['mass_after']; ?>" name="mass_after" type="text" style="float:right"><br><br>
@@ -36,8 +37,10 @@ Ply: <input placeholder= "<?php echo $data['ply']; ?>" name="ply" type="text" st
     Checked (3) by: <input placeholder= "<?php echo $data['user_check3']; ?>" name="user_check3" type="text" style="float:right"><br><br>
     Removed by: <input placeholder= "<?php echo $data['user_remove']; ?>" name="user_remove" type="text" style="float:right"><br><br>
     Measured by: <input placeholder= "<?php echo $data['user_measure']; ?>" name="user_measure" type="text" style="float:right"><br><br>
-
-
+    Edge Thickness 1: <input placeholder= "<?php echo $data['thickness1']; ?>" name="thickness1" type="text" style="float:right"><br><br>
+    Edge Thickness 2: <input placeholder= "<?php echo $data['thickness2']; ?>" name="thickness2" type="text" style="float:right"><br><br>
+    Edge Thickness 3: <input placeholder= "<?php echo $data['thickness3']; ?>" name="thickness3" type="text" style="float:right"><br><br>
+    Edge Thickness 4: <input placeholder= "<?php echo $data['thickness4']; ?>" name="thickness4" type="text" style="float:right"><br><br>
     </div>
 
 
