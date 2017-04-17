@@ -7,12 +7,15 @@ $db = new Database();
 
 $id=$_GET['id'];
 
-$data=test_data($id,$db);
+$miscData=testData2($id,$db);
+$sensorData = sensorTestData($id,$db);
+$heaterData = heaterTestData($id,$db);
+$moduleData = moduleTestData($id,$db);
 
-$name=$data[0]['tname'];
-$ss_name=$data[0]['ss_name'];
-$coolant_temp=$data[0]['coolant_temp'];
-
+$name=$miscData['testName'];
+$ssName=$miscData['ssName'];
+$ssID=$miscData['ssID'];
+$coolantTemp=$miscData['coolantTemp'];
 
 $sql = "SELECT notetext FROM notes where part_id=$id and part_type=\"test\"";
 $db->query($sql);
@@ -27,14 +30,18 @@ $notes=$db->Record['notetext'];
 <h1>Test <?php echo $name; ?> Summary</h1>
 
 <?php
-echo "<p>Support Structure: <a href='ss_summary.php?id=".$data[0]['ssid']."'>$ss_name</a></p>";
-echo "<p>Coolant Temperature: ".$data[0]['coolant_temp']."°C</p>";
-echo "<h2>Sensor Data</h2>";
-show_sensors($data);
+
+echo "<p>Support Structure: <a href='ss_summary.php?id=".$ssID."'>$ssName</a></p>";
+echo "<p>Coolant Temperature: ".$coolantTemp."&deg;C</p>";
+echo "<h2>Object Data</h2>";
+show_sensors($sensorData);
+echo "<br>";
+show_sensors($heaterData,0,"heater");
+echo "<br>";
+show_sensors($moduleData,0,"module");
 echo "<br>";
 echo "<a href=\"test_geometry.php?id=$id\" target=\"blank\"><img src=\"test_geometry.php?id=$id\" width=\"300\" height=\"300\" ></a>";
 
-#show_geometry($data);
 echo "<h2>Notes</h2>";
 if($notes!=""){
     echo "<p>".nl2br($notes)."</p>";
@@ -54,14 +61,9 @@ show_files("test",$id);
 <form method="get" action="test_edit.php">
   <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>";
 	?>
-  <input type="submit" value="Edit Data">
+  <input type="submit" value="Edit Test">
 </form>
-<form method="get" action="add_sensor.php">
-  <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>";
-	?>
-  <input type="submit" value="Add Sensor">
-</form>
-<br><br>
+
 <input type=button onClick="location.href='test_list.php'" value='Test List'>
 <br><br>
 <input type=button onClick="location.href='index.php'" value='Index'>

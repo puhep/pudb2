@@ -6,15 +6,14 @@ $db = new Database();
 $id=$_GET['id'];
 
 $data = test_data($id,$db);
-
 $notstr="";
-if($i>=1){
+if(count($data)){
     $notstr=" WHERE id != 0";
     foreach($data as $ids){
         if($ids['sid']){ $notstr.=" AND id != ".$ids['sid']; }
     }
 }
-#echo $notstr;
+#echo $notstr."<br>";
 
    ?>
 

@@ -4,8 +4,6 @@ $db=new Database();
 #print_r($_POST);
 $test_id=$_POST['test_id'];
 $thermal_id=$_POST['thermal_id'];
-$test_name=$_POST[''];
-$thermal_name=$_POST[''];
 $xpos=$_POST['xpos'];
 $ypos=$_POST['ypos'];
 $channel=$_POST['channel'];
@@ -34,7 +32,7 @@ if($channel!=''){
 #echo "<br>";
 #echo $sql;
 
-### return to the add sensor page to expedite adding multiple sensors at once
-header("Location: add_sensor.php?id=$test_id");
+### return to the add sensor page to expedite adding multiple objects at once
+header("Location: test_edit.php?id=$test_id");
 
 ?>

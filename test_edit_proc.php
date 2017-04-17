@@ -3,6 +3,8 @@ require_once("database.php");
 require_once("functions.php");
 $db = new Database();
 
+#print_r($_POST);
+#break;
 $test_id=$_POST['test_id'];
 
 ### a message used in all of my rudimentary error messages
@@ -21,15 +23,26 @@ if($_POST['coolant_temp'] != ""){
     $db->query($sql);
 }
 
-### if the user specified a module to remove, delete from the relational sensor_test table to break the association between sensor and test
-if($_POST['remove_id'] != ""){
-    $sql="DELETE FROM sensor_test where test_id = ".$test_id." AND thermal_id = ".$_POST['remove_id'];
+### if the user specified a sensor to remove, delete from the relational sensor_test table to break the association between sensor and test
+if($_POST['removeSensorID'] != ""){
+    $sql="DELETE FROM sensor_test where test_id = ".$test_id." AND thermal_id = ".$_POST['removeSensorID'];
     $db->query($sql);
 }
 
-### do a foreach loop on xpos and ypos, arrays filled by the user. If they are filled, enter the data for each one.
+### if the user specified a heater to remove, delete from the relational heater_test table to break the association between heater and test
+if($_POST['removeHeaterID'] != ""){
+    $sql="DELETE FROM heater_test where test_id = ".$test_id." AND heater_id = ".$_POST['removeHeaterID'];
+    $db->query($sql);
+}
+
+### if the user specified a module to remove, delete from the relational module_test table to break the association between module and test
+if($_POST['removeModuleID'] != ""){
+    $sql="DELETE FROM module_test where test_id = ".$test_id." AND module_id = ".$_POST['removeModuleID'];
+    $db->query($sql);
+}
+### do a foreach loop on sensor xpos and ypos, arrays filled by the user. If they are filled, enter the data for each one.
 $i=0;
-foreach($_POST['xpos'] as $xpos){
+foreach($_POST['sensorXPos'] as $xpos){
     if($xpos != ""){
         $sql="UPDATE sensor_test SET xpos = $xpos WHERE test_id = ".$test_id." AND thermal_id = ".$_POST['thermal_id'][$i];
         #echo $sql."<br>";
@@ -38,7 +51,7 @@ foreach($_POST['xpos'] as $xpos){
     $i++;
 }
 $i=0;
-foreach($_POST['ypos'] as $ypos){
+foreach($_POST['sensorYPos'] as $ypos){
     if($ypos != ""){
         $sql="UPDATE sensor_test SET ypos = $ypos WHERE test_id = ".$test_id." AND thermal_id = ".$_POST['thermal_id'][$i];
         #echo $sql."<br>";
@@ -50,6 +63,44 @@ $i=0;
 foreach($_POST['channel'] as $channel){
     if($channel != ""){
         $sql="UPDATE sensor_test SET channel = $channel WHERE test_id = ".$test_id." AND thermal_id = ".$_POST['thermal_id'][$i];
+        #echo $sql."<br>";
+        $db->query($sql);
+    }
+    $i++;
+}
+### do a foreach loop on heater xpos and ypos, arrays filled by the user. If they are filled, enter the data for each one.
+$i=0;
+foreach($_POST['heaterXPos'] as $xpos){
+    if($xpos != ""){
+        $sql="UPDATE heater_test SET xpos = $xpos WHERE test_id = ".$test_id." AND heater_id = ".$_POST['heater_id'][$i];
+        #echo $sql."<br>";
+        $db->query($sql);
+    }
+    $i++;
+}
+$i=0;
+foreach($_POST['heaterYPos'] as $ypos){
+    if($ypos != ""){
+        $sql="UPDATE heater_test SET ypos = $ypos WHERE test_id = ".$test_id." AND heater_id = ".$_POST['heater_id'][$i];
+        #echo $sql."<br>";
+        $db->query($sql);
+    }
+    $i++;
+}
+### do a foreach loop on module xpos and ypos, arrays filled by the user. If they are filled, enter the data for each one.
+$i=0;
+foreach($_POST['moduleXPos'] as $xpos){
+    if($xpos != ""){
+        $sql="UPDATE module_test SET xpos = $xpos WHERE test_id = ".$test_id." AND module_id = ".$_POST['module_id'][$i];
+        #echo $sql."<br>";
+        $db->query($sql);
+    }
+    $i++;
+}
+$i=0;
+foreach($_POST['moduleYPos'] as $ypos){
+    if($ypos != ""){
+        $sql="UPDATE module_test SET ypos = $ypos WHERE test_id = ".$test_id." AND module_id = ".$_POST['module_id'][$i];
         #echo $sql."<br>";
         $db->query($sql);
     }

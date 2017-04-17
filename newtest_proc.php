@@ -30,9 +30,8 @@ if($_POST['oldtest'] != ""){
         #echo $sql."<br>";
         $db->query($sql);
     }
+}
     header("Location: test_edit.php?id=$id");
-}
-else{
-    header("Location: add_sensor.php?id=$id");
-}
+
+
 ?>

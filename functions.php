@@ -58,55 +58,59 @@ function show_pictures($part_type, $part_id){
 }
 ### show the sensors for a test in a table. On the edit page, make the fields
 ### editable with placeholders for the current values
-function show_sensors($data, $edit=0){
+function show_sensors($data, $edit=0, $type="sensor"){
     if($edit==0){
         echo "<table border=1 cellpadding=5>";
-        echo "<th>Sensor</th>";
+        echo "<th>".ucfirst($type)."</th>";
         echo "<th>X (cm)</th>";
         echo "<th>Y (cm)</th>";
-        echo "<th>Channel</th>";
+        if($type=="sensor"){ echo "<th>Channel</th>"; }
         foreach($data as $row){
             echo "<tr>";
             echo "<td>";
-            echo $row['name'];
+            echo $row[$type."Name"];
             echo "</td>";
             echo "<td>";
-            echo $row['xpos'];
+            echo $row[$type."XPos"];
             echo "</td>";
             echo "<td>";
-            echo $row['ypos'];
+            echo $row[$type.'YPos'];
             echo "</td>";
-            echo "<td>";
-            echo $row['channel'];
-            echo "</td>";
-            echo "</tr>";
+            if($type=="sensor"){
+                echo "<td>";
+                echo $row['sensorChannel'];
+                echo "</td>"; }
+            echo "</tr>"; 
         }
         echo "</table>";
     }
     else{
         echo "<table border=1 cellpadding=5>";
-        echo "<th>Sensor</th>";
+        echo "<th>".ucfirst($type)."</th>";
         echo "<th>X (cm)</th>";
         echo "<th>Y (cm)</th>";
-        echo "<th>Channel</th>";
         $i=0;
+        if($type=="sensor"){ echo "<th>Channel</th>"; }
         foreach($data as $row){
             echo "<tr>";
             echo "<td>";
-            echo $row['name'];
+            echo $row[$type.'Name'];
             echo "</td>";
             echo "<td>";
-            echo "<input placeholder=\"".$row['xpos']."\" name=\"xpos[$i]\" type=\"text\" >";
+            echo "<input placeholder=\"".$row[$type.'XPos']."\" name=\"".$type."XPos[$i]\" type=\"text\" >";
             echo "</td>";
             echo "<td>";
-            echo "<input placeholder=\"".$row['ypos']."\" name=\"ypos[$i]\" type=\"text\" >";
+            echo "<input placeholder=\"".$row[$type.'YPos']."\" name=\"".$type."YPos[$i]\" type=\"text\" >";
             echo "</td>";
-            echo "<td>";
-            if($row['channel'] == "" and $row['cur_channel'] != ""){ $row['channel'] = $row['cur_channel']." (Default)"; }
-            echo "<input placeholder=\"".$row['channel']."\" name=\"channel[$i]\" type=\"text\" >";
-            echo "</td>";
-            echo "</tr>";
-            echo "<input type='hidden' name=\"thermal_id[$i]\" value='".$row['sid']."'>";
+            if($type=="sensor"){
+                echo "<td>";
+                if($row['sensorChannel'] == "" and $row['curChannel'] != ""){ $row['sensorChannel'] = $row['curChannel']." (Default)"; }
+                echo "<input placeholder=\"".$row['sensorChannel']."\" name=\"channel[$i]\" type=\"text\" >";
+                echo "</td>";
+                echo "</tr>"; }
+            if($type=="sensor"){ $nameType = "thermal"; }
+            else{ $nameType = $type; }
+            echo "<input type='hidden' name=\"".$nameType."_id[$i]\" value='".$row[$type.'ID']."'>"; 
             $i++;
         }
         echo "</table>";
@@ -165,21 +169,6 @@ function add_pic($type,$id,$files,$notes){
     }
 }
 
-### another function written as shorthand. this complex sql query is used on several different pages
-### it also requires edits as the data evolves
-function test_data($id,$db){
-    $sql="SELECT t.name as tname,t.id,t.coolant_temp,
-s.*,s.id as sid, s.cur_channel as cur_channel,
-ss.id as ssid,ss.name as ss_name,
-st.xpos,st.ypos,st.channel 
-FROM test t 
-LEFT JOIN sensor_test st ON st.test_id=t.id 
-LEFT JOIN thermal_sensor s ON st.thermal_id=s.id 
-LEFT JOIN support_structure ss ON t.assoc_ss=ss.id where t.id=".$id;
-       $data = db_query($sql,$db);
-       return $data;
-}
-
 ### shorthand to make some of the other pages a little more readable
 ### if the query returns only one line, it can be accessed with $data[0]
 function db_query($sql,$db){
@@ -190,6 +179,49 @@ function db_query($sql,$db){
         $i++;
     }
     return $data;
+}
+
+function testData2($testID,$db){
+    $sql = "SELECT t.name as testName, t.id as testID, t.coolant_temp as coolantTemp,
+ss.id as ssID, ss.name as ssName
+FROM test t
+LEFT JOIN support_structure ss ON t.assoc_ss=ss.id
+WHERE t.id=".$testID;
+    $data = db_query($sql,$db);
+    return $data[0];
+}
+
+function sensorTestData($testID,$db){
+    $sql = "SELECT s.id as sensorID, s.name as sensorName, s.cur_channel as curChannel,
+st.xpos as sensorXPos, st.ypos as sensorYPos, st.channel as sensorChannel
+FROM test t 
+LEFT JOIN sensor_test st ON st.test_id=t.id
+LEFT JOIN thermal_sensor s ON st.thermal_id=s.id
+WHERE t.id=".$testID;
+    $sensorData = db_query($sql,$db);
+    return $sensorData;
+}
+
+function heaterTestData($testID,$db){
+    $sql = "SELECT h.id as heaterID, h.name as heaterName,
+ht.xpos as heaterXPos, ht.ypos as heaterYPos
+FROM test t 
+LEFT JOIN heater_test ht ON ht.test_id=t.id
+LEFT JOIN heater h ON ht.heater_id=h.id
+WHERE t.id=".$testID;
+    $heaterData = db_query($sql,$db);
+    return $heaterData;
+}
+
+function moduleTestData($testID,$db){
+    $sql = "SELECT m.id as moduleID, m.name as moduleName,
+mt.xpos as moduleXPos, mt.ypos as moduleYPos
+FROM test t 
+LEFT JOIN module_test mt ON mt.test_id=t.id
+LEFT JOIN mock_module m ON mt.module_id=m.id
+WHERE t.id=".$testID;
+    $moduleData = db_query($sql,$db);
+    return $moduleData;
 }
 
 ?>
