@@ -97,15 +97,15 @@ function show_sensors($data, $edit=0, $type="sensor"){
             echo $row[$type.'Name'];
             echo "</td>";
             echo "<td>";
-            echo "<input placeholder=\"".$row[$type.'XPos']."\" name=\"".$type."XPos[$i]\" type=\"text\" >";
+            echo "<input placeholder=\"".$row[$type.'XPos']."\" name=\"".$type."XPos[$i]\" type=\"number\" step=\"0.1\" >";
             echo "</td>";
             echo "<td>";
-            echo "<input placeholder=\"".$row[$type.'YPos']."\" name=\"".$type."YPos[$i]\" type=\"text\" >";
+            echo "<input placeholder=\"".$row[$type.'YPos']."\" name=\"".$type."YPos[$i]\" type=\"number\" step=\"0.1\" >";
             echo "</td>";
             if($type=="sensor"){
                 echo "<td>";
                 if($row['sensorChannel'] == "" and $row['curChannel'] != ""){ $row['sensorChannel'] = $row['curChannel']." (Default)"; }
-                echo "<input placeholder=\"".$row['sensorChannel']."\" name=\"channel[$i]\" type=\"text\" >";
+                echo "<input placeholder=\"".$row['sensorChannel']."\" name=\"channel[$i]\" type=\"number\" >";
                 echo "</td>";
                 echo "</tr>"; }
             if($type=="sensor"){ $nameType = "thermal"; }

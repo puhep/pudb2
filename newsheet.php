@@ -1,3 +1,8 @@
+<!--
+This is a fairly simple page that simply asks for a sheet name.
+    On submission. the query is processed by the newsheet_proc page
+    The user is then redirected to the sheet editing page for the new sheet
+    -->
 <html>
 <head>
 <title>Submit New Sheet</title>

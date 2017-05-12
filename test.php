@@ -29,6 +29,12 @@ $notes=$db->Record['notetext'];
 <body>
 <h1>Test <?php echo $name; ?> Summary</h1>
 
+<form method="get" action="test_edit.php">
+  <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>";
+	?>
+  <input type="submit" value="Edit Test">
+</form>
+
 <?php
 
 echo "<p>Support Structure: <a href='ss_summary.php?id=".$ssID."'>$ssName</a></p>";
@@ -58,11 +64,7 @@ show_files("test",$id);
 ?>
 
 <br><br>
-<form method="get" action="test_edit.php">
-  <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>";
-	?>
-  <input type="submit" value="Edit Test">
-</form>
+
 
 <input type=button onClick="location.href='test_list.php'" value='Test List'>
 <br><br>

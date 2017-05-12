@@ -8,6 +8,7 @@ $module_id=$_POST['module_id'];
 $xpos=$_POST['xpos'];
 $ypos=$_POST['ypos'];
 
+if($module_id != "NULL"){
 ### link the test and sensor in the relational table
 $sql="INSERT INTO module_test (test_id,module_id) VALUES ($test_id, $module_id)";
 $db->query($sql);
@@ -28,6 +29,8 @@ if($ypos!=''){
 
 ### return to the test editing page to expedite adding multiple objects at once
 header("Location: test_edit.php?id=$test_id");
-
-?>
+}
+else{
+    echo "Please select a module.";
+        }
 ?>

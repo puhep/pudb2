@@ -1,3 +1,9 @@
+<!--
+This page is, as the name suggests, a list of parts. All physical parts involved with the project should
+be listed here, along with links to their respective pages.
+Currently, we have support structures, thermal sensors, heaters, mock modules, and sheets.
+-->
+
 <html>
 <head>
 <title>Part List</title>
@@ -10,18 +16,17 @@
 require_once("database.php");
 require_once("functions.php");
 
+
 $db = new Database();
 
+### query the database for all relevant information regarding the part types
 $ss=db_query("SELECT * FROM support_structure",$db);
-
 $ts = db_query("SELECT * FROM thermal_sensor",$db);
-
 $heaters=db_query("SELECT * FROM heater",$db);
-
 $modules=db_query("SELECT * FROM mock_module",$db);
-
 $sheets=db_query("SELECT * FROM sheet",$db);
 
+### display the part links in nested tables. The outer table is borderless, so it's not visible.
 echo "<table border=0 cellpadding=10 val=aligntop>";
 echo "<tr valign=top><td>";
 echo "<table border=1>";

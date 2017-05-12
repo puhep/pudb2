@@ -8,6 +8,8 @@ $heater_id=$_POST['heater_id'];
 $xpos=$_POST['xpos'];
 $ypos=$_POST['ypos'];
 
+if($heater_id != "NULL"){
+    
 ### link the test and sensor in the relational table
 $sql="INSERT INTO heater_test (test_id,heater_id) VALUES ($test_id, $heater_id)";
 $db->query($sql);
@@ -28,6 +30,9 @@ if($ypos!=''){
 
 ### return to the test editing page to expedite adding multiple objects at once
 header("Location: test_edit.php?id=$test_id");
+}
+else{
+    echo "Please select a heater.";
+        }
 
-?>
 ?>

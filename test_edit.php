@@ -13,55 +13,69 @@ $data = testData2($id,$db);
 $name=$data['testName'];
 $ss_name=$data['ssName'];
 $coolantTemp=$data['coolantTemp'];
+
 ?>
 
 <html>
-  
-  <title>Edit Test <?php echo $name ?></title>
-  
-  <body>
-    <h1>Edit Test <?php echo $name; ?></h1>
-    <!-- Add Object - select object type and display fields accordingly -->
+
+<title>Edit Test <?php echo $name ?></title>
+
+<body>
+<h1>Edit Test <?php echo $name; ?></h1>
+
+    <form method="get" action="test.php">
+      <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>";
+	    ?>
+      <input type="submit" value="Test Summary">
+    </form>
+    
+<!-- Add Object - select object type and display fields accordingly -->
     
     Add Object: <select name="object_type" onchange="show_fields(this);">
-      <option value ="NULL">Select Object Type</option>
-      <option value ="thermal">Thermal Sensor</option>
-      <option value ="heater">Heater</option>
-      <option value ="module">Mock Module</option>
+    <option value ="NULL">Select Object Type</option>
+    <option value ="thermal">Thermal Sensor</option>
+    <option value ="heater">Heater</option>
+    <option value ="module">Mock Module</option>
     </select>
     <br><br>
     <div id="thermal" style="display:none; width:290px;">
-      <form action="add_sensor_proc.php" method="post" enctype="multipart/from-data">
-	Add Sensor: <select name="thermal_id" id="sensor">
-	  <?php
-	     $notstr="";
-	     if(count($sensorData)){
-	     $notstr=" WHERE id != 0";
-	     foreach($sensorData as $ids){
-             if($ids['sensorID']){ $notstr.=" AND id != ".$ids['sensorID']; }
-	     }
-	     }
-	     echo "<option value=\"NULL\">Select a Sensor</option>\n";
-	     
-	     $sql="SELECT name,id FROM thermal_sensor".$notstr;
-	     $sensor_data=db_query($sql,$db);
-	     foreach($sensor_data as $row){
-	     $id=$row['id'];
-	     $tsname=$row['name'];
-	     echo "<option value=\"$id\">".$tsname."</option>\n";
-	     }
-	     echo "<input type='hidden' name='test_id' value='".$_GET['id']."'>";
-	     ?>
+    <form action="add_sensor_proc.php" method="post" enctype="multipart/from-data">
+	Add Sensor: <select name="thermal_id" id="sensor" onchange="selectChannel(this);">
+<?php
+    $notstr="";
+if(count($sensorData)){
+    $notstr=" WHERE id != 0";
+    foreach($sensorData as $ids){
+        if($ids['sensorID']){ $notstr.=" AND id != ".$ids['sensorID']; }
+    }
+}
+echo "<option value=\"NULL\">Select a Sensor</option>\n";
+
+$sql="SELECT name,id,cur_channel FROM thermal_sensor".$notstr;
+$curChannels = array();
+$sensor_data=db_query($sql,$db);
+foreach($sensor_data as $row){
+    $id=$row['id'];
+    $tsname=$row['name'];
+    $curChannel=$row['cur_channel'];
+    $curChannels[$id] = $curChannel;
+    echo "<option value=\"$id\">".$tsname."</option>\n";
+}
+$curChannels = json_encode($curChannels);
+echo "<input type='hidden' name='test_id' value='".$_GET['id']."'>";
+?>
 	</select>
 	<br><br>
 	X Position (cm): <input type="text" name="xpos" style="float:right">
 	<br><br>
-	Y Position (cm): <input type="text" name="ypos" style="float:right">
+        Y Position (cm): <input type="text" name="ypos" style="float:right">
+        <br><br>
+Channel: <input type="number" name="channel" id="channel" style="float:right">
 	<br><br>
-	Channel: <input type="text" name="channel" style="float:right">
+	Note: If the channel is blank, the default channel will be used.
 	<br><br>
 	<input type="submit" name="submit" value="Add Thermal Sensor">
-      </form>
+    </form>
     </div>
     <div id="heater" style="display:none; width:290px;">
       <form action="add_heater_proc.php" method="post" enctype="multipart/from-data">
@@ -204,11 +218,7 @@ echo "<br>";
     <input type="submit" name="submit" value="Submit">  
     </form>
     
-    <form method="get" action="test.php">
-      <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>";
-	    ?>
-      <input type="submit" value="Test Summary">
-    </form>
+
     <input type=button onClick="location.href='index.php'" value='Index'>
     
   </body>
@@ -241,4 +251,14 @@ echo "<br>";
   document.getElementById('thermal').style.display = "none";
   }
   }
+function selectChannel(that) {
+    var curChannels = <?php echo $curChannels; ?>;
+    var theChannel = curChannels[that.value];
+    if(theChannel === null){
+        document.getElementById('channel').placeholder="Not Set";
+    }
+    else{
+        document.getElementById('channel').placeholder=theChannel;
+    }
+}
 </script>
