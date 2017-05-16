@@ -118,20 +118,21 @@ function show_sensors($data, $edit=0, $type="sensor"){
 }
 
 function add_file($type,$id,$files){
-    $targetdir = "../phase_2/files/$type/$id/";
+    $targetDir = "../phase_2/files/$type/$id/";
+    #echo $targetDir;
     ### if the directory for the structure does not exist, create it and make it editable
-    if(!file_exists($targetdir)){
-        mkdir($targetdir);
-        chmod($targetdir,0777);
+    if(!file_exists($targetDir)){
+        mkdir($targetDir);
+        chmod($targetDir,0777);
     }
     #echo $targetdir."<br><br>";
     foreach($files['name'] as $f => $name){
-        $targetfile = $targetdir.$name;
-        #echo $targetfile."<br>";
+        $targetFile = $targetDir.$name;
+        #echo $targetFile."<br>";
         #print_r($files['tmp_name']);
         #echo "<br>";
-        if(!move_uploaded_file($files['tmp_name'][$f], $targetfile)){
-            echo "Sorry, an error has occurred. Try again or bother Greg until he helps<br>";
+        if(!move_uploaded_file($files['tmp_name'][$f], $targetFile)){
+            echo "Sorry, an error has occurred. Try again or bother Greg & Chase until they help<br>";
         }
     }
 }

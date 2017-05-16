@@ -22,11 +22,11 @@
   </head>
   <body>
     <h1>Edit: <?php echo $name; ?></h1>
-    <form action="mockModuleSensorEditProc.php" method="post" enctype="multipart/form-data">
+    <form action="moduleSensorEditProc.php" method="post" enctype="multipart/form-data">
       <div style="width:300px;">
     	  Thickness: <input placeholder="<?php echo $si_thickness; ?>" name ="curThickness" type="number" step="0.1" style="float:right"><br><br>
 	      Adhesive: <input placeholder="<?php echo $adhesive; ?>" name ="curAdhesive" type="text" style="float:right"><br><br>
-	       Geometry: <input placeholder="<?php echo $geometry; ?>" name = "curGeometry" type="text" style="float:right"><br><br>	
+	       Geometry: <input placeholder="<?php echo $geometry; ?>" name = "curGeometry" type="text" style="float:right"><br><br>
         <h2>Notes</h2>
         <?php echo nl2br($notes); ?>
         <br>
@@ -43,4 +43,4 @@
     <br><br>
     <input type=button onClick="location.href='index.php'" value='Index'>
   </body>
-</html> 
+</html>
