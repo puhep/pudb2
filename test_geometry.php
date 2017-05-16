@@ -17,9 +17,6 @@ foreach($sensorData as $line){
     $sx[$i]=$line['sensorXPos'];
     $sy[$i]=$line['sensorYPos'];
     $sname[$i]=$line['sensorName'];
-    $size=14;
-    $color="yellow";
-    $format[ strval($sx[$i]) ][ strval($sy[$i]) ] = array($size, $color);
     $i++;
   }
 }
@@ -30,9 +27,6 @@ foreach($heaterData as $line){
     $hx[$i]=$line['heaterXPos'];
     $hy[$i]=$line['heaterYPos'];
     $hname[$i]=$line['heaterName'];
-    $size=14;
-    $color="red";
-    $format[ strval($hx[$i]) ][ strval($hy[$i]) ] = array($size, $color);
     $i++;
   }
 }
@@ -43,18 +37,8 @@ foreach($moduleData as $line){
     $mx[$i]=$line['moduleXPos'];
     $my[$i]=$line['moduleYPos'];
     $mname[$i]=$line['moduleName'];
-    $size=50;
-    $color="purple";
-    $format[ strval($mx[$i]) ][ strval($my[$i]) ] = array($size, $color);
     $i++;
   }
-}
-
-function FCallback($aYVal,$aXVal) {
-// We need to access the global format array
-  global $format;
-  return array($format[ strval($aXVal) ][ strval($aYVal) ][0],'',
-                 $format[ strval($aXVal) ][ strval($aYVal) ][1],'','');
 }
 
 $g = new Graph(800,800);
@@ -95,7 +79,8 @@ if(count($mx)){
 
   $sp3 = new Scatterplot($my,$mx);
   $sp3->mark->SetType(MARK_SQUARE);
-  $sp3->mark->SetCallbackYX("FCallback");
+  $sp3->mark->SetSize(50);
+  $sp3->mark->SetFillColor("purple");  
 
   $i=0;
   foreach($mname as $point){
@@ -116,7 +101,8 @@ if(count($sx)){
 
   $sp1 = new Scatterplot($sy,$sx);
   $sp1->mark->SetType(MARK_FILLEDCIRCLE);
-  $sp1->mark->SetCallbackYX("FCallback");
+  $sp1->mark->SetSize(14);
+  $sp1->mark->SetFillColor(yellow);  
 
   $i=0;
   foreach($sname as $point){
@@ -137,7 +123,8 @@ if(count($hx)){
 
   $sp2 = new Scatterplot($hy,$hx);
   $sp2->mark->SetType(MARK_FILLEDCIRCLE);
-  $sp2->mark->SetCallbackYX("FCallback");
+  $sp2->mark->SetSize(14);
+  $sp2->mark->SetFillColor("red");  
 
   $i=0;
   foreach($hname as $point){
