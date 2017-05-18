@@ -18,6 +18,18 @@
       <a href="https://drive.google.com/drive/folders/0B04OIAGnMDYxbXBkTWJmMm5hN0E?usp=sharing">Project Google Drive</a>
       <a href="contact.php">Contact/Issues</a>
     </nav>
-
+    <h2>Send Issue</h2>
+    <a href="https://github.com/puhep/pudb2/issues">GitHub Issues</a>
+    <h2>Email</h2>
+    <form action:"mailto:nelso312@purdue.edu" method="post" enctype="text/plain">
+      <label for="name">Name: <br></label>
+      <input type="text" name="name" placeholder="Your name.."><br>
+      <label for="mail">E-Mail: <br></label>
+      <input type="email" name="mail"><br>
+      <label for="subject">Subject: <br></label>
+      <textarea name="subject" rows="8" cols="80" placeholder="Write something.."></textarea><br><br>
+      <input type="submit" value="Send">
+      <input type="reset" value="Reset">
+    </form>
   </body>
 </html>
