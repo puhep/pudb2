@@ -1,3 +1,4 @@
+<?php // TODO: ADD LABELS to forms and add NAV ?>
 <?php
   require_once("database.php");
   require_once("functions.php");
@@ -14,13 +15,20 @@
   $ss_name=$data['ssName'];
   $coolantTemp=$data['coolantTemp'];
 ?>
-
+<!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <title>Edit Test <?php echo $name ?></title>
     <link rel="stylesheet" type="text/css" href="./style.css">
   </head>
   <body>
+    <a href="index.php">
+      <div class="header">
+        <img src="../phase_2/pics/pu_logo.jpg" width="200" height="100" alt="Purdue University Logo">
+        <img src="../phase_2/pics/CMS_logo_col.gif" width="100" height="100" alt="CMS Logo">
+      </div>
+    </a>
     <h1>Edit Test <?php echo $name; ?></h1>
     <form method="get" action="test.php">
       <?php
@@ -28,6 +36,7 @@
 	    ?>
       <input type="submit" value="Test Summary">
     </form>
+    <br>
 
 <!-- Add Object - select object type and display fields accordingly -->
 
@@ -235,10 +244,6 @@ foreach($moduleData as $row){
 
   </body>
 </html>
-
-
-
-
 
 <script>
   function show_fields(that) {
