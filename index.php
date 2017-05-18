@@ -7,10 +7,10 @@
   <body>
     <a href="index.php">
       <div class="header">
-        <img src="../phase_2/pics/pu_logo.jpg" width="200" height="100">
-        <img src="../phase_2/pics/CMS_logo_col.gif" width="100" height="100">
+        <img src="../phase_2/pics/pu_logo.jpg" width="200" height="100" alt="Purdue University Logo">
+        <img src="../phase_2/pics/CMS_logo_col.gif" width="100" height="100" alt="CMS Logo">
       </div>
-    </a>  
+    </a>
     <h1>Purdue CMS FPix Phase II R&D Database</h1>
     <h2>Part Information</h2>
     <input type=button onClick="location.href='part_list.php'" value='Part List'>

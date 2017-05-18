@@ -1,19 +1,18 @@
 <?php
-require_once("database.php");
-require_once("functions.php");
-$db = new Database();
+  require_once("database.php");
+  require_once("functions.php");
+  $db = new Database();
 
-$id=$_GET['id'];
+  $id=$_GET['id'];
 
-$sensorData = sensorTestData($id,$db);
-$heaterData = heaterTestData($id,$db);
-$moduleData = moduleTestData($id,$db);
+  $sensorData = sensorTestData($id,$db);
+  $heaterData = heaterTestData($id,$db);
+  $moduleData = moduleTestData($id,$db);
 
-$data = testData2($id,$db);
-$name=$data['testName'];
-$ss_name=$data['ssName'];
-$coolantTemp=$data['coolantTemp'];
-
+  $data = testData2($id,$db);
+  $name=$data['testName'];
+  $ss_name=$data['ssName'];
+  $coolantTemp=$data['coolantTemp'];
 ?>
 
 <html>
@@ -21,14 +20,11 @@ $coolantTemp=$data['coolantTemp'];
     <title>Edit Test <?php echo $name ?></title>
     <link rel="stylesheet" type="text/css" href="./style.css">
   </head>
-
-
-
-<body>
-<h1>Edit Test <?php echo $name; ?></h1>
-
+  <body>
+    <h1>Edit Test <?php echo $name; ?></h1>
     <form method="get" action="test.php">
-      <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>";
+      <?php
+        echo "<input type='hidden' name='id' value='".$_GET['id']."'>";
 	    ?>
       <input type="submit" value="Test Summary">
     </form>
@@ -36,15 +32,16 @@ $coolantTemp=$data['coolantTemp'];
 <!-- Add Object - select object type and display fields accordingly -->
 
     Add Object: <select name="object_type" onchange="show_fields(this)">
-    <option value ="NULL">Select Object Type</option>
-    <option value ="thermal">Thermal Sensor</option>
-    <option value ="heater">Heater</option>
-    <option value ="module">Mock Module</option>
+      <option value ="NULL">Select Object Type</option>
+      <option value ="thermal">Thermal Sensor</option>
+      <option value ="heater">Heater</option>
+      <option value ="module">Mock Module</option>
     </select>
     <br><br>
     <div id="thermal" style="display:none; width:290px;">
       <form action="add_sensor_proc.php" method="post" enctype="multipart/from-data">
-        Add Sensor: <select name="thermal_id" id="sensor" onchange="selectChannel(this);">
+        <label for="thermal_id">Add Sensor: </label>
+        <select name="thermal_id" id="sensor" onchange="selectChannel(this);">
            <?php
            $notstr="";
           if(count($sensorData)){
@@ -75,14 +72,19 @@ $coolantTemp=$data['coolantTemp'];
         <input type="radio" name="let" value="other" checked="checked" onclick="isInletOutlet(this)"> Other
 	      <div id="position">
           <br><br>
-          X Position (cm): <input type='number' name='xpos' min='0' max='15' step='0.001' style='float:right'>
+          <label for="xpos">X Position (cm): </label>
+          <input type='number' name='xpos' min='0' max='15' step='0.001' style='float:right'>
           <br><br>
-          Y Position (cm): <input type='number' name='ypos' min='0' max='15' step='0.001' style='float:right'>
+          <label for="ypos">Y Position (cm): </label>
+          <input type='number' name='ypos' min='0' max='15' step='0.001' style='float:right'>
 	      </div>
         <br>
-        Channel: <input type="number" name="channel" min='0' step='1' id="channel" style="float:right">
+        <label for="channel">Channel: </label>
+        <input type="number" name="channel" min='0' step='1' id="channel" style="float:right">
         <br><br>
-        Note: If the channel is blank, the default channel will be used.
+        <div class="foot">
+          <p class="foot">Note: If the channel is blank, the default channel will be used.</p>
+        </div>
         <br><br>
         <input type="submit" name="submit" value="Add Thermal Sensor">
       </form>
