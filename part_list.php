@@ -3,14 +3,21 @@ This page is, as the name suggests, a list of parts. All physical parts involved
 be listed here, along with links to their respective pages.
 Currently, we have support structures, thermal sensors, heaters, mock modules, and sheets.
 -->
-
+<!DOCTYPE html>
 <html>
-<head>
-<title>Part List</title>
-
-<body>
-<h1>Part List</h1>
-
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Part List</title>
+  </head>
+  <body>
+    <a href="index.php">
+      <div class="header">
+        <img src="../phase_2/pics/pu_logo.jpg" width="200" height="100">
+        <img src="../phase_2/pics/CMS_logo_col.gif" width="100" height="100">
+      </div>
+    </a>
+    <h1>Part List</h1>
+  </body>
 </html>
 <?php
 require_once("database.php");
@@ -39,7 +46,7 @@ foreach($ss as $structure){
 echo "</table><br>";
 
 #    echo "</td><td>";
-echo "</td><td>";     
+echo "</td><td>";
 echo "<table border=1>";
 echo "<tr><th>Thermal Sensors</th></tr>";
 foreach($ts as $sensor){
@@ -87,12 +94,4 @@ echo "</td>";
 echo "</tr>";
 
 echo "</table>";
-?>
-
-
-<html>
-<input type=button onClick="location.href='index.php'" value='Index'>
-<br><br>
-
-</body>
-</html>
+?>  
