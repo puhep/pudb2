@@ -17,6 +17,12 @@
         <img src="../phase_2/pics/CMS_logo_col.gif" width="100" height="100" alt="CMS Logo">
       </div>
     </a>
+    <nav>
+      <a href="part_list.php">Part List</a>
+      <a href="https://docs.google.com/document/d/1zDu6hiUR7r6qumQPcKdV3OXh7vLpGjodTjLopjbufKQ/edit?usp=sharing"> Project Logbook</a>
+      <a href="https://drive.google.com/drive/folders/0B04OIAGnMDYxbXBkTWJmMm5hN0E?usp=sharing">Project Google Drive</a>
+      <a href="contact.php">Contact/Issues</a>
+    </nav>
     <h1>Test List</h1>
     <?php
       require_once("database.php");
@@ -25,14 +31,14 @@
       $db->query($sql);
       $i=0;
       $out=array();
-      while($db->nextRecord()) {
+      while ($db->nextRecord()) {
         $out[$i] = $db->Record;
         $i++;
       }
       echo "<table border=1 cellpadding=5>";
       echo "<tr><th>Support Structures</th>";
       echo "<th>Tests</tr>";
-      foreach($out as $structure) {
+      foreach ($out as $structure) {
         echo "<tr>";
         echo "<td>";
         echo "<a href=\"ss_summary.php?id=$structure[0]\">$structure[1]</a>";
@@ -50,7 +56,6 @@
       }
       echo "</table><br>";
     ?>
-
     <br><br>
     <input type=button onClick="location.href='newtest.php'" value='New Test'>
   </body>

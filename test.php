@@ -30,6 +30,12 @@
         <img src="../phase_2/pics/CMS_logo_col.gif"width="100" height="100" alt="CMS Logo">
       </div>
     </a>
+    <nav>
+      <a href="part_list.php">Part List</a>
+      <a href="https://docs.google.com/document/d/1zDu6hiUR7r6qumQPcKdV3OXh7vLpGjodTjLopjbufKQ/edit?usp=sharing"> Project Logbook</a>
+      <a href="https://drive.google.com/drive/folders/0B04OIAGnMDYxbXBkTWJmMm5hN0E?usp=sharing">Project Google Drive</a>
+      <a href="contact.php">Contact/Issues</a>
+    </nav>
     <h1>Test <?php echo $name; ?> Summary</h1>
     <form method="get" action="test_edit.php">
       <?php
@@ -60,7 +66,6 @@
       echo "<h2>Misc Files</h2>";
       show_files("test",$id);
     ?>
-
     <br><br>
     <input type=button onClick="location.href='test_list.php'" value='Test List'>
   </body>

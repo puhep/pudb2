@@ -17,6 +17,12 @@
         <img src="../phase_2/pics/CMS_logo_col.gif" width="100" height="100" alt="CMS Logo">
       </div>
     </a>
+    <nav>
+      <a href="part_list.php">Part List</a>
+      <a href="https://docs.google.com/document/d/1zDu6hiUR7r6qumQPcKdV3OXh7vLpGjodTjLopjbufKQ/edit?usp=sharing"> Project Logbook</a>
+      <a href="https://drive.google.com/drive/folders/0B04OIAGnMDYxbXBkTWJmMm5hN0E?usp=sharing">Project Google Drive</a>
+      <a href="contact.php">Contact/Issues</a>
+    </nav>
     <h1>Submit New Sheet</h1>
     <form action="newsheet_proc.php" method="post" enctype="multipart/form-data">
       <div style="width:300px;">
@@ -26,7 +32,5 @@
       </div>
       <input type="submit" name="submit" value="Submit">
     </form>
-    <br><br>
-    <input type=button onClick="location.href='index.php'" value='Index'>
   </body>
 </html>

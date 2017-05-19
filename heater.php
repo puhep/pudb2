@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
   require_once("database.php");
   require_once("functions.php");
@@ -14,6 +15,7 @@
 ?>
 <html>
   <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style.css">
     <title><?php echo $name; ?> Summary</title>
   </head>
@@ -24,6 +26,12 @@
         <img src="../phase_2/pics/CMS_logo_col.gif" width="100" height="100" alt="CMS Logo">
       </div>
     </a>
+    <nav>
+      <a href="part_list.php">Part List</a>
+      <a href="https://docs.google.com/document/d/1zDu6hiUR7r6qumQPcKdV3OXh7vLpGjodTjLopjbufKQ/edit?usp=sharing"> Project Logbook</a>
+      <a href="https://drive.google.com/drive/folders/0B04OIAGnMDYxbXBkTWJmMm5hN0E?usp=sharing">Project Google Drive</a>
+      <a href="contact.php">Contact/Issues</a>
+    </nav>
     <h1><?php echo $name; ?> Summary</h1>
     <p>Object Type: Heater</p><p>Name: <?php echo $name; ?></p>
     <h2>Notes</h2>
@@ -39,6 +47,5 @@
       <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
       <input type="submit" value="Edit Part">
     </form>
-    <input type=button onClick="location.href='part_list.php'" value='Part List'>
   </body>
 </html>
