@@ -29,6 +29,12 @@
         <img src="../phase_2/pics/CMS_logo_col.gif" width="100" height="100" alt="CMS Logo">
       </div>
     </a>
+    <nav>
+      <a href="part_list.php">Part List</a>
+      <a href="https://docs.google.com/document/d/1zDu6hiUR7r6qumQPcKdV3OXh7vLpGjodTjLopjbufKQ/edit?usp=sharing"> Project Logbook</a>
+      <a href="https://drive.google.com/drive/folders/0B04OIAGnMDYxbXBkTWJmMm5hN0E?usp=sharing">Project Google Drive</a>
+      <a href="contact.php">Contact/Issues</a>
+    </nav>
     <h1><?php echo $name; ?> Summary</h1>
     <p>Object Type: Mock Module</p>
     <p>Name: <?php echo $name; ?></p>
@@ -48,7 +54,5 @@
       <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
       <input type="submit" value="Edit Part">
     </form>
-    <br><br>
-    <input type=button onClick="location.href='part_list.php'" value='Part List'>
   </body>
 </html>
