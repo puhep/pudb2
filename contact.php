@@ -14,18 +14,25 @@
     </a>
     <nav>
       <a href="part_list.php">Part List</a>
+      <br>
+      <a href="test_list.php">Test List</a>
+      <br>
       <a href="https://docs.google.com/document/d/1zDu6hiUR7r6qumQPcKdV3OXh7vLpGjodTjLopjbufKQ/edit?usp=sharing">Project Logbook</a>
+      <br>
       <a href="https://drive.google.com/drive/folders/0B04OIAGnMDYxbXBkTWJmMm5hN0E?usp=sharing">Project Google Drive</a>
-      <a href="contact.php">Contact/Issues</a>
+      <br>
+      <a class="active" href="contact.php">Contact/Issues</a>
     </nav>
-    <h2>Send Issue</h2>
-    <ul>
-      <li><a href="https://github.com/puhep/pudb2/issues">GitHub Issues Page</a></li>
-    </ul>
-    <h2>E-Mail</h2>
-    <ul>
-      <li><a href="mailto:nelso312@purdue.edu?Subject=CMS%20FPix%20Message" target="_top">Send E-Mail to Chase Nelson</a></li>
-      <li><a href="mailto:gwdneeser705@gmail.com?Subject=CMS%20FPix%20Message" target="_top">Send E-Mail to Greg Neeser</a></li>
-    </ul>
+    <div class="content">
+      <h2>Send Issue</h2>
+      <ul>
+        <li><a href="https://github.com/puhep/pudb2/issues">GitHub Issues Page</a></li>
+      </ul>
+      <h2>E-Mail</h2>
+      <ul>
+        <li><a href="mailto:nelso312@purdue.edu?Subject=CMS%20FPix%20Message" target="_top">Send E-Mail to Chase Nelson</a></li>
+        <li><a href="mailto:gwdneeser705@gmail.com?Subject=CMS%20FPix%20Message" target="_top">Send E-Mail to Greg Neeser</a></li>
+      </ul>
+    </div>
   </body>
 </html>

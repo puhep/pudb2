@@ -19,18 +19,25 @@
     </a>
     <nav>
       <a href="part_list.php">Part List</a>
+      <br>
+      <a href="test_list.php">Test List</a>
+      <br>
       <a href="https://docs.google.com/document/d/1zDu6hiUR7r6qumQPcKdV3OXh7vLpGjodTjLopjbufKQ/edit?usp=sharing"> Project Logbook</a>
+      <br>
       <a href="https://drive.google.com/drive/folders/0B04OIAGnMDYxbXBkTWJmMm5hN0E?usp=sharing">Project Google Drive</a>
+      <br>
       <a href="contact.php">Contact/Issues</a>
     </nav>
-    <h1>Submit New Sheet</h1>
-    <form action="newsheet_proc.php" method="post" enctype="multipart/form-data">
-      <div style="width:300px;">
-        <label for="name">Sheet Name: </label>
-        <input name="name" type="text" style="float:right" required>
-        <br><br>
-      </div>
-      <input type="submit" name="submit" value="Submit">
-    </form>
+    <div class="content">
+      <h1>Submit New Sheet</h1>
+      <form action="newsheet_proc.php" method="post" enctype="multipart/form-data">
+        <div style="width:300px;">
+          <label for="name">Sheet Name: </label>
+          <input name="name" type="text" style="float:right" required>
+          <br><br>
+        </div>
+        <input class="button" type="submit" name="submit" value="Submit">
+      </form>
+    </div>
   </body>
 </html>
