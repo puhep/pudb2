@@ -29,31 +29,38 @@
     </a>
     <nav>
       <a href="part_list.php">Part List</a>
+      <br>
+      <a href="test_list.php">Test List</a>
+      <br>
       <a href="https://docs.google.com/document/d/1zDu6hiUR7r6qumQPcKdV3OXh7vLpGjodTjLopjbufKQ/edit?usp=sharing"> Project Logbook</a>
+      <br>
       <a href="https://drive.google.com/drive/folders/0B04OIAGnMDYxbXBkTWJmMm5hN0E?usp=sharing">Project Google Drive</a>
+      <br>
       <a href="contact.php">Contact/Issues</a>
     </nav>
-    <h1>Edit <?php echo $name; ?></h1>
-    <p>Type: <?php echo $data['sensor_type']; ?></p>
-    <form action="thermal_sensor_edit_proc.php" method="post" enctype="multipart/form-data">
-      <div style="width:300px;">
-        <label for="cur_channel">Current Chanel: </label>
-        <input placeholder= "<?php echo $data['cur_channel']; ?>" name="cur_channel" type="number" step="1" min="100" style="float:right"><br><br>
-        <h2>Notes</h2>
-        <?php echo nl2br($notes); ?>
-        <br>
-        <div style="width:225px">
-          <label for="notes">Additional Notes: </label>
-          <textarea cols="40" rows="5" name="notes"></textarea><br><br>
+    <div class="content">
+      <h1>Edit <?php echo $name; ?></h1>
+      <p>Type: <?php echo $data['sensor_type']; ?></p>
+      <form action="thermal_sensor_edit_proc.php" method="post" enctype="multipart/form-data">
+        <div style="width:300px;">
+          <label for="cur_channel">Current Chanel: </label>
+          <input placeholder= "<?php echo $data['cur_channel']; ?>" name="cur_channel" type="number" step="1" min="100" style="float:right"><br><br>
+          <h2>Notes</h2>
+          <?php echo nl2br($notes); ?>
+          <br>
+          <div style="width:225px">
+            <label for="notes">Additional Notes: </label>
+            <textarea cols="40" rows="5" name="notes"></textarea><br><br>
+          </div>
         </div>
-      </div>
-      <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
-      <input type="submit" name="submit" value="Submit">
-    </form>
-    <br><br>
-    <form method="get" action="thermal_sensor.php">
-      <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
-      <input type="submit" value="Part Summary">
-    </form>
+        <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
+        <input class="button" type="submit" name="submit" value="Submit">
+      </form>
+      <br><br>
+      <form method="get" action="thermal_sensor.php">
+        <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
+        <input class="button" type="submit" value="Part Summary">
+      </form>
+    </div>
   </body>
 </html>

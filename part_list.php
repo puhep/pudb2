@@ -17,12 +17,19 @@ Currently, we have support structures, thermal sensors, heaters, mock modules, a
       </div>
     </a>
     <nav>
-      <a href="part_list.php">Part List</a>
+      <a class="active" href="part_list.php">Part List</a>
+      <br>
+      <a href="test_list.php">Test List</a>
+      <br>
       <a href="https://docs.google.com/document/d/1zDu6hiUR7r6qumQPcKdV3OXh7vLpGjodTjLopjbufKQ/edit?usp=sharing"> Project Logbook</a>
+      <br>
       <a href="https://drive.google.com/drive/folders/0B04OIAGnMDYxbXBkTWJmMm5hN0E?usp=sharing">Project Google Drive</a>
+      <br>
       <a href="contact.php">Contact/Issues</a>
     </nav>
-    <h1>Part List</h1>
+    <div class="content">
+      <h1>Part List</h1>
+    </div>
   </body>
 </html>
 <?php
@@ -36,6 +43,9 @@ Currently, we have support structures, thermal sensors, heaters, mock modules, a
   $heaters=db_query("SELECT * FROM heater",$db);
   $modules=db_query("SELECT * FROM mock_module",$db);
   $sheets=db_query("SELECT * FROM sheet",$db);
+
+  ### Add styling
+  echo "<div class='content'>";
 
   ### display the part links in nested tables. The outer table is borderless, so it's not visible.
   echo "<table border=0 cellpadding=10 val=aligntop>";
@@ -98,4 +108,7 @@ Currently, we have support structures, thermal sensors, heaters, mock modules, a
   echo "</tr>";
 
   echo "</table>";
+
+  ### End content div
+  echo "</div>";
 ?>
