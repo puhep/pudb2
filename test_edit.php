@@ -257,6 +257,8 @@
             <input name="file[]" id="files" type="file" multiple="multiple" style="float:right"><br><br>
           </div>
           <?php echo "<input type='hidden' name='test_id' value='".$_GET['id']."'>"; ?>
+          <input class="button" type="submit" name="Submit">
+        </form>
       </main>
     </div>
   </body>
