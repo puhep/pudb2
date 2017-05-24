@@ -46,7 +46,7 @@
         <h1><?php echo $name; ?> Summary</h1>
         <p>Object Type: Mock Module</p>
         <p>Name: <?php echo $name; ?></p>
-        <p>Thickness: <?php echo $si_thickness; ?></p>
+        <p>Thickness: <?php echo $si_thickness; ?> Microns</p>
         <p>Adhesive: <?php echo $adhesive; ?></p>
         <p>Geometry: <?php echo $geometry; ?></p>
         <h2>Notes</h2>
