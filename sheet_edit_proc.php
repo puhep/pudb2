@@ -18,6 +18,32 @@ if($_POST['location'] != ""){
     $sql = "update sheet set location = \"".$_POST['location']."\" where id=$id";
     $db -> query($sql);
 }
+
+if ($_POST['dateCut'] != "") {
+  $sql = "UPDATE sheet SET dateCut=\"".$_POST['dateCut']."\" WHERE id=$id";
+  $db->query($sql);
+}
+
+if ($_POST['dateOven'] != "") {
+  $sql = "UPDATE sheet SET dateOven=\"".$_POST['dateOven']."\" WHERE id=$id";
+  $db->query($sql);
+}
+
+if ($_POST['bagUseTimes'] != "") {
+  $sql = "UPDATE sheet SET bagUseTimes=".$_POST['bagUseTimes']." WHERE id=$id";
+  $db->query($sql);
+}
+
+if ($_POST['ovenStart'] != ""){
+  $sql ="UPDATE sheet SET ovenStart=\"".$_POST['ovenStart']."\" WHERE id=$id";
+  $db->query($sql);
+}
+
+if ($_POST['ovenReach'] != ""){
+  $sql ="UPDATE sheet SET ovenReach=\"".$_POST['ovenReach']."\" WHERE id=$id";
+  $db->query($sql);
+}
+
 if($_POST['ply'] != ""){
     $sql = "update sheet set ply=".$_POST['ply']." where id=$id";
     $db -> query($sql);
