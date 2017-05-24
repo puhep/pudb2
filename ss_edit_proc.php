@@ -49,6 +49,11 @@ if($_FILES['pic']['name'] != ""){
     add_pic("support_structure",$id,$_FILES,$_POST['picnotes']);
 }
 
+if ($_POST['lastEdit'] != "") {
+  $sql = "UPDATE support_structure SET lastEdit=\"".$_POST['lastEdit']."\" WHERE id=$id";
+  $db->query($sql);
+}
+
 ### if the name of the file is not blank (i.e. a file has been slotted to upload), attempt to upload
 if(count($_FILES['files']['name'])){
     add_file("sheet",$id,$_FILES['files']);

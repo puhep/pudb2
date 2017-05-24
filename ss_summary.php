@@ -51,6 +51,15 @@
       </nav>
       <main>
         <h1><?php echo $name; ?> Summary</h1>
+        <span>Last Edited:
+          <?php
+            if ($data['lastEdit'] != "") {
+              echo $data['lastEdit'];
+            } else {
+              echo "Not yet recorded";
+            }
+          ?>
+        </span>
         <form method="get" action="ss_edit.php">
           <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
           <input class="button" type="submit" value="Edit Part">

@@ -107,6 +107,11 @@ foreach($_POST['moduleYPos'] as $ypos){
     $i++;
 }
 
+if ($_POST['lastEdit'] != "") {
+  $sql = "UPDATE test SET lastEdit=\"".$_POST['lastEdit']."\" WHERE id=$test_id";
+  $db->query($sql);
+}
+
 ### this concatenates existing notes, if any, with a new line including the date and the entered note text
 if($_POST['notes'] != ""){
     $sql = "update notes set notetext= CONCAT(IFNULL(notetext,''),DATE_FORMAT(NOW(),'%m-%d-%y %T'),\" ".$_POST['notes']."\",'\n') where part_id=$test_id AND part_type=\"test\"";

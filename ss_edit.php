@@ -89,7 +89,11 @@
             <label for="files[]">Misc File(s): </label>
             <input name="files[]" id="files" type="file" multiple="multiple"  style="float:right"><br><br>
           </div>
-          <?php echo "<input type='hidden' name='id' value='".$data['id']."'>"; ?>
+          <?php
+            echo "<input type='hidden' name='id' value='".$_GET['id']."'>";
+            $time = date('m-d-Y H:i:s');
+            echo "<input type='hidden' name='lastEdit' value='".$time."'>";
+          ?>
           <br>
           <input class="button" type="submit" name="submit" value="Submit">
         </form>

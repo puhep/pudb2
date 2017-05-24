@@ -40,6 +40,15 @@
       </nav>
       <main>
         <h1><?php echo $name; ?> Summary</h1>
+        <span>Last Edited:
+          <?php
+            if ($data['lastEdit'] != "") {
+              echo $data['lastEdit'];
+            } else {
+              echo "Not yet recorded";
+            }
+          ?>
+        </span>
         <p>Object Type: Heater</p><p>Name: <?php echo $name; ?></p>
         <h2>Notes</h2>
         <?php

@@ -18,6 +18,11 @@ if ($_POST['notes'] != "") {
 $db -> query($sql);
 }
 
+if ($_POST['lastEdit'] != "") {
+  $sql = "UPDATE thermal_sensor SET lastEdit=\"".$_POST['lastEdit']."\" WHERE id=$id";
+  $db->query($sql);
+}
+
 ### redirect to the structure summary page with the new information
 header("Location: thermal_sensor.php?id=$id");
 

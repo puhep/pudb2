@@ -41,6 +41,15 @@
       </nav>
       <main>
         <h1><?php echo $name; ?> Summary</h1>
+        <span>Last Edited:
+          <?php
+            if ($data['lastEdit'] != "") {
+              echo $data['lastEdit'];
+            } else {
+              echo "Not yet recorded";
+            }
+          ?>
+        </span>
         <p>Sensor Type: <?php echo $data['sensor_type']; ?></p>
         <p>Current Channel: <?php echo $data['cur_channel']; ?></p>
         <h2>Notes</h2>

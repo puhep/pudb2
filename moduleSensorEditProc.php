@@ -22,6 +22,10 @@
     $db -> query($sql);
   }
 
+  if ($_POST['lastEdit'] != "") {
+    $sql = "UPDATE mock_module SET lastEdit=\"".$_POST['lastEdit']."\" WHERE id=$id";
+    $db->query($sql);
+  }
 
   ### redirect to the mock module summary page with the new information
   header("Location: module.php?id=$id");

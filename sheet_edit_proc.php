@@ -8,6 +8,7 @@ require_once("functions.php");
 $id = $_POST['id'];
 $db = new Database();
 
+//print_r($_POST);
 ### update miscellaneous info if the fields have been filled
 if($_POST['name'] != ""){
     $sql = "update sheet set name=\"".$_POST['name']."\" where id=$id";
@@ -90,6 +91,11 @@ if($_POST['thickness4'] != ""){
 if($_POST['notes'] != ""){
     $sql = "update notes set notetext= CONCAT(IFNULL(notetext,''),DATE_FORMAT(NOW(),'%m-%d-%y %T'),\" ".$_POST['notes']."\",'\n') where part_id=$id AND part_type=\"sheet\"";
     $db -> query($sql);
+}
+
+if ($_POST['lastEdit'] != "") {
+  $sql = "UPDATE sheet SET lastEdit=\"".$_POST['lastEdit']."\" WHERE id=$id";
+  $db->query($sql);
 }
 
 ### if the name of the picture is not blank (i.e. a picture has been slotted to upload), perform several checks and upload
