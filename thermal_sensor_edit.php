@@ -54,7 +54,11 @@
               <textarea cols="40" rows="5" name="notes"></textarea><br><br>
             </div>
           </div>
-          <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
+          <?php
+            echo "<input type='hidden' name='id' value='".$_GET['id']."'>";
+            $time = date('m-d-Y H:i:s');
+            echo "<input type='hidden' name='lastEdit' value='".$time."'>";
+          ?>
           <input class="button" type="submit" name="submit" value="Submit">
         </form>
         <br><br>

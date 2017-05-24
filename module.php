@@ -44,6 +44,15 @@
       </nav>
       <main>
         <h1><?php echo $name; ?> Summary</h1>
+        <span>Last Edited:
+          <?php
+            if ($data['lastEdit'] != "") {
+              echo $data['lastEdit'];
+            } else {
+              echo "Not yet recorded";
+            }
+          ?>
+        </span>
         <p>Object Type: Mock Module</p>
         <p>Name: <?php echo $name; ?></p>
         <p>Thickness: <?php echo $si_thickness; ?> Microns</p>

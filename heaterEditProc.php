@@ -10,6 +10,11 @@
     $db -> query($sql);
   }
 
+  if ($_POST['lastEdit'] != "") {
+    $sql = "UPDATE heater SET lastEdit=\"".$_POST['lastEdit']."\" WHERE id=$id";
+    $db->query($sql);
+  }
+
 
   ### Redirect to the mock module summary page with the new information
   header("Location: heater.php?id=$id");
