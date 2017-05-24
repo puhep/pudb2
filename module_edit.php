@@ -46,7 +46,7 @@
         <h1>Edit: <?php echo $name; ?></h1>
         <form action="moduleSensorEditProc.php" method="post" enctype="multipart/form-data">
           <div style="width:300px;">
-            <label for="curThickness">Thickness: </label>
+            <label for="curThickness">Thickness (Microns): </label>
         	  <input placeholder="<?php echo $si_thickness; ?>" name ="curThickness" type="number" step="0.1" style="float:right"><br><br>
             <label for="curAdhesive">Adhesive: </label>
     	      <input placeholder="<?php echo $adhesive; ?>" name ="curAdhesive" type="text" style="float:right"><br><br>
