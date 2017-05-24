@@ -24,7 +24,7 @@
     <title><?php echo $name; ?> Summary</title>
   </head>
   <body>
-    <div id="wrapper"
+    <div id="wrapper">
       <header>
         <a href="index.php">
           <img src="../phase_2/pics/pu_logo.jpg" width="200" height="100" alt="Purdue University Logo">
@@ -44,6 +44,15 @@
       </nav>
       <main>
         <h1><?php echo $name; ?> Summary</h1>
+        <span>Last Edited:
+          <?php
+            if ($data['lastEdit'] != "") {
+              echo $data['lastEdit'];
+            } else {
+              echo "Not yet recorded";
+            }
+          ?>
+        </span>
         <?php
           echo "<table border=1 cellpadding=5>";
           echo "<tr><td>Object Type </td><td>Sheet</td></tr>";

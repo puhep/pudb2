@@ -20,7 +20,7 @@
     <title>Edit <?php echo $name; ?></title>
   </head>
   <body>
-    <div id="wrapper"
+    <div id="wrapper">
       <header>
         <a href="index.php">
           <img src="../phase_2/pics/pu_logo.jpg" width="200" height="100" alt="Purdue University Logo">
@@ -102,7 +102,11 @@
             <label for="files[]">Misc File(s): </label>
             <input name="files[]" id="files" type="file" multiple="multiple" style="float:right"><br><br>
           </div>
-          <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
+          <?php
+          echo "<input type='hidden' name='id' value='".$_GET['id']."'>";
+          $time = date('m-d-Y H:i:s');
+          echo "<input type='hidden' name='lastEdit' value='".$time."'>";
+          ?>
           <input class="button" type="submit" name="submit" value="Submit">
         </form>
         <br><br>
