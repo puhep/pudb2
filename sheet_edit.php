@@ -46,6 +46,10 @@
             <input placeholder= "<?php echo $data['name']; ?>" name="name" type="text" style="float:right"><br><br>
             <label for="location">Location: </label>
             <input placeholder= "<?php echo $data['location']; ?>" name="location" type="text" style="float:right"><br><br>
+            <label for="dateCut">Date Cut: </label>
+            <input placeholder= "<?php echo $data['dateCut']; ?>" name="dateCut" type="date" style="float:right"><br><br>
+            <label for="dateOven">Date put into Oven: </label>
+            <input placeholder="<?php echo $data['dateOven']; ?>" name="dateOven" type="date" style="float:right"><br><br>
             <label for="ply">Ply: </label>
             <input placeholder= "<?php echo $data['ply']; ?>" name="ply" type="number" step="1" style="float:right"><br><br>
             <label for="mass_nb">Mass before: </label>
@@ -53,9 +57,15 @@
             <label for="mass_after">Mass after: </label>
             <input placeholder= "<?php echo $data['mass_after']; ?>" name="mass_after" type="number" step="0.01" style="float:right"><br><br>
             <label for="num_wax_coats">Number of wax coats: </label>
-            <input placeholder= "<?php echo $data['num_wax_coats']; ?>" name="num_wax_coats" type="number" step="1" style="float:right"><br><br>
+            <input placeholder= "<?php echo $data['num_wax_coats']; ?>" name="num_wax_coats" type="number" step="1" min="0" style="float:right"><br><br>
+            <label for="bagUseTimes">Times Bag used Previously: </label>
+            <input placeholder="<?php echo $data['bagUseTimes']; ?>" name="bagUseTimes" type="number" step="1" min="0" style="float:right"><br><br>
             <label for="curing_stackup">Curing stackup: </label>
             <input placeholder= "<?php echo $data['curing_stackup']; ?>" name="curing_stackup" type="text" style="float:right"><br><br>
+            <label for="ovenStart">Time of Oven Start: </label>
+            <input placeholder="<?php echo $data['ovenStart']; ?>" name="ovenStart" type="time" style="float:right"><br><br>
+            <label for="ovenReach">Time Reached 107: </label>
+            <input placeholder="<?php echo $data['ovenReach']; ?>" type="time" name="ovenReach" style="float:right"><br><br>
             <label for="user_cut">Cut by: </label>
             <input placeholder= "<?php echo $data['user_cut']; ?>" name="user_cut" type="text" style="float:right"><br><br>
             <label for="user_bagged">Bagged by: </label>
