@@ -35,12 +35,57 @@ if ($_POST['bagUseTimes'] != "") {
 }
 
 if ($_POST['ovenStart'] != ""){
-  $sql ="UPDATE sheet SET ovenStart=\"".$_POST['ovenStart']."\" WHERE id=$id";
+  $sql = "UPDATE sheet SET ovenStart=\"".$_POST['ovenStart']."\" WHERE id=$id";
   $db->query($sql);
 }
 
-if ($_POST['ovenReach'] != ""){
-  $sql ="UPDATE sheet SET ovenReach=\"".$_POST['ovenReach']."\" WHERE id=$id";
+if ($_POST['ovenReach177'] != "") {
+  $sql = "UPDATE sheet SET ovenReach177=\"".$_POST['ovenReach177']."\" WHERE id=$id";
+  $db->query($sql);
+}
+
+if ($_POST['ovenReach107'] != ""){
+  $sql = "UPDATE sheet SET ovenReach107=\"".$_POST['ovenReach107']."\" WHERE id=$id";
+  $db->query($sql);
+}
+
+if ($_POST['timeRamp'] != "") {
+  $sql = "UPDATE sheet SET timeRamp=\"".$_POST['timeRamp']."\" WHERE id=$id";
+  $db->query($sql);
+}
+
+if ($_POST['timeOvenOff'] != "") {
+  $sql = "UPDATE sheet SET timeOvenOff=\"".$_POST['timeOvenOff']."\" WHERE id=$id";
+  $db->query($sql);
+}
+
+if ($_POST['timeRemoved'] != "") {
+  $sql = "UPDATE sheet SET timeRemoved=\"".$_POST['timeRemoved']."\" WHERE id=$id";
+  $db->query($sql);
+}
+
+if ($_POST['lengthOutside'] != "") {
+  $sql = "UPDATE sheet SET lengthOutside=".$_POST['lengthOutside']." WHERE id=$id";
+  $db->query($sql);
+}
+
+if ($_POST['lengthInside'] != "") {
+  $sql = "UPDATE sheet SET lengthInside=".$_POST['lengthInside']." WHERE id=$id";
+  $db->query($sql);
+}
+
+if ($_POST['heightOutside'] != "") {
+  $sql = "UPDATE sheet SET heightOutside=".$_POST['heightOutside']." WHERE id=$id";
+  $db->query($sql);
+}
+
+if ($_POST['heightInside'] != "") {
+  $sql = "UPDATE sheet SET heightInside=".$_POST['heightInside']." WHERE id=$id";
+  $db->query($sql);
+}
+
+if ($_POST['bow'] != "") {
+  $sql = "UPDATE sheet SET bow=".$_POST['bow']." WHERE id=$id";
   $db->query($sql);
 }
 
