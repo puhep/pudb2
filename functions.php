@@ -10,18 +10,18 @@ function show_files($part_type, $part_id){
 		return;
     }
 	if(file_exists($dir) && ($handle = opendir($dir))){
-        
+
 		while(false !== ($entry=readdir($handle))){
-            
+
 			if($entry != "." && $entry != ".."){
-                
+
 				echo "<a href=\"$dir/$entry\" target=\"_blank\">$entry</a>";
 				echo "<br>";
-                
+
 			}
 		}
 	}
-    
+
 }
 
 ### show all pictures with their associated comments for a part in a table
@@ -80,7 +80,7 @@ function show_sensors($data, $edit=0, $type="sensor"){
                 echo "<td>";
                 echo $row['sensorChannel'];
                 echo "</td>"; }
-            echo "</tr>"; 
+            echo "</tr>";
         }
         echo "</table>";
     }
@@ -110,7 +110,7 @@ function show_sensors($data, $edit=0, $type="sensor"){
                 echo "</tr>"; }
             if($type=="sensor"){ $nameType = "thermal"; }
             else{ $nameType = $type; }
-            echo "<input type='hidden' name=\"".$nameType."_id[$i]\" value='".$row[$type.'ID']."'>"; 
+            echo "<input type='hidden' name=\"".$nameType."_id[$i]\" value='".$row[$type.'ID']."'>";
             $i++;
         }
         echo "</table>";
@@ -132,7 +132,7 @@ function add_file($type,$id,$files){
         #print_r($files['tmp_name']);
         #echo "<br>";
         if(!move_uploaded_file($files['tmp_name'][$f], $targetFile)){
-            echo "Sorry, an error has occurred. Try again or bother Greg & Chase until they help<br>";
+            //  echo "Sorry, an error has occurred. Try again or bother Greg & Chase until they help<br>";
         }
     }
 }
@@ -195,7 +195,7 @@ WHERE t.id=".$testID;
 function sensorTestData($testID,$db){
     $sql = "SELECT s.id as sensorID, s.name as sensorName, s.cur_channel as curChannel,
 st.xpos as sensorXPos, st.ypos as sensorYPos, st.channel as sensorChannel
-FROM test t 
+FROM test t
 LEFT JOIN sensor_test st ON st.test_id=t.id
 LEFT JOIN thermal_sensor s ON st.thermal_id=s.id
 WHERE t.id=".$testID;
@@ -206,7 +206,7 @@ WHERE t.id=".$testID;
 function heaterTestData($testID,$db){
     $sql = "SELECT h.id as heaterID, h.name as heaterName,
 ht.xpos as heaterXPos, ht.ypos as heaterYPos
-FROM test t 
+FROM test t
 LEFT JOIN heater_test ht ON ht.test_id=t.id
 LEFT JOIN heater h ON ht.heater_id=h.id
 WHERE t.id=".$testID;
@@ -217,7 +217,7 @@ WHERE t.id=".$testID;
 function moduleTestData($testID,$db){
     $sql = "SELECT m.id as moduleID, m.name as moduleName,
 mt.xpos as moduleXPos, mt.ypos as moduleYPos
-FROM test t 
+FROM test t
 LEFT JOIN module_test mt ON mt.test_id=t.id
 LEFT JOIN mock_module m ON mt.module_id=m.id
 WHERE t.id=".$testID;
