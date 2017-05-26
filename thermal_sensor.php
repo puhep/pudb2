@@ -50,8 +50,20 @@
             }
           ?>
         </span>
-        <p>Sensor Type: <?php echo $data['sensor_type']; ?></p>
-        <p>Current Channel: <?php echo $data['cur_channel']; ?></p>
+        <br><br>
+        <form method="get" action="thermal_sensor_edit.php">
+          <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
+          <input class="button" type="submit" value="Edit Part">
+        </form>
+        <?php
+          echo
+            "<h2>Misc Data</h2>".
+            "<table border=1 cellpadding=5>".
+              "<tr><td>Object Type</td><td>Thermal Sensor</td></tr>".
+              "<tr><td>Sensor Type</td><td>".$data['sensor_type']."</td></tr>".
+              "<tr><td>Current Chanel</td><td>".$data['cur_channel']."</td></tr>".
+            "</table>";
+        ?>
         <h2>Notes</h2>
         <?php
           if ($notes != "") {
@@ -61,10 +73,6 @@
           }
         ?>
         <br><br>
-        <form method="get" action="thermal_sensor_edit.php">
-          <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
-          <input class="button" type="submit" value="Edit Part">
-        </form>
       </main>
     </div>
   </body>

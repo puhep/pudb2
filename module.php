@@ -53,11 +53,22 @@
             }
           ?>
         </span>
-        <p>Object Type: Mock Module</p>
-        <p>Name: <?php echo $name; ?></p>
-        <p>Thickness: <?php echo $si_thickness; ?> Microns</p>
-        <p>Adhesive: <?php echo $adhesive; ?></p>
-        <p>Geometry: <?php echo $geometry; ?></p>
+        <br><br>
+        <form method="get" action="module_edit.php">
+          <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
+          <input class="button" type="submit" value="Edit Part">
+        </form>
+        <?php
+          echo
+            "<h2>Misc Data</h2>".
+            "<table border=1 cellpadding=5>".
+              "<tr><td>Object Type</td><td>Mock Module</td></tr>".
+              "<tr><td>Name</td><td>$name</td></tr>".
+              "<tr><td>Si Thickness</td><td>$si_thickness</td></tr>".
+              "<tr><td>Adhesive</td><td>$adhesive</td></tr>".
+              "<tr><td>Geometry</td><td>$geometry</td></tr>".
+            "</table>";
+        ?>
         <h2>Notes</h2>
         <?php
           if($notes!="") {
@@ -66,11 +77,7 @@
             echo "No notes found";
           }
         ?>
-        <br><br>
-        <form method="get" action="module_edit.php">
-          <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
-          <input class="button" type="submit" value="Edit Part">
-        </form>
+        <br>
       </main>
     </div>
   </body>
