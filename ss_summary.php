@@ -60,23 +60,26 @@
             }
           ?>
         </span>
+        <br><br>
         <form method="get" action="ss_edit.php">
           <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
           <input class="button" type="submit" value="Edit Part">
        </form>
+      <?php
+        // table that shows info about the sheet
+        echo
+          "<h2>Misc Data</h2>".
+          "<table border=1 cellpadding=5>".
+            "<tr><td>Object Type</td><td>Support Structure</td></tr>".
+            "<tr><td>Name</td><td>".$name."</td></tr>".
+            "<tr><td>Mass</td><td>".$data['mass']."</td></tr>".
+            "<tr><td>Pipe Material</td><td>".$data['pipe_material']."</td></tr>".
+            "<tr><td>Pipe Wall Thickness</td><td>".$data['pipe_wall_thickness']."</td></tr>".
+            "<tr><td>Foam Type</td><td>".$data['foam_type']."</td></tr>".
+            "<tr><td>Ply of Wings</td><td>".$data['wings_ply']."</td></tr>".
+            "<tr><td>Stack of Airex</td><td>".$data['airex_stack']."</td></tr>".
+          "</table><br>";
 
-       <?php
-          #echo "<a href=\"ss_edit.php?id=".$id."\">Edit Part</a>";
-          echo "<h2>Misc Data</h2>";
-          #echo "<p>ID: ".$id."</p>";
-          echo "<p>Name: ".$name."</p>";
-          echo "<p>Mass: ".$data['mass']."</p>";;
-          echo "<p>Pipe Material: ".$data['pipe_material']."</p>";
-          echo "<p>Pipe Wall Thickness: ".$data['pipe_wall_thickness']."</p>";
-          echo "<p>Foam Type: ".$data['foam_type']."</p>";
-          echo "<p>Ply of Wings: ".$data['wings_ply']."</p>";
-          echo "<p>Stack of Airex: ".$data['airex_stack']."</p>";
-          echo "<h2>Associated Tests</h2>";
           if (isset($tests)) {
             foreach ($tests as $row) {
               echo "<a href='test.php?id=".$row['id']."' >".$row['name']."</a><br>";
@@ -96,6 +99,7 @@
           echo "<h2>Misc Files</h2>";
           show_files("support_structure",$id);
         ?>
+        <br>
       </main>
     </div>
   </body>
