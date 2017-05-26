@@ -43,9 +43,9 @@
 
   // Setup Graph
   $g = new Graph(800,800);
-  $g->SetScale("linlin",0,15,0,15);
+  $g->SetScale("linlin",-2,17,0,15);
   $g->SetFrame(true,'blue',1);
-  $g->SetColor('lightblue');
+  $g->SetColor('white');
   $g->SetMarginColor('#F9DAC6');
 
   // Setup Title
@@ -58,39 +58,45 @@
   $g->xaxis->SetFont(FF_FONT1,FS_BOLD);
   $g->xaxis->SetLabelMargin(15);
 
+  $axisWeight = 3;
+
   // Setup X-axis label
   $g->xaxis->SetTitle("X (cm)", center);
   $g->xaxis->SetTitleMargin(15);
   $g->xaxis->title->SetFont(FF_FONT1,FS_BOLD);
-  $g->xaxis->SetWeight(3);
+  $g->xaxis->SetWeight($axisWeight);
   $g->xaxis->title->SetColor("#191919");
 
   // Setup Y-axis label
   $g->yaxis->SetTitle("Y (cm)", middle);
   $g->yaxis->SetTitleMargin(30);
   $g->yaxis->title->SetFont(FF_FONT1,FS_BOLD);
-  $g->yaxis->SetWeight(3);
+  $g->yaxis->SetWeight($axisWeight);
   $g->yaxis->title->SetColor("#191919");
 
   $g->img->SetMargin(50,50,50,50);
   $g->SetMargin(50,50,50,50);
   $g->SetFrame(true,'black',1);
 
+  // Setup line to show connection of inlet and outlet with respect to the rest of the model
+  $bgColor = 'gray5';
+  $bgY = array(7.5, 16, -1);
+  $bgX = array(7.5, 7.5, 7.5);
+  $bg = new Scatterplot($bgY, $bgX);
+  $bg->mark->SetType(MARK_SQUARE);
+  $bg->mark->SetSize(74);
+  $bg->mark->SetFillColor($bgColor);
+  $g->Add($bg);
+
+
   // Setup black areas to represent the wings
   $wingColor = 'gray1';
-  $wingY = array(3.5, 3.5, 11.5, 11.5);
-  $wingX = array(3.5, 11.5, 3.5, 11.5);
+  $wingY = array(3.5, 3.5, 11.5, 11.5, 3.5, 11.5, 3.5, 11.5, 3.5, 11.5);
+  $wingX = array(3.5, 11.5, 3.5, 11.5, 7.5, 7.5, 2.69, 2.69, 12.26, 12.26);
   $wing = new Scatterplot($wingY, $wingX);
   $wing->mark->SetType(MARK_SQUARE);
-  $wing->mark->SetSize(325);
+  $wing->mark->SetSize(255);
   $wing->mark->SetFillColor($wingColor);
-  $wY = array(3.5, 11.5);
-  $wX = array(7.5, 7.5);
-  $w = new Scatterplot($wY, $wX);
-  $w->mark->SetType(MARK_SQUARE);
-  $w->mark->SetSize(325);
-  $w->mark->SetFillColor($wingColor);
-  $g->Add($w);
   $g->Add($wing);
 
   if (count($mx)) {
