@@ -40,6 +40,7 @@
       </nav>
       <main>
         <h1><?php echo $name; ?> Summary</h1>
+        <h2>Misc Data</h2>
         <span>Last Edited:
           <?php
             if ($data['lastEdit'] != "") {
@@ -49,19 +50,17 @@
             }
           ?>
         </span>
-        <br><br>
+        <?php
+          echo
+            "<table border=1 cellpadding=5>".
+              "<tr><td>Object Type</td><td>Heater</td></tr>".
+              "<tr><td>Name</td><td>$name</td></tr>".
+            "</table><br>";
+        ?>
         <form method="get" action="heaterEdit.php">
           <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
           <input class="button" type="submit" value="Edit Part">
         </form>
-        <?php
-          echo
-            "<h2>Misc Data</h2>".
-            "<table border=1 cellpadding=5>".
-              "<tr><td>Object Type</td><td>Heater</td></tr>".
-              "<tr><td>Name</td><td>$name</td></tr>".
-            "</table>";
-        ?>
         <h2>Notes</h2>
         <?php
           if ($notes!="") {
@@ -70,6 +69,7 @@
             echo "No notes found";
           }
         ?>
+        <br>
       </main>
     </div>
   </body>

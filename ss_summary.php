@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
   require_once("database.php");
   require_once("functions.php");
@@ -23,7 +24,6 @@
     $i++;
   }
 ?>
-<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -51,6 +51,7 @@
       </nav>
       <main>
         <h1><?php echo $name; ?> Summary</h1>
+        <h2>Misc Data</h2>
         <span>Last Edited:
           <?php
             if ($data['lastEdit'] != "") {
@@ -60,15 +61,9 @@
             }
           ?>
         </span>
-        <br><br>
-        <form method="get" action="ss_edit.php">
-          <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
-          <input class="button" type="submit" value="Edit Part">
-       </form>
       <?php
         // table that shows info about the sheet
         echo
-          "<h2>Misc Data</h2>".
           "<table border=1 cellpadding=5>".
             "<tr><td>Object Type</td><td>Support Structure</td></tr>".
             "<tr><td>Name</td><td>".$name."</td></tr>".
@@ -79,12 +74,20 @@
             "<tr><td>Ply of Wings</td><td>".$data['wings_ply']."</td></tr>".
             "<tr><td>Stack of Airex</td><td>".$data['airex_stack']."</td></tr>".
           "</table><br>";
-
+      ?>
+      <form method="get" action="ss_edit.php">
+        <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
+        <input class="button" type="submit" value="Edit Part">
+      </form>
+      <?php
+        echo "<h2>Tests</h2>";
           if (isset($tests)) {
+            echo "<ul>";
             foreach ($tests as $row) {
-              echo "<a href='test.php?id=".$row['id']."' >".$row['name']."</a><br>";
+              echo "<li><a href='test.php?id=".$row['id']."' >".$row['name']."</a></li>";
               #echo $row['name']."<br>";
             }
+            echo "</ul>";
           } else {
             echo "No tests found";
           }

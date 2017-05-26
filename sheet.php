@@ -86,7 +86,13 @@
           echo "<tr><td>Edge Thicknesses </td><td>".$thicknesses."</td></tr>";
           echo "<tr><td>Bow </td><td>".$data['bow']." mm</td></tr>";
           echo "<tr><td>Measured by </td><td>".$data['user_measure']."</td></tr>";
-          echo "</table>";
+          echo "</table><br>";
+        ?>
+        <form method="get" action="sheet_edit.php">
+          <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
+          <input class="button" type="submit" value="Edit Part">
+        </form>
+        <?php
           echo "<h2>Notes</h2>";
           if ($notes!="") {
             echo "<p>".nl2br($notes)."</p>";
@@ -98,11 +104,7 @@
           echo "<h2>Misc Files</h2>";
           show_files("sheet",$id);
         ?>
-        <br><br>
-        <form method="get" action="sheet_edit.php">
-          <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
-          <input class="button" type="submit" value="Edit Part">
-        </form>
+        <br>
       </main>
     </div>
   </body>
