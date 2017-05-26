@@ -44,7 +44,6 @@
       </nav>
       <main>
         <h1><?php echo $name; ?> Summary</h1>
-        <h2>Misc Data</h2>
         <span>Last Edited:
           <?php
             if ($data['lastEdit'] != "") {
