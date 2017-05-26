@@ -6,8 +6,9 @@ Currently, we have support structures, thermal sensors, heaters, mock modules, a
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="style.css">
-  <title>Part List</title>
+    <title>Part List</title>
   </head>
   <body>
     <div id="wrapper">
@@ -87,7 +88,7 @@ Currently, we have support structures, thermal sensors, heaters, mock modules, a
           echo "</td>";
           echo "<td>";
           echo "<table border=1>";
-          echo "<th>Sheets</th>";
+          echo "<th><a href=\"sheetSummary.php\">Sheets</a></th>";
           foreach ($sheets as $sheet) {
             echo "<tr><td>";
             echo "<a href=\"sheet.php?id=$sheet[0]\">$sheet[1]</a>";
