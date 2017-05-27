@@ -178,7 +178,7 @@
       echo count($_FILES['files']['name']);*/
       add_file("sheet",$id,$_FILES['files']);
   }
-
+  
   ### redirect to the summary page with the new information
-  header("Location: sheet_edit.php?id=$id")
+  header("Location: sheet.php?id=$id")
 ?>
