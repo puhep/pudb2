@@ -8,17 +8,32 @@
   require_once("./jpgraph/src/jpgraph.php");
   require_once("./jpgraph/src/jpgraph_scatter.php");
   require_once("./jpgraph/src/jpgraph_date.php");
-  require_once("./jpgraph/src/jpgraph_line.php");
   require_once("database.php");
   require_once("functions.php");
   $db = new Database();
   $sheets = db_query("SELECT thickness1, thickness2, thickness3, thickness4, dateCut FROM sheet WHERE ply=3", $db);
 
-//  print_r($sheets);
+  // Graph Data
+  $dataY = array();
+  $dataX = array();
+  for ($i = 0; $i < sizeof($sheets); $i++) {
+    $dataY[$i] = (($sheets[$i]['thickness1'] + $sheets[$i]['thickness2'] + $sheets[$i]['thickness3'] + $sheets[$i]['thickness4']) / 4) * 100; // Avevrage Thickness times 100 to put it in microns
+    $dataX[$i] = strtotime($sheets[$i]['dateCut']); // Convert YYYY-MM-DD to Unix Timeshamp
+  }
+  $max = $min = $dataX[0];
+  for ($i = 0; $i < sizeof($dataX); $i++) {
+    if ($min > $dataX[$i]) {
+      $min = $dataX[$i];
+    } elseif ($max < $dataX[$i]) {
+      $max = $dataX[$i];
+    }
+  }
 
+  $min -= 60*60*24*7; // Seconds in a week
+  $max += 60*60*24*7;
   // Setup Graph
   $graph = new Graph(1248, 1000);
-  $graph->SetScale("datlin");
+  $graph->SetScale("datlin", 10, 50, $min, $max);
   $graph->SetColor('lightblue');
   $graph->SetMarginColor('#F9DAC6');
   $graph->img->SetMargin(50,50,50,50);
@@ -51,18 +66,12 @@
   // Setup Y-Axis
   $graph->yaxis->SetFont(FF_FONT1, FS_BOLD);
   $graph->yaxis->SetLabelMargin(10);
-  $graph->yaxis->SetTitle("Sheet Thickness", middle);
+  // $mu = SymChar::Get('mu');
+  $graph->yaxis->title->Set("Sheet Thickness (microns)");
   $graph->yaxis->SetTitleMargin(50);
   $graph->yaxis->title->SetFont(FF_FONT1, FS_BOLD);
   $graph->yaxis->SetWeight(3);
   $graph->yaxis->title->SetColor('#191919');
-
-  $dataY = array();
-  $dataX = array();
-  for ($i = 0; $i < sizeof($sheets); $i++) {
-    $dataY[$i] = ($sheets[$i]['thickness1'] + $sheets[$i]['thickness2'] + $sheets[$i]['thickness3'] + $sheets[$i]['thickness4']) / 4; // Avevrage Thickness
-    $dataX[$i] = strtotime($sheets[$i]['dateCut']); // Convert YYYY-MM-DD to Unix Timeshamp
-  }
 
   // Setup Scatter Plot
   $scatter = new ScatterPlot($dataY, $dataX);
