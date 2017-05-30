@@ -25,8 +25,7 @@
       <a href="contact.php">Contact/Issues</a>
     </nav>
     <main>
-
-          <h1>Purdue CMS FPix Phase II R&D Database</h1>
+      <h1>Purdue CMS FPix Phase II R&D Database</h1>
       <h2>Part Information</h2>
       <input class="button" type=button onClick="location.href='part_list.php'" value='Part List'>
       <h2>Part Submission</h2>
