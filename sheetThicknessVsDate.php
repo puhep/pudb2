@@ -17,7 +17,7 @@
   $dataY = array();
   $dataX = array();
   for ($i = 0; $i < sizeof($sheets); $i++) {
-    $dataY[$i] = (($sheets[$i]['thickness1'] + $sheets[$i]['thickness2'] + $sheets[$i]['thickness3'] + $sheets[$i]['thickness4']) / 4) * 100; // Avevrage Thickness times 100 to put it in microns
+    $dataY[$i] = (($sheets[$i]['thickness1'] + $sheets[$i]['thickness2'] + $sheets[$i]['thickness3'] + $sheets[$i]['thickness4']) / 4) * 1000; // Avevrage Thickness times 100 to put it in microns
     $dataX[$i] = strtotime($sheets[$i]['dateCut']); // Convert YYYY-MM-DD to Unix Timeshamp
   }
   $max = $min = $dataX[0];
@@ -33,7 +33,7 @@
   $max += 60*60*24*7;
   // Setup Graph
   $graph = new Graph(1248, 1000);
-  $graph->SetScale("datlin", 10, 50, $min, $max);
+  $graph->SetScale("datlin", 100, 500, $min, $max);
   $graph->SetColor('lightblue');
   $graph->SetMarginColor('#F9DAC6');
   $graph->img->SetMargin(50,50,50,50);
