@@ -1,0 +1,107 @@
+body {
+  background-color: #4A423A;
+  font-family: Verdana, Arial, sans-serif;
+}
+
+nav {
+  float: left;
+  width: 200px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+}
+
+nav a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+nav a.active {
+  background-color: #00F0FF;
+  color: white;
+}
+
+nav a:hover:not(.active) {
+  background-color: #063DDC;
+  color: white;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #2DD711;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 6px #999;
+}
+
+.button:hover {
+  background-color: #23A70D;
+}
+
+.button:active {
+  background-color: #23A70D;
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+}
+
+header {
+  text-align: center;
+  padding-top: 8px;
+  padding-bottom: 4px;
+  background-color: black;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+main {
+  background-color: #F7DFC4;
+  color: #000000;
+  padding: 10px 20px;
+  overflow: auto;
+  display: block;
+}
+
+footer {
+  font-size: 70%;
+  text-align: center;
+  padding: 10px;
+  background-color: #F7DFC4;
+  clear: both;
+}
+
+#wrapper {
+  margin: 0 auto;
+  width: 80%;
+  min-width: 940px;
+  background-color: #FFC30B;
+  color: #000066;
+}
+
+a {
+  text-decoration: none;
+}
+
+main a {
+  color: #3C2C05;
+}
+
+/*
+#F7DFC4
+#063DDC
+#00F0FF
+#FFC30B
+#33EF13
+#E92402
+#C28E0E
+#98700D
+#4A423A
+#3C2C05
+*/
