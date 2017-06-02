@@ -25,9 +25,14 @@
         <a href="contact.php">Contact/Issues</a>
       </nav>
       <main>
-        <h4>Sheet Thickness Vs Date of Curing</h4>
+        <h2>Sheet Thickness Vs Date of Curing</h2>
+        <h4>3 Ply Sheets</h4>
         <?php
-        echo "<a href=\"sheetThicknessVsDate.php\" target=\"blank\"><img src=\"sheetThicknessVsDate.php\" width=\"300\" height=\"300\" ></a>";
+          echo "<a href=\"sheetThicknessVsDate3.php\" target=\"blank\"><img src=\"sheetThicknessVsDate3.php\" width=\"300\" height=\"300\" ></a>";
+        ?>
+        <h4>8 Ply Sheets</h4>
+        <?php
+          echo "<a href=\"sheetThicknessVsDate8.php\" target=\"blank\"><img src=\"sheetThicknessVsDate8.php\" width=\"300\" height=\"300\" ></a>";
         ?>
       </main>
     </div>
