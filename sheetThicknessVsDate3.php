@@ -20,6 +20,20 @@
     $dataY[$i] = (($sheets[$i]['thickness1'] + $sheets[$i]['thickness2'] + $sheets[$i]['thickness3'] + $sheets[$i]['thickness4']) / 4) * 1000; // Avevrage Thickness times 100 to put it in microns
     $dataX[$i] = strtotime($sheets[$i]['dateCut']); // Convert YYYY-MM-DD to Unix Timeshamp
   }
+
+  $low = $high = $dataY[0];
+  for ($i = 1; $i < sizeof($dataX); $i++) {
+    if ($low > $dataY[$i]) {
+      $low = $dataY[$i];
+    } else if ($high < $dataY[$i]) {
+      $high = $dataY[$i];
+    }
+  }
+  if ($low - 100 < 0)
+    $low = 0;
+  else $low -= 100;
+  $high += 250;
+
   $max = $min = $dataX[0];
   for ($i = 0; $i < sizeof($dataX); $i++) {
     if ($min > $dataX[$i]) {
@@ -33,8 +47,7 @@
   $max += 60*60*24*7;
   // Setup Graph
   $graph = new Graph(1248, 1000);
-  $graph->SetScale("datlin", 100, 500, $min, $max);
-  $graph->SetColor('lightblue');
+  $graph->SetScale("datlin", $low, $high, $min, $max);
   $graph->SetMarginColor('#F9DAC6');
   $graph->img->SetMargin(50,50,50,50);
   $graph->img->SetAntiAliasing(false);
