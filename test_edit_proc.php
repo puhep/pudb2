@@ -120,12 +120,17 @@ if($_POST['notes'] != ""){
 
 ### if the name of the picture is not blank (i.e. a picture has been slotted to upload), perform several checks and upload
 if($_FILES['pic']['name'] != ""){
-    add_pic("test",$id,$_FILES,$_POST['picnotes']);
+    add_pic("test",$test_id,$_FILES,$_POST['picnotes']);
+}
+
+if (count($_FILES['tempVsTime']['name'])) {
+  addTempVsTimeFile("test",$test_id,$_FILES['tempVsTime']);
+  // rename("../phase_2/files/test/$id/$_FILES['tempVsTime']['name']", "../phase_2/files/test/$id/tempVsTime.csv");
 }
 
 ### if the name of the file is not blank (i.e. a file has been slotted to upload), attempt to upload
 if(count($_FILES['files']['name'])){
-    add_file("test",$id,$_FILES['files']);
+    add_file("test",$test_id,$_FILES['files']);
 }
 
 ### redirect to the test summary page with the new information
