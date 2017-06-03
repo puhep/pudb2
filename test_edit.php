@@ -3,9 +3,7 @@
   require_once("database.php");
   require_once("functions.php");
   $db = new Database();
-
   $id=$_GET['id'];
-
   $sensorData = sensorTestData($id,$db);
   $heaterData = heaterTestData($id,$db);
   $moduleData = moduleTestData($id,$db);
@@ -74,7 +72,7 @@
 
               $sql="SELECT name,id,cur_channel FROM thermal_sensor".$notstr;
               $curChannels = array();
-              $sensor_data=db_query($sql,$db);
+              $sensor_data=$db->db_query($sql);
               foreach($sensor_data as $row) {
                 $id=$row['id'];
                 $tsname=$row['name'];
@@ -126,7 +124,7 @@
                 echo "<option value=\"NULL\">Select a Heater</option>\n";
 
                 $sql="SELECT name,id FROM heater".$notstr;
-                $heater_data=db_query($sql,$db);
+                $heater_data=$db->db_query($sql);
                 foreach ($heater_data as $row) {
                   $hid=$row['id'];
                   $heater_name=$row['name'];
@@ -162,7 +160,7 @@
                 echo "<option value=\"NULL\">Select a Module</option>\n";
 
                 $sql="SELECT name,id FROM mock_module".$notstr;
-                $heater_data=db_query($sql,$db);
+                $heater_data=$db->db_query($sql);
                 foreach ($heater_data as $row) {
                   $id=$row['id'];
                   $module_name=$row['name'];
@@ -235,24 +233,29 @@
           <h2>Notes</h2>
           <?php echo nl2br($notes); ?>
           <br>
-          <div style="width:225px;">
+          <div style="width:275px;">
           <!--Notes: <input name="notes" type="text" style="float:right"><br><br>-->
           <label for="notes">Additional Notes: </label>
           <textarea cols="40" rows="5" name="notes"></textarea><br>
         </div>
 
           <h2>Pictures</h2>
-          <div style="width:340px;">
+          <div style="width:475px;">
           <label for="pic">Picture File: </label>
           <input name="pic" type="file" style="float:right"><br><br>
         </div>
-          <div style="width:275px;">
+          <div style="width:400px;">
           <label for="picnotes">Picture Notes: </label>
           <input name="picnotes" type="text" style="float:right"><br><br>
         </div>
 
           <h2>Misc Files</h2>
-          <div style="width:340px;">
+          <div style="width:475px;">
+            <div id="tempVsTime">
+              <label for="tempVsTime">Temp and Time Excel File<br>CSV file type only</label>
+              <input name="tempVsTime" type="file" style="float:right">
+            </div>
+            <br><br>
             <label for="file[]">Misc File(s): </label>
             <input name="file[]" id="files" type="file" multiple="multiple" style="float:right"><br><br>
           </div>
