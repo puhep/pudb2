@@ -117,7 +117,28 @@ function show_sensors($data, $edit=0, $type="sensor"){
     }
 }
 
-function add_file ($type,$id,$files) {
+function addTempVsTimeFile($type, $id, $file) {
+  $directory = "../phase_2/files/$type/$id/";
+  if (!file_exists($directory)) {
+    mkdir(directory);
+    chmod($directory, 0777);
+  }
+
+  $targetFile = $directory.$file['name'];
+
+  $fileType = pathinfo($targetFile,PATHINFO_EXTENSION);
+  if($fileType != "csv") {
+    echo "Sorry, only CSV file type is allowed currently for Temp vs Time.<br>".$backmessage;
+  }
+
+  $targetFile = $directory."tempVsTime.csv";
+  // echo $file['tmp_name']."<br>".$file['name'];
+  if (!move_uploaded_file($file['tmp_name'], $targetFile)) {
+    echo $backmessage;
+  }
+}
+
+function add_file($type,$id,$files) {
   $targetDir = "../phase_2/files/$type/$id/";
   #echo $targetDir;
   ### if the directory for the structure does not exist, create it and make it editable
@@ -125,16 +146,16 @@ function add_file ($type,$id,$files) {
     mkdir($targetDir);
     chmod($targetDir,0777);
   }
-  echo "hello<br>"
-  echo $targetdir."<br><br>";
+  // echo "targetdir: ".$targetDir."<br><br>";
+  // print_r($files);
+  // echo "<br><br>";
   foreach ($files['name'] as $f => $name) {
     $targetFile = $targetDir.$name;
-    echo $targetFile;
-    // echo $targetFile."<br>";
+    // echo "targetFile: ".$targetFile."<br>";
     #print_r($files['tmp_name']);
     #echo "<br>";
     if (!move_uploaded_file($files['tmp_name'][$f], $targetFile)) {
-      //  echo "Sorry, an error has occurred. Try again or bother Greg & Chase until they help<br>";
+      echo "Sorry, an error has occurred. Try again or bother Greg & Chase until they help<br>";
     }
   }
 }
