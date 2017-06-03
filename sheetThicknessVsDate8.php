@@ -9,9 +9,8 @@
   require_once("./jpgraph/src/jpgraph_scatter.php");
   require_once("./jpgraph/src/jpgraph_date.php");
   require_once("database.php");
-  require_once("functions.php");
   $db = new Database();
-  $sheets = db_query("SELECT thickness1, thickness2, thickness3, thickness4, dateCut FROM sheet WHERE ply=8", $db);
+  $sheets = $db->db_query("SELECT thickness1, thickness2, thickness3, thickness4, dateCut FROM sheet WHERE ply=8");
 
   // Graph Data
   $dataY = array();

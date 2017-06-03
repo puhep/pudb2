@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <?php
   require_once("database.php");
-  require_once("functions.php");
-
   $id=$_GET['id'];
   $db=new Database();
   $sql="SELECT * FROM support_structure where id=$id";

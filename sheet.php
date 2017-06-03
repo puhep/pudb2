@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <?php
   require_once("database.php");
-  require_once("functions.php");
   $id=$_GET['id'];
   $db= new Database();
-  $data=db_query("SELECT * FROM sheet where id=$id",$db);
+  $data=$db->db_query("SELECT * FROM sheet where id=$id");
   $data=$data[0];
   $name=$data['name'];
   $sql = "SELECT notetext FROM notes where part_id=$id and part_type=\"sheet\"";

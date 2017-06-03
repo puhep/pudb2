@@ -4,7 +4,7 @@
   require_once("database.php");
   $db = new Database();
   $id=$_GET['id'];
-  $data=db_query("SELECT * FROM test where id=$id",$db);
+  $data=$db->db_query("SELECT * FROM test where id=$id");
   $data=$data[0];
   $miscData=testData2($id,$db);
   $sensorData = sensorTestData($id,$db);
@@ -81,6 +81,10 @@
           }
           echo "<h2>Pictures</h2>";
           show_pictures("test",$id);
+          if (file_exists("../phase_2/files/test/$id/tempVsTime.csv")){
+            echo "<h2>Graphs</h2>";
+            echo "<a href=\"tempVsTime.php?id=$id\" target=\"blank\"><img src=\"tempVsTime.php?id=$id\" width=\"300\" height=\"300\" ></a>";
+          }
           echo "<h2>Misc Files</h2>";
           show_files("test",$id);
         ?>

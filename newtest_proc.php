@@ -16,7 +16,7 @@ $sql = "INSERT INTO notes (part_id,part_type) VALUES ($id,'test')";
 $db->query($sql);
 if($_POST['oldtest'] != ""){
     $sql = "SELECT * FROM sensor_test where test_id=".$_POST['oldtest'];
-    $data=db_query($sql,$db);
+    $data=$db->db_query($sql);
     foreach($data as $line){
         #print_r($line);
         #echo "<br>";
@@ -30,6 +30,11 @@ if($_POST['oldtest'] != ""){
         #echo $sql."<br>";
         $db->query($sql);
     }
+}
+
+if (count($_FILES['files']['name'])) {
+  add_file("test",$id,$_FILES['files']);
+  rename("../phase_2/files/test/$id/$_FILES['files']['name']", "../phase_2/files/test/$id/tempVsTime.csv");
 }
     header("Location: test_edit.php?id=$id");
 

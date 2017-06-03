@@ -3,11 +3,14 @@
   require_once("./jpgraph/src/jpgraph_scatter.php");
   require_once("./jpgraph/src/jpgraph_line.php");
   require_once("database.php");
-  require_once("functions.php");
+
+  $id=$_GET['id'];
   ### display the temperature versus time for all sensors using the test file
 
   #echo file_get_contents("test.txt");
-  $file = fopen("CFthermalconductivity_test1.csv","r") or die("Unable to open file!");
+  $filePath = "../phase_2/files/test/$id/tempVsTime.csv";
+  $file = fopen($filePath,"r") or die($filePath);
+//  $file = fopen("CFthermalconductivity_test1.csv","r") or die("Unable to open file!");
   $line1 = fgetcsv($file);
   $numSensors = (count($line1)-1)/2;
   $sensorName = array();
@@ -16,7 +19,7 @@
     $sensorName[$j++] = $line1[$i];
   }
 
-  $noOfLines = count(file("CFthermalconductivity_test1.csv"));
+  $noOfLines = count(file($filePath));
   $sensor = array_fill(0, $numSensors, array_fill(0,$noOfLines-1,array_fill(0, 2, 0)));
   while (!feof($file)) {
     $temp = fgetcsv($file);
@@ -34,7 +37,7 @@
 
   // Setup Graph
   $graph = new Graph(1200, 1200);
-  $graph->SetScale('linlin', 0, 3600, 15, 60);
+  $graph->SetScale('linlin', 20, 60,0,0);
   $graph->SetColor('lightblue');
   $graph->SetMarginColor('#F9DAC6');
 
@@ -73,8 +76,8 @@
 
     // Add all x point of a sensor to $dataX and the same for y
     for ($j = 0; $j < $noOfLines; $j++) {
-      $dataX[$j] = (float) $sensor[$i][$j][0];
-      $dataY[$j] = (float) $sensor[$i][$j][1];
+      $dataY[$j] = (float) $sensor[$i][$j][0];
+      $dataX[$j] = (float) $sensor[$i][$j][1];
     }
 
     // Create scatterplots with the newly parsed data
@@ -83,6 +86,7 @@
     $scatter[$i]->mark->SetSize(2);
     $color = sprintf('#%06X', mt_rand(0, 0xFFFFFF));
     $scatter[$i]->mark->SetFillColor($color);
+    $scatter[$i]->mark->SetColor($color);
     $scatter[$i]->SetLegend(substr($sensorName[$i], 0, 5));
     // echo $sensorsName[$i]."<br>";
     // Add the scatterplot to the graph

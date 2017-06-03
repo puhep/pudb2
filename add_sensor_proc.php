@@ -1,6 +1,5 @@
 <?php
-require_once("database.php");
-require_once("functions.php");
+require_once("database.php"); 
 $db=new Database();
 #print_r($_POST);
 $test_id=$_POST['test_id'];
@@ -36,7 +35,7 @@ if($channel!=''){
 }
 else{
     $sql="SELECT cur_channel FROM thermal_sensor WHERE id = ".$thermal_id;
-    $curChannel=db_query($sql,$db);
+    $curChannel=$db->db_query($sql);
     $curChannel=$curChannel[0]['cur_channel'];
     $sql="UPDATE sensor_test SET channel=$curChannel WHERE test_id=$test_id AND thermal_id=$thermal_id";
     $db->query($sql);

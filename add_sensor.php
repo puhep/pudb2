@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <?php
   require_once("database.php");
-  require_once("functions.php");
   $db = new Database();
   $id=$_GET['id'];
   $data = test_data($id,$db);
@@ -51,7 +50,7 @@
               <?php
                 echo "<option value=\"NULL\">Select a Sensor</option>\n";
                 $sql="SELECT name,id FROM thermal_sensor".$notstr;
-                $sensor_data=db_query($sql,$db);
+                $sensor_data=$db->db_query($sql);
                 foreach ($sensor_data as $row) {
                     $id=$row['id'];
                     $name=$row['name'];

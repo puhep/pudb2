@@ -128,6 +128,17 @@ n", $this->Errno, $this->Error );
 			return mysql_num_fields($this->Query_ID);
         } // end function numRows
 
+    ### shorthand to make some of the other pages a little more readable
+### if the query returns only one line, it can be accessed with $data[0]
+function db_query($sql){
+    $this->query($sql);
+    $i=0;
+    while($this->nextRecord()){
+        $data[$i]=$this->Record;
+        $i++;
+    }
+    return $data;
+}
     } // end class Database
 /* From: kjventura.com */
 

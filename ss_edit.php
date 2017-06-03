@@ -47,7 +47,7 @@
         </form>
         <h2>Misc Data</h2>
         <form action="ss_edit_proc.php" method="post" enctype="multipart/form-data">
-          <div style="width:300px;">
+          <div style="width:400px;">
             <label for="name">Name: </label>
             <input placeholder= "<?php echo $name; ?>" name="name" type="text" style="float:right"><br><br>
             <label for="mass">Mass: </label>
@@ -66,7 +66,7 @@
           <h2>Notes</h2>
           <?php echo nl2br($notes); ?>
           <br>
-          <div style="width:225px;">
+          <div style="width:400px;">
             <!--Notes: <input name="notes" type="text" style="float:right" size="20"><br><br>-->
             <label for="notes">Additional Notes: </label>
             <textarea cols="40" rows="5" name="notes"></textarea>
@@ -74,18 +74,18 @@
           </div>
 
           <h2>Pictures</h2>
-          <div style="width:340px;">
+          <div style="width:475px;">
             <label for="pic">Picture File: </label>
             <input name="pic" type="file" style="float:right">
             <br><br>
           </div>
-          <div style="width:275px;">
+          <div style="width:400px;">
             <label for="picnotes">Picture Notes: </label>
             <input name="picnotes" type="text" style="float:right"><br><br>
           </div>
 
           <h2>Misc Files</h2>
-          <div style="width:340px;">
+          <div style="width:475px;">
             <label for="files[]">Misc File(s): </label>
             <input name="files[]" id="files" type="file" multiple="multiple"  style="float:right"><br><br>
           </div>
