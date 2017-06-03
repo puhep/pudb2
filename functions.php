@@ -140,22 +140,15 @@ function addTempVsTimeFile($type, $id, $file) {
 
 function add_file($type,$id,$files) {
   $targetDir = "../phase_2/files/$type/$id/";
-  #echo $targetDir;
   ### if the directory for the structure does not exist, create it and make it editable
   if (!file_exists($targetDir)) {
     mkdir($targetDir);
     chmod($targetDir,0777);
   }
-  // echo "targetdir: ".$targetDir."<br><br>";
-  // print_r($files);
-  // echo "<br><br>";
-  foreach ($files['name'] as $f => $name) {
-    $targetFile = $targetDir.$name;
-    // echo "targetFile: ".$targetFile."<br>";
-    #print_r($files['tmp_name']);
-    #echo "<br>";
-    if (!move_uploaded_file($files['tmp_name'][$f], $targetFile)) {
-      echo "Sorry, an error has occurred. Try again or bother Greg & Chase until they help<br>";
+  for ($i = 0; $i < sizeof($files['name']); $i++) {
+    $targetFile = $targetDir.$files['name'][$i];
+    if (!move_uploaded_file($files['tmp_name'][$i], $targetFile)) { // If file fails to upload send error message
+      echo "<h2>Sorry, an error has occurred. Try again or bother Greg & Chase until they help</h2><br>";
     }
   }
 }
