@@ -1,5 +1,5 @@
 <?php
-require_once("database.php");
+require_once("database.php"); 
 $db=new Database();
 #print_r($_POST);
 $test_id=$_POST['test_id'];
