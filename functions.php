@@ -117,24 +117,26 @@ function show_sensors($data, $edit=0, $type="sensor"){
     }
 }
 
-function add_file($type,$id,$files){
-    $targetDir = "../phase_2/files/$type/$id/";
-    #echo $targetDir;
-    ### if the directory for the structure does not exist, create it and make it editable
-    if(!file_exists($targetDir)){
-        mkdir($targetDir);
-        chmod($targetDir,0777);
+function add_file ($type,$id,$files) {
+  $targetDir = "../phase_2/files/$type/$id/";
+  #echo $targetDir;
+  ### if the directory for the structure does not exist, create it and make it editable
+  if (!file_exists($targetDir)) {
+    mkdir($targetDir);
+    chmod($targetDir,0777);
+  }
+  echo "hello<br>"
+  echo $targetdir."<br><br>";
+  foreach ($files['name'] as $f => $name) {
+    $targetFile = $targetDir.$name;
+    echo $targetFile;
+    // echo $targetFile."<br>";
+    #print_r($files['tmp_name']);
+    #echo "<br>";
+    if (!move_uploaded_file($files['tmp_name'][$f], $targetFile)) {
+      //  echo "Sorry, an error has occurred. Try again or bother Greg & Chase until they help<br>";
     }
-    #echo $targetdir."<br><br>";
-    foreach($files['name'] as $f => $name){
-        $targetFile = $targetDir.$name;
-        #echo $targetFile."<br>";
-        #print_r($files['tmp_name']);
-        #echo "<br>";
-        if(!move_uploaded_file($files['tmp_name'][$f], $targetFile)){
-            //  echo "Sorry, an error has occurred. Try again or bother Greg & Chase until they help<br>";
-        }
-    }
+  }
 }
 
 function add_pic($type,$id,$files,$notes){
@@ -145,19 +147,19 @@ function add_pic($type,$id,$files,$notes){
     $imageFileType = pathinfo($targetfile,PATHINFO_EXTENSION);
     ### if the directory for the test does not exist, create it and make it editable
     if(!file_exists($targetdir)){
-        mkdir($targetdir);
-        chmod($targetdir,0777);
-	}
+      mkdir($targetdir);
+      chmod($targetdir,0777);
+	  }
     ### don't allow duplicate uploads
     if(file_exists($targetfile)){
-    echo "Sorry, file already exists.<br>".$backmessage;
-    $picupload = 0;
-}
+      echo "Sorry, file already exists.<br>".$backmessage;
+      $picupload = 0;
+    }
     ### only picture type files are allowed
     if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
-    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<br>".$backmessage;
-    $picupload = 0;
-}
+      echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<br>".$backmessage;
+      $picupload = 0;
+    }
     ### if none of the errors have been detected, proceed with the upload
     if($picupload==1){
     #echo "ok to upload";
@@ -172,15 +174,15 @@ function add_pic($type,$id,$files,$notes){
 
 ### shorthand to make some of the other pages a little more readable
 ### if the query returns only one line, it can be accessed with $data[0]
-function db_query($sql,$db){
-    $db->query($sql);
-    $i=0;
-    while($db->nextRecord()){
-        $data[$i]=$db->Record;
-        $i++;
-    }
-    return $data;
-}
+#function db_query($sql,$db){
+#    $db->query($sql);
+#    $i=0;
+#    while($db->nextRecord()){
+#        $data[$i]=$db->Record;
+#        $i++;
+#    }
+#    return $data;
+#}
 
 function testData2($testID,$db){
     $sql = "SELECT t.name as testName, t.id as testID, t.coolant_temp as coolantTemp,
@@ -188,7 +190,7 @@ ss.id as ssID, ss.name as ssName
 FROM test t
 LEFT JOIN support_structure ss ON t.assoc_ss=ss.id
 WHERE t.id=".$testID;
-    $data = db_query($sql,$db);
+    $data = $db->db_query($sql);
     return $data[0];
 }
 
@@ -199,7 +201,7 @@ FROM test t
 LEFT JOIN sensor_test st ON st.test_id=t.id
 LEFT JOIN thermal_sensor s ON st.thermal_id=s.id
 WHERE t.id=".$testID;
-    $sensorData = db_query($sql,$db);
+    $sensorData = $db->db_query($sql);
     return $sensorData;
 }
 
@@ -210,7 +212,7 @@ FROM test t
 LEFT JOIN heater_test ht ON ht.test_id=t.id
 LEFT JOIN heater h ON ht.heater_id=h.id
 WHERE t.id=".$testID;
-    $heaterData = db_query($sql,$db);
+    $heaterData = $db->db_query($sql);
     return $heaterData;
 }
 
@@ -221,7 +223,7 @@ FROM test t
 LEFT JOIN module_test mt ON mt.test_id=t.id
 LEFT JOIN mock_module m ON mt.module_id=m.id
 WHERE t.id=".$testID;
-    $moduleData = db_query($sql,$db);
+    $moduleData = $db->db_query($sql);
     return $moduleData;
 }
 
