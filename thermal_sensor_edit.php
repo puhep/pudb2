@@ -1,11 +1,10 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <?php
   require_once("database.php");
-  require_once("functions.php");
   $id=$_GET['id'];
   $db= new Database();
   $sql="SELECT * FROM thermal_sensor where id=$id";
-  $data=db_query($sql,$db);
+  $data=$db->db_query($sql);
   $data=$data[0];
   $name=$data['name'];
 

@@ -61,6 +61,9 @@
               ?>
             </select>
             <br><br>
+            <label for="files[]">Upload Temperature-to-Time Excel File</label>
+            <input name="files[]" id="files" type="files" style="float:right">
+            <br><br>
           </div>
           <input class="button" type="submit" name="submit" value="Submit">
         </form>

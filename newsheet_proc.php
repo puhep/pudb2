@@ -12,7 +12,7 @@
   $db->query($sql);
   if ($_POST['location'] != "") {
       $sql = "UPDATE sheet SET location = \"".$_POST['location']."\" WHERE id=$id";
-      $db -> query($sql);
+      $db->query($sql);
   }
 
   if ($_POST['dateCut'] != "") {
@@ -178,7 +178,7 @@
       echo count($_FILES['files']['name']);*/
       add_file("sheet",$id,$_FILES['files']);
   }
-  
+
   ### redirect to the summary page with the new information
   header("Location: sheet.php?id=$id")
 ?>
