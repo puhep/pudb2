@@ -40,7 +40,7 @@
       <main>
         <h1>Edit <?php echo $name; ?></h1>
         <form action="sheet_edit_proc.php" method="post" enctype="multipart/form-data">
-          <div style="width:450px;">
+          <div style="width:400px;">
             <label for="name">Name: </label>
             <input placeholder= "<?php echo $data['name']; ?>" name="name" type="text" style="float:right"><br><br>
             <label for="location">Location: </label>
@@ -111,21 +111,21 @@
           <h2>Notes</h2>
           <?php echo nl2br($notes); ?>
           <br>
-          <div style="width:225px;">
+          <div style="width:400px;">
               <label for="notes">Additional Notes: </label>
               <textarea cols="40" rows="5" name="notes"></textarea><br>
           </div>
           <h2>Pictures</h2>
-          <div style="width:340px;">
+          <div style="width:475px;">
             <label for="pic">Picture File: </label>
             <input name="pic" type="file" style="float:right"><br><br>
           </div>
-          <div style="width:275px;">
+          <div style="width:400px;">
             <label for="picnotes">Picture Notes: </label>
             <input name="picnotes" type="text" style="float:right"><br><br>
           </div>
           <h2>Misc Files</h2>
-          <div style="width:340px;">
+          <div style="width:475px;">
             <label for="files[]">Misc File(s): </label>
             <input name="files[]" id="files" type="file" multiple="multiple" style="float:right"><br><br>
           </div>
