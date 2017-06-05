@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>React Testing</title>
+  </head>
+  <body>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.11.0/es6-shim.min.js"></script>
+    <script src="http://fb.me/react-with-addons-0.11.0.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.11.0.js"></script>
+
+    <div id="container"></div>
+
+    <script type="text/jsx;harmony=true">/** @jsx React.DOM */
+      var Comment = React.createClass({
+        getInitialState: function() {
+          return {editing: false, textVal: ''}
+        },
+        handleChange: function(evt) {
+          this.setState({textVal: evt.target.value});
+          console.log(this.state.textVal);
+        },
+        edit: function() {
+          this.setState({editing: true});
+        },
+        remove: function() {
+          alert('Removing Comment');
+          this.props.deleteFromBoard(this.props.index);
+        },
+        save: function() {
+          <?php echo "IT works"; ?>
+          var val = this.state.textVal;
+          this.props.updateCommentText(val, this.props.index);
+          this.setState({editing: false});
+        },
+        renderNormal: function() {
+          return (
+            <div className="commentContainer">
+              <div className="commentText">{this.props.children}</div>
+              <button onClick={this.edit} className="button-primary">Edit</button>
+              <button onClick={this.remove} className="button-danger">Remove</button>
+            </div>
+          );
+        },
+        renderForm: function() {
+          return (
+            <div className="commentContainer">
+              <input placeholder={this.props.children} value={this.props.textVal} onChange={this.handleChange}></input>
+              <br/>
+              <button onClick={this.save} className="button-save">Save</button>
+            </div>
+          );
+        },
+        render: function() {
+            if (this.state.editing) {
+              return this.renderForm();
+            } else {
+              return this.renderNormal();
+            }
+        },
+      });
+
+      var Board = React.createClass({
+        getInitialState: function() {
+          return {
+            comments: [
+              'Hello World!',
+              'My name is Chase Nelson.',
+              'Buzz! Buzz! Buzz!'
+            ]
+          }
+        },
+        removeComment: function(i) {
+          console.log('Removing comment: ' + i);
+          var arr = this.state.comments;
+          arr.splice(i, 1);
+          this.setState({comments: arr});
+        },
+        updateComment: function(newText, i) {
+          console.log('Updating comment');
+          var arr = this.state.comments;
+          arr[i] = newText;
+          this.setState({comments: arr});
+        },
+        eachComment: function (text, i) {
+          return (
+            <Comment key={i} index={i} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
+              {text}
+            </Comment>
+          );
+        },
+        render: function() {
+          return (
+            <div className="board">
+              {this.state.comments.map(this.eachComment)}
+            </div>
+          );
+        },
+      });
+
+      React.renderComponent(
+        <Board />,
+        document.getElementById('container')
+      );
+    </script>
+
+
+  </body>
+</html>
