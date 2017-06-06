@@ -18,10 +18,21 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.11.0/es6-shim.min.js"></script>
     <script src="http://fb.me/react-with-addons-0.11.0.js"></script>
     <script src="http://fb.me/JSXTransformer-0.11.0.js"></script>
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
 
     <div id="container"></div>
+    <div id="php"></div>
 
     <script type="text/jsx;harmony=true">/** @jsx React.DOM */
+      // function testAjax(massAfter) {
+      //   return  Promise.resolve($.ajax({
+      //     // 'react-data.php?massAfter=45&id=6&part=sheet&userCut='+val,
+      //     url: 'react-data.php?id=6&massAfter=' + massAfter
+      //   }));
+      // }
+      function test(response) {
+        alert(response[0]);
+      }
       var Comment = React.createClass({
         getInitialState: function() {
           return {editing: false, textVal: ''}
@@ -38,9 +49,17 @@
           this.props.deleteFromBoard(this.props.index);
         },
         save: function() {
-          <?php echo "IT works"; ?>
           var val = this.state.textVal;
           this.props.updateCommentText(val, this.props.index);
+          $(function() {
+            $.ajax({
+              url: 'react-data.php?massAfter=45&id=6',
+              success: test,
+            });
+          });
+
+          // testAjax(5);
+          // console.log(promise);
           this.setState({editing: false});
         },
         renderNormal: function() {
