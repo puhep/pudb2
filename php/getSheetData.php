@@ -1,3 +1,10 @@
+<!--
+  *
+  * Queries the database for for all sheet data and then puts them into a JSON
+  * object and returns it.
+  *
+ -->
+
 <?php
   require_once("database.php");
   $db = new Database();
