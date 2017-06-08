@@ -1,3 +1,9 @@
+/*******************************************
+* Calls converts sheet JSON to an array
+*
+* @ToDo: Make it work for any id
+*******************************************/
+
 var dbJSON;
 var dbArray;
   $.ajax({
