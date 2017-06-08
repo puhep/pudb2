@@ -46,9 +46,7 @@
     </div>
 
     <script type="text/jsx;harmony=true">/** @jsx React.DOM */
-
       var localArray = dbArray;
-
       var Comment = React.createClass({
         getInitialState: function() {
           return {editing: false, textVal: ''}
@@ -89,9 +87,6 @@
               url: './php/updatePart.php?id=6&partType=sheet&field=lastEdit&value=' + time,
             })
           });
-
-          // testAjax(5);
-          // console.log(promise);
           this.setState({editing: false});
         },
         renderNormal: function() {
@@ -425,18 +420,11 @@
           );
         },
       });
-
-      // <div className="board">
-      // {this.state.comments.map(this.eachComment)}
-      // </div>
       React.renderComponent(
 
-        <Board />
-        ,
+        <Board />,
         document.getElementById('container')
       );
     </script>
-
-
   </body>
 </html>
