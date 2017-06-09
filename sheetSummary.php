@@ -26,14 +26,18 @@
       </nav>
       <main>
         <h2>Sheet Thickness Vs Date of Curing</h2>
+        <h4>Both 3 and 8 Ply</h4>
+        <a href="sheetThicknessVsDate.php" target="_blank">
+          <img src="sheetThicknessVsDate.php" width="300" height="300" alt="Graph showing average thickness of all sheets over time.">
+        </a>
         <h4>3 Ply Sheets</h4>
-        <?php
-          echo "<a href=\"sheetThicknessVsDate3.php\" target=\"blank\"><img src=\"sheetThicknessVsDate3.php\" width=\"300\" height=\"300\" ></a>";
-        ?>
+        <a href="sheetThicknessVsDate3.php" target="_blank">
+          <img src="sheetThicknessVsDate3.php" width="300" height="300" alt="Graph showing average thickness of all 3-ply sheets over time." >
+        </a>
         <h4>8 Ply Sheets</h4>
-        <?php
-          echo "<a href=\"sheetThicknessVsDate8.php\" target=\"blank\"><img src=\"sheetThicknessVsDate8.php\" width=\"300\" height=\"300\" ></a>";
-        ?>
+        <a href="sheetThicknessVsDate8.php" target="_blank">
+          <img src="sheetThicknessVsDate8.php" width="300" height="300" alt="Graph showing average thickness of all 8-ply sheets over time.">
+        </a>
       </main>
     </div>
   </body>
