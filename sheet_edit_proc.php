@@ -89,6 +89,11 @@ if ($_POST['bow'] != "") {
   $db->query($sql);
 }
 
+  if ($_POST['checkedLeaks'] != "N/A") {
+    $sql = "UPDATE sheet SET checkedLeaks=\"".$_POST['checkedLeaks']."\" WHERE id=$id";
+    $db->query($sql);
+  }
+
 if ($_POST['ply'] != "") {
     $sql = "UPDATE sheet SET ply=".$_POST['ply']." WHERE id=$id";
     $db -> query($sql);

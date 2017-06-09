@@ -61,6 +61,12 @@
             <input placeholder= "<?php echo $data['num_wax_coats']; ?>" name="num_wax_coats" type="number" step="1" min="0" style="float:right"><br><br>
             <label for="bagUseTimes">Times Bag used Previously: </label>
             <input placeholder="<?php echo $data['bagUseTimes']; ?>" name="bagUseTimes" type="number" step="1" min="0" style="float:right"><br><br>
+            <label for="checkedLeaks">Vaccum Bag Checked for Leaks</label>
+            <select class="YesNo" name="checkedLeaks" style="float:right">
+              <option value="N/A"n/a</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select><br><br>
             <label for="curing_stackup">Curing stackup: </label>
             <input placeholder= "<?php echo $data['curing_stackup']; ?>" name="curing_stackup" type="text" style="float:right"><br><br>
             <label for="ovenStart">Time of Oven Start: </label>
