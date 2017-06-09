@@ -42,16 +42,24 @@
         <h1>Edit <?php echo $name; ?></h1>
         <p>Type: <?php echo $data['sensor_type']; ?></p>
         <form action="thermal_sensor_edit_proc.php" method="post" enctype="multipart/form-data">
-          <div style="width:300px;">
+          <div style="width:400px;">
             <label for="cur_channel">Current Chanel: </label>
             <input placeholder= "<?php echo $data['cur_channel']; ?>" name="cur_channel" type="number" step="1" min="100" style="float:right"><br><br>
-            <h2>Notes</h2>
-            <?php echo nl2br($notes); ?>
-            <br>
-            <div style="width:225px">
-              <label for="notes">Additional Notes: </label>
-              <textarea cols="40" rows="5" name="notes"></textarea><br><br>
-            </div>
+          </div>
+          <h2>Notes</h2>
+          <?php echo nl2br($notes); ?>
+          <br>
+          <div style="width:400px">
+            <label for="notes">Additional Notes: </label>
+            <textarea cols="40" rows="5" name="notes"></textarea><br><br>
+          </div>
+          <div style="width:475px;">
+            <label for="pic">Picture File: </label>
+            <input name="pic" type="file" style="float:right"><br><br>
+          </div>
+          <div style="width:400px;">
+            <label for="picnotes">Picture Notes: </label>
+            <input name="picnotes" type="text" style="float:right"><br><br>
           </div>
           <?php
             echo "<input type='hidden' name='id' value='".$_GET['id']."'>";

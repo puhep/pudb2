@@ -61,14 +61,16 @@
           <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
           <input class="button" type="submit" value="Edit Part">
         </form>
-        <h2>Notes</h2>
         <?php
           if ($notes != "") {
+            echo "<h2>Notes</h2>";
             echo "<p>".nl2br($notes)."</p>";
-          } else {
-            echo "No notes found";
           }
+          echo "<h2>Pictures</h2>";
+          show_pictures("thermal_sensor", $id);
         ?>
+
+
         <br>
       </main>
     </div>
