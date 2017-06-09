@@ -1,0 +1,9 @@
+*.php~
+*.php#
+*.csv
+*.xlsx
+node_modules/
+gulpfile.js
+core
+jpgraph/
+package.json
