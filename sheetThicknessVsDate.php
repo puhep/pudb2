@@ -84,11 +84,13 @@
   $graph->SetMargin(70,80,30,125);
   $graph->SetFrame(true, 'black', 0);
 
-  // Setup ticks
+  // Setup ticks xaxis
   $graph->xaxis->scale->SetTimeAlign(DAYADJ_1); // Marks are ar the start of every day
   $graph->xaxis->scale->ticks->Set(60*60*24*7); // ticks once every week
   $graph->xaxis->scale->SetDateFormat('m-d-Y'); //MM-DD-YYYY format
 
+  // Setup tick yaxis
+  $graph->yaxis->scale->ticks->Set(50);
 
   // Setup Title
   $graph->title->Set("Thickness Over Date of Curing");
