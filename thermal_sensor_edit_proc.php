@@ -23,6 +23,10 @@ if ($_POST['lastEdit'] != "") {
   $db->query($sql);
 }
 
+if ($_FILES['pic']['name'] != "") {
+  add_pic("thermal_sensor",$id,$_FILES,$_POST['picnotes']);
+}
+
 ### redirect to the structure summary page with the new information
 header("Location: thermal_sensor.php?id=$id");
 
