@@ -119,26 +119,18 @@ function show_sensors($data, $edit=0, $type="sensor"){
 
 function addTempVsTimeFile($type, $id, $file) {
   $directory = "../phase_2/files/$type/$id/";
-  // echo $directory."<br><br>";
   if (!file_exists($directory)) {
     mkdir($directory);
     chmod($directory, 0777);
   }
-
   $targetFile = $directory.$file['name'];
-
   $fileType = pathinfo($targetFile,PATHINFO_EXTENSION);
   if($fileType != "csv") {
     echo "Sorry, only CSV file type is allowed currently for Temp vs Time.<br>".$backmessage;
   }
-
   $targetFile = $directory."tempVsTime.csv";
-  // print_r($file);
-  // echo $file['tmp_name']."<br>".$file['name'];
   if (!move_uploaded_file($file['tmp_name'], $targetFile)) {
-    echo "<br>no good";
-  } else {
-    // echo "it worked.";
+      echo "<h2>Sorry, an error has occurred. Try again or bother Greg & Chase until they help</h2><br>";
   }
 }
 
