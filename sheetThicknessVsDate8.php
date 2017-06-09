@@ -89,7 +89,7 @@
   $scatter = new ScatterPlot($dataY, $dataX);
   $scatter->mark->SetType(MARK_FILLEDCIRCLE);
   $scatter->mark->SetSize(14);
-  $scatter->mark->SetFillColor(red);
+  $scatter->mark->SetFillColor(blue);
 
   $graph->Add($scatter);
   $graph->Stroke();
