@@ -1,3 +1,7 @@
+<!--
+ @ToDo: Check issue #22 on GitHub
+-->
+
 <!DOCTYPE html>
 <?php
   require_once("database.php");
@@ -55,29 +59,30 @@
         </span>
         <?php
           echo "<table border=1 cellpadding=5>";
-          echo "<tr><td>Object Type </td><td>Sheet</td></tr>";
-          echo "<tr><td>Name </td><td>".$data['name']."</td></tr>";
-          echo "<tr><td>Location </td><td>".$data['location']."</td></tr>";
-          echo "<tr><td>Date Cut </td><td>".$data['dateCut']."</td></tr>";
-          echo "<tr><td>Ply </td><td>".$data['ply']."</td></tr>";
-          echo "<tr><td>Mass before backing </td><td>".$data['mass_nb']." g</td></tr>";
-          echo "<tr><td>Cut by </td><td>".$data['user_cut']."</td></tr>";
+          echo "<tr><td>Object Type</td><td>Sheet</td></tr>";
+          echo "<tr><td>Name</td><td>".$data['name']."</td></tr>";
+          echo "<tr><td>Location</td><td>".$data['location']."</td></tr>";
+          echo "<tr><td>Date Cut</td><td>".$data['dateCut']."</td></tr>";
+          echo "<tr><td>Ply</td><td>".$data['ply']."</td></tr>";
+          echo "<tr><td>Mass before Backing</td><td>".$data['mass_nb']." g</td></tr>";
+          echo "<tr><td>Cut By</td><td>".$data['user_cut']."</td></tr>";
           echo "<tr><td>Date put into Oven </td><td>".$data['dateOven']."</td></tr>";
-          echo "<tr><td>Bagged/oven turned on by </td><td>".$data['user_bagged']."</td></tr>";
-          echo "<tr><td>Number of wax coats </td><td>".$data['num_wax_coats']."</td></tr>";
-          echo "<tr><td>Number of times bag was used previously </td><td>".$data['bagUseTimes']."</td></tr>";
+          echo "<tr><td>Bagged/Oven Turned on By </td><td>".$data['user_bagged']."</td></tr>";
+          echo "<tr><td>Number of Wax Coats </td><td>".$data['num_wax_coats']."</td></tr>";
+          echo "<tr><td>Number of Times Bag was used Previously </td><td>".$data['bagUseTimes']."</td></tr>";
+          echo "<tr><td>Vaccum Bag Checked for Leaks</td><td>".$data['checkedLeaks']."</td></tr>";
           echo "<tr><td>Curing stackup </td><td>".$data['curing_stackup']."</td></tr>";
           echo "<tr><td>Time of Oven Start </td><td>".$data['ovenStart']."</td></tr>";
           echo "<tr><td>Time Reached 107 </td><td>".$data['ovenReach107']."</td></td>";
-          echo "<tr><td>Checked (1) by </td><td>".$data['user_check1']."</td></tr>";
+          echo "<tr><td>Checked (1) By </td><td>".$data['user_check1']."</td></tr>";
           echo "<tr><td>Time Began Ramping</td><td>".$data['timeRamp']."</td></tr>";
-          echo "<tr><td>Ramped up by </td><td>".$data['user_ramp']."</td></tr>";
+          echo "<tr><td>Ramped up By </td><td>".$data['user_ramp']."</td></tr>";
           echo "<tr><td>Time Reached 177</td><td>".$data['ovenReach177']."</td></tr>";
-          echo "<tr><td>Checked (2) by </td><td>".$data['user_check2']."</td></tr>";
-          echo "<tr><td>Time Shut off </td><td>".$data['timeOvenOff']."</td></tr>";
-          echo "<tr><td>Checked (3) by </td><td>".$data['user_check3']."</td></tr>";
+          echo "<tr><td>Checked (2) By </td><td>".$data['user_check2']."</td></tr>";
+          echo "<tr><td>Time Shut Off </td><td>".$data['timeOvenOff']."</td></tr>";
+          echo "<tr><td>Checked (3) By </td><td>".$data['user_check3']."</td></tr>";
           echo "<tr><td>Time Removed </td><td>".$data['timeRemoved']."</td></tr>";
-          echo "<tr><td>Removed by </td><td>".$data['user_remove']."</td></tr>";
+          echo "<tr><td>Removed By </td><td>".$data['user_remove']."</td></tr>";
           echo "<tr><td>Length Outside </td><td>".$data['lengthOutside']." inches</td></tr>";
           echo "<tr><td>Length Inside </td><td>".$data['lengthInside']." inches</td></tr>";
           echo "<tr><td>Height Outside </td><td>".$data['heightOutside']." inches</td></tr>";
@@ -85,7 +90,7 @@
           echo "<tr><td>Mass after </td><td>".$data['mass_after']." g</td></tr>";
           echo "<tr><td>Edge Thicknesses </td><td>".$thicknesses."</td></tr>";
           echo "<tr><td>Bow </td><td>".$data['bow']." mm</td></tr>";
-          echo "<tr><td>Measured by </td><td>".$data['user_measure']."</td></tr>";
+          echo "<tr><td>Measured By </td><td>".$data['user_measure']."</td></tr>";
           echo "</table><br>";
         ?>
         <form method="get" action="sheet_edit.php">
