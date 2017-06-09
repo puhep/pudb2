@@ -119,8 +119,9 @@ function show_sensors($data, $edit=0, $type="sensor"){
 
 function addTempVsTimeFile($type, $id, $file) {
   $directory = "../phase_2/files/$type/$id/";
+  // echo $directory."<br><br>";
   if (!file_exists($directory)) {
-    mkdir(directory);
+    mkdir($directory);
     chmod($directory, 0777);
   }
 
@@ -132,9 +133,12 @@ function addTempVsTimeFile($type, $id, $file) {
   }
 
   $targetFile = $directory."tempVsTime.csv";
+  // print_r($file);
   // echo $file['tmp_name']."<br>".$file['name'];
   if (!move_uploaded_file($file['tmp_name'], $targetFile)) {
-    echo $backmessage;
+    echo "<br>no good";
+  } else {
+    // echo "it worked.";
   }
 }
 
