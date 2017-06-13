@@ -128,7 +128,7 @@
     for ($i = 0; $i < sizeof($sensor[$z]) - 1; $i++) {
       $slope = ($sensor[$z][$i][$x] - $sensor[$z][$i + 1][$x]) / ($sensor[$z][$i][$y] - $sensor[$z][$i + 1][$y]);
       $slope = abs($slope);
-      if ($slope < 0.006) {
+      if ($slope < 0.006) { // 0.006 is the current measure if it is 'flat'
         if ($j == 0) {
           $startFlatX[$k] = $sensor[$z][$i][$x];
           $startFlatY[$k] = $sensor[$z][$i][$y];
@@ -147,28 +147,22 @@
         $j = $sumX = $sumY = 0;
       }
     }
-
-    // print_r($avgX);
-    // echo "<br>";
-    // print_r($avgY);
-    // echo "<br>";
-
-
+    //  Add the last point to endFlat if there is not one
     if (sizeof($startFlatX) > sizeof($endFlatX) && sizeof($startFlatY) > sizeof($endFlatY)) {
       $endFlatX[$k] = $sensor[$z][sizeof($$sensor[$z]-2)][$x];
       $endFlatY[$k++] = $sensor[$z][sizeof($$sensor[$z]-2)][$y];
     }
-    $avg = new ScatterPlot($avgX, $avgY);
+    $avg = new ScatterPlot($avgX, $avgY); //  Average point in flat regions
     $avg->mark->SetType(MARK_FILLEDCIRCLE);
     $avg->mark->SetSize(14);
     $avg->mark->SetFillColor(yellow);
     $avg->mark->SetColor(yellow);
-    $flatStart = new ScatterPlot($startFlatX, $startFlatY);
+    $flatStart = new ScatterPlot($startFlatX, $startFlatY); // Start of flat regions
     $flatStart->mark->SetType(MARK_FILLEDCIRCLE);
     $flatStart->mark->SetSize(14);
     $flatStart->mark->SetFillColor(green);
     $flatStart->mark->SetColor(green);
-    $flatEnd = new ScatterPlot($endFlatX, $endFlatY);
+    $flatEnd = new ScatterPlot($endFlatX, $endFlatY); //  End of flat regions
     $flatEnd->mark->SetType(MARK_FILLEDCIRCLE);
     $flatEnd->mark->SetSize(14);
     $flatEnd->mark->SetFillColor(red);
@@ -179,5 +173,5 @@
     $graph->Add($flatEnd);
   }
 
-  $graph->Stroke();
+  $graph->Stroke(); //  Show the graph
 ?>
