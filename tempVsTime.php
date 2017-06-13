@@ -120,6 +120,7 @@
     fwrite($file, "avgX,");
     fwrite($file, "avgY\n");
     $editFile = true;
+    fclose($file);  // Close file
   }
   for ($z = 0; $z <= $sensorsNum; $z++) {
     $startFlatX = array();
@@ -185,6 +186,7 @@
         $line = $z.",".$avgX[$q].",".$avgY[$q]."\n";
         fwrite($file, $line);
       } // end of for loop; addes lines to end of file
+      fclose($file);  //  Close file
     } // end of if
   } // end of for loop; goes thur all sensors
 
