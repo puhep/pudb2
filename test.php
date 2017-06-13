@@ -82,8 +82,11 @@
           echo "<h2>Pictures</h2>";
           show_pictures("test",$id);
           if (file_exists("../phase_2/files/test/$id/tempVsTime.csv")){
-            echo "<h2>Graphs</h2>";
+            echo "<h2>Graphs</h2>"
+                ."<h4>Temperature over Time</h4>";
             echo "<a href=\"tempVsTime.php?id=$id\" target=\"blank\"><img src=\"tempVsTime.php?id=$id\" width=\"300\" height=\"300\" ></a>";
+            echo "<h4>Averaged Temperatures</h4>";
+            echo "<a href=\"dataAnalysis.php?id=$id\" target=\"blank\"><img src=\"dataAnalysis.php?id=$id\" width=\"300\" height=\"300\" ></a>";
           }
           echo "<h2>Misc Files</h2>";
           show_files("test",$id);
