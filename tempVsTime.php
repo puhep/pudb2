@@ -16,7 +16,6 @@
 
   require_once("./jpgraph/src/jpgraph.php");
   require_once("./jpgraph/src/jpgraph_scatter.php");
-  require_once("./jpgraph/src/jpgraph_line.php");
   require_once("database.php");
 
   $id=$_GET['id'];
@@ -117,6 +116,16 @@
   /*****************
   * Some analysis
   *****************/
+  $filePath = "../phase_2/files/test/$id/dataAnalysis.csv";
+  $editFile = false;  //  This is used later to decide if we need to edit the file
+  if (!file_exists($filePath)) {  // If file doesn't exists, create it and add some lines
+    $file = fopen($filePath, "w");
+    chmod($filePath,0777);
+    fwrite($file, "Sensor,");
+    fwrite($file, "avgX,");
+    fwrite($file, "avgY\n");
+    $editFile = true;
+  }
   for ($z = 0; $z <= $sensorsNum; $z++) {
     $startFlatX = array();
     $startFlatY = array();
@@ -171,7 +180,18 @@
     $graph->Add($avg);
     $graph->Add($flatStart);
     $graph->Add($flatEnd);
-  }
+
+    /**********************************
+    * CREATE FILE FOR MORE ANALYSIS
+    **********************************/
+    if ($editFile) { // If file does not exists
+      $file = fopen($filePath, "a");
+      for ($q = 0; $q < sizeof($avgX); $q++) {
+        $line = $z.",".$avgX[$q].",".$avgY[$q]."\n";
+        fwrite($file, $line);
+      } // end of for loop; addes lines to end of file
+    } // end of if
+  } // end of for loop; goes thur all sensors
 
   $graph->Stroke(); //  Show the graph
 ?>
