@@ -2,11 +2,6 @@
 
   /*****************************************************************************
   *
-  *  @ToDo: Check out issue #23
-  *
-  *  @ToDo: Possible, automatically create a file that holds the average
-  *  of the 'flat' areas
-  *
   *  Green and Red dots indicate that start and end of 'flat' sections
   *  respectivly.
   *
