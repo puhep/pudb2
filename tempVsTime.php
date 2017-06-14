@@ -95,7 +95,8 @@
     $color = sprintf('#%06X', mt_rand(0, 0xFFFFFF));
     $scatter[$i]->mark->SetFillColor($color);
     $scatter[$i]->mark->SetColor($color);
-    $scatter[$i]->SetLegend(substr($sensorName[$i], 0, 5));
+    $channel = substr($sensorName[$i], 0, 5);
+    $scatter[$i]->SetLegend($channel);
     // echo $sensorsName[$i]."<br>";
     // Add the scatterplot to the graph
     $graph->Add($scatter[$i]);
@@ -117,8 +118,8 @@
     $file = fopen($filePath, "w");
     chmod($filePath,0777);
     fwrite($file, "Sensor,");
-    fwrite($file, "avgX,");
-    fwrite($file, "avgY\n");
+    fwrite($file, "avgTemp,");
+    fwrite($file, "avgTime\n");
     $editFile = true;
     fclose($file);  // Close file
   }
@@ -182,8 +183,9 @@
     **********************************/
     if ($editFile) { // If file does not exists
       $file = fopen($filePath, "a");
+      $channel = substr($sensorName[$z], 0, 5);
       for ($q = 0; $q < sizeof($avgX); $q++) {
-        $line = $z.",".$avgX[$q].",".$avgY[$q]."\n";
+        $line = $channel.",".$avgX[$q].",".$avgY[$q]."\n";
         fwrite($file, $line);
       } // end of for loop; addes lines to end of file
       fclose($file);  //  Close file
