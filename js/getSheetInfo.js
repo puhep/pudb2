@@ -1,18 +1,25 @@
 /*******************************************
 * Calls converts sheet JSON to an array
 *
-* @ToDo: Make it work for any id
+* @ToDo: Make it work for any
 *******************************************/
 
 var dbJSON;
 var dbArray;
+function sheetInfo(id) {
   $.ajax({
-    url: '../php/getSheetData.php?id=6',
-    success: test,
-  })
-function test(response) {
+    url: '../php/getSheetData.php?id=' + id,
+    success: function() {
+      console.log('it worked');
+    },
+  }).fail(function() {
+    console.log('failed');
+  }).always(funciton() {
+    alert('done');
+  });
+}
+function JSONtoArray(response) {
   dbJSON = JSON.parse(response);
-  console.log(dbJSON);
 
   dbArray = [
     dbJSON.name,
@@ -48,6 +55,7 @@ function test(response) {
     dbJSON.thickness4,
     dbJSON.bow,
     dbJSON.user_measure,
-    dbJSON.lastEdit,
+    dbJSON.lastEdit
   ];
+  console.log('dbJSON');
 }
