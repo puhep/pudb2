@@ -9,9 +9,7 @@ var dbArray;
 function sheetInfo(id) {
   $.ajax({
     url: 'php/getSheetData.php?id=' + id,
-    success: function() {
-      console.log('it worked');
-    },
+    success: JSONtoArray,
   }).fail(function() {
     console.log('failed');
   });
