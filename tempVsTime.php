@@ -158,11 +158,12 @@
       $endFlatX[$k] = $sensor[$z][sizeof($$sensor[$z]-2)][$x];
       $endFlatY[$k++] = $sensor[$z][sizeof($$sensor[$z]-2)][$y];
     }
-    $avg = new ScatterPlot($avgX, $avgY); //  Average point in flat regions
-    $avg->mark->SetType(MARK_FILLEDCIRCLE);
-    $avg->mark->SetSize(14);
-    $avg->mark->SetFillColor(yellow);
-    $avg->mark->SetColor(yellow);
+    // $avg = new ScatterPlot($avgX, $avgY); //  Average point in flat regions
+    // $avg->mark->SetType(MARK_FILLEDCIRCLE);
+    // $avg->mark->SetSize(14);
+    // $avg->mark->SetFillColor(yellow);
+    // $avg->mark->SetColor(yellow);
+    // $graph->Add($avg);
     $flatStart = new ScatterPlot($startFlatX, $startFlatY); // Start of flat regions
     $flatStart->mark->SetType(MARK_FILLEDCIRCLE);
     $flatStart->mark->SetSize(14);
@@ -174,7 +175,6 @@
     $flatEnd->mark->SetFillColor(red);
     $flatEnd->mark->SetColor(red);
 
-    $graph->Add($avg);
     $graph->Add($flatStart);
     $graph->Add($flatEnd);
 
