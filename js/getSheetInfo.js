@@ -14,8 +14,6 @@ function sheetInfo(id) {
     },
   }).fail(function() {
     console.log('failed');
-  }).always(funciton() {
-    alert('done');
   });
 }
 function JSONtoArray(response) {
