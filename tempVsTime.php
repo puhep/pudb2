@@ -1,7 +1,16 @@
 <?php
+
+  /*****************************************************************************
+  *
+  *  Green and Red dots indicate that start and end of 'flat' sections
+  *  respectivly.
+  *
+  *  Yellow dot indicate the average of the 'flat' sections
+  *
+  *****************************************************************************/
+
   require_once("./jpgraph/src/jpgraph.php");
   require_once("./jpgraph/src/jpgraph_scatter.php");
-  require_once("./jpgraph/src/jpgraph_line.php");
   require_once("database.php");
 
   $id=$_GET['id'];
@@ -21,23 +30,22 @@
 
   $noOfLines = count(file($filePath));
   $sensor = array_fill(0, $numSensors, array_fill(0,$noOfLines-1,array_fill(0, 2, 0)));
+  $x = 1;
+  $y = 0;
   while (!feof($file)) {
     $temp = fgetcsv($file);
     for ($i = 1; $i < $numSensors*2; $i += 2) {
       $sensorsNum = ($i-1)/2;
       $entry = $temp[0]-1;
-      $x = 0;
-      $y = 1;
       $sensor[$sensorsNum][$entry][$x] = $temp[$i];
       $sensor[$sensorsNum][$entry][$y] = $temp[$i+1];
     }
   }
-  // Done With file
-  fclose($file);
+  fclose($file);  // Done With file
 
   // Setup Graph
   $graph = new Graph(1200, 1200);
-  $graph->SetScale('linlin', 20, 60,0,0);
+  $graph->SetScale('linlin', 0, 60,0,0);
   $graph->SetColor('lightblue');
   $graph->SetMarginColor('#F9DAC6');
 
@@ -76,8 +84,8 @@
 
     // Add all x point of a sensor to $dataX and the same for y
     for ($j = 0; $j < $noOfLines; $j++) {
-      $dataY[$j] = (float) $sensor[$i][$j][0];
-      $dataX[$j] = (float) $sensor[$i][$j][1];
+      $dataY[$j] = (float) $sensor[$i][$j][$x];
+      $dataX[$j] = (float) $sensor[$i][$j][$y];
     }
 
     // Create scatterplots with the newly parsed data
@@ -87,7 +95,8 @@
     $color = sprintf('#%06X', mt_rand(0, 0xFFFFFF));
     $scatter[$i]->mark->SetFillColor($color);
     $scatter[$i]->mark->SetColor($color);
-    $scatter[$i]->SetLegend(substr($sensorName[$i], 0, 5));
+    $channel = substr($sensorName[$i], 0, 5);
+    $scatter[$i]->SetLegend($channel);
     // echo $sensorsName[$i]."<br>";
     // Add the scatterplot to the graph
     $graph->Add($scatter[$i]);
@@ -100,6 +109,88 @@
   $graph->legend->SetMarkAbsSize(10);
   $graph->legend->SetShadow();
 
+  /*****************
+  * Some analysis
+  *****************/
+  $filePath = "../phase_2/files/test/$id/dataAnalysis.csv";
+  $editFile = false;  //  This is used later to decide if we need to edit the file
+  if (!file_exists($filePath)) {  // If file doesn't exists, create it and add some lines
+    $file = fopen($filePath, "w");
+    chmod($filePath,0777);
+    fwrite($file, "Sensor,");
+    fwrite($file, "avgTemp,");
+    fwrite($file, "avgTime\n");
+    $editFile = true;
+    fclose($file);  // Close file
+  }
+  for ($z = 0; $z <= $sensorsNum; $z++) {
+    $startFlatX = array();
+    $startFlatY = array();
+    $endFlatX   = array();
+    $endFlatY   = array();
+    $avgX       = array();
+    $avgY       = array();
+    $j = $k = $sumX = $sumY =  0; // Used to count how many are flat
+    for ($i = 0; $i < sizeof($sensor[$z]) - 1; $i++) {
+      $slope = ($sensor[$z][$i][$x] - $sensor[$z][$i + 1][$x]) / ($sensor[$z][$i][$y] - $sensor[$z][$i + 1][$y]);
+      $slope = abs($slope);
+      if ($slope < 0.006) { // 0.006 is the current measure if it is 'flat'
+        if ($j == 0) {
+          $startFlatX[$k] = $sensor[$z][$i][$x];
+          $startFlatY[$k] = $sensor[$z][$i][$y];
+        }
+        $j++;
+        $sumX += $sensor[$z][$i][$x];
+        $sumY += $sensor[$z][$i][$y];
+      } else if ($j > 100) {
+        $endFlatX[$k] = $sensor[$z][$i][$x];
+        $endFlatY[$k] = $sensor[$z][$i][$y];
+        $avgX[$k] = $sumX / $j;
+        $avgY[$k] = $sumY / $j;
+        $k++;
+        $j = 0;
+      } else {
+        $j = $sumX = $sumY = 0;
+      }
+    }
+    //  Add the last point to endFlat if there is not one
+    if (sizeof($startFlatX) > sizeof($endFlatX) && sizeof($startFlatY) > sizeof($endFlatY)) {
+      $endFlatX[$k] = $sensor[$z][sizeof($$sensor[$z]-2)][$x];
+      $endFlatY[$k++] = $sensor[$z][sizeof($$sensor[$z]-2)][$y];
+    }
+    // $avg = new ScatterPlot($avgX, $avgY); //  Average point in flat regions
+    // $avg->mark->SetType(MARK_FILLEDCIRCLE);
+    // $avg->mark->SetSize(14);
+    // $avg->mark->SetFillColor(yellow);
+    // $avg->mark->SetColor(yellow);
+    // $graph->Add($avg);
+    $flatStart = new ScatterPlot($startFlatX, $startFlatY); // Start of flat regions
+    $flatStart->mark->SetType(MARK_FILLEDCIRCLE);
+    $flatStart->mark->SetSize(14);
+    $flatStart->mark->SetFillColor(green);
+    $flatStart->mark->SetColor(green);
+    $flatEnd = new ScatterPlot($endFlatX, $endFlatY); //  End of flat regions
+    $flatEnd->mark->SetType(MARK_FILLEDCIRCLE);
+    $flatEnd->mark->SetSize(14);
+    $flatEnd->mark->SetFillColor(red);
+    $flatEnd->mark->SetColor(red);
 
-  $graph->Stroke();
+    $graph->Add($flatStart);
+    $graph->Add($flatEnd);
+
+    /**********************************
+    * CREATE FILE FOR MORE ANALYSIS
+    **********************************/
+    if ($editFile) { // If file does not exists
+      $file = fopen($filePath, "a");
+      $channel = substr($sensorName[$z], 0, 5);
+      for ($q = 0; $q < sizeof($avgX); $q++) {
+        $line = $channel.",".$avgX[$q].",".$avgY[$q]."\n";
+        fwrite($file, $line);
+      } // end of for loop; addes lines to end of file
+      fclose($file);  //  Close file
+    } // end of if
+  } // end of for loop; goes thur all sensors
+
+  $graph->Stroke(); //  Show the graph
 ?>
