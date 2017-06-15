@@ -55,8 +55,8 @@ if ($_POST['lastEdit'] != "") {
 }
 
 ### if the name of the file is not blank (i.e. a file has been slotted to upload), attempt to upload
-if(count($_FILES['files']['name'])){
-    add_file("sheet",$id,$_FILES['files']);
+if($_FILES['files']['name'][0] != "") {
+    add_file("support_structure", $id, $_FILES['files']);
 }
 
 ### redirect to the structure summary page with the new information
