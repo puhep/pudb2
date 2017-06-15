@@ -61,6 +61,10 @@
             <label for="picnotes">Picture Notes: </label>
             <input name="picnotes" type="text" style="float:right"><br><br>
           </div>
+          <div style="width:475px;">
+            <label for="files[]">Misc File(s)</label>
+            <input name="files[]" id="files" type="file" multiple="multiple" style="float:right"><br><br>
+          </div>
           <?php
             echo "<input type='hidden' name='id' value='".$_GET['id']."'>";
             $time = date('m-d-Y H:i:s');
