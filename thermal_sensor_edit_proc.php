@@ -23,9 +23,13 @@ if ($_POST['lastEdit'] != "") {
   $sql = "UPDATE thermal_sensor SET lastEdit=\"".$_POST['lastEdit']."\" WHERE id=$id";
   $db->query($sql);
 }
-// print_r($_FILES);
 if ($_FILES['pic']['name'] != "") {
   add_pic("thermal_sensor",$id,$_FILES,$_POST['picnotes']);
+}
+
+if ($_FILES['files']['name'][0] != "") {
+  // print_r($_FILES);
+  add_file("thermal_sensor", $id, $_FILES['files']);
 }
 
 ### redirect to the structure summary page with the new information
