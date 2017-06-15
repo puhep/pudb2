@@ -4,33 +4,28 @@ require_once("database.php");
 ### displays a list of files associated with a part as downloadable links
 ### generalizable to any part type
 function show_files($part_type, $part_id){
-    $dir = "../phase_2/files/".$part_type."/".$part_id;
-    if(!file_exists($dir)){
-		echo "No files found <br>";
-		return;
-    }
-	if(file_exists($dir) && ($handle = opendir($dir))){
-
-		while(false !== ($entry=readdir($handle))){
-
-			if($entry != "." && $entry != ".."){
-
-				echo "<a href=\"$dir/$entry\" target=\"_blank\">$entry</a>";
-				echo "<br>";
-
-			}
-		}
+  $dir = "../phase_2/files/".$part_type."/".$part_id;
+  if(!file_exists($dir)) {
+  	echo "No files found <br>";
+  	return;
+  }
+	if(file_exists($dir) && ($handle = opendir($dir))) {
+	  while(false !== ($entry=readdir($handle))) {
+		  if($entry != "." && $entry != "..") {
+			  echo "<a href=\"$dir/$entry\" target=\"_blank\">$entry</a>";
+			  echo "<br>";
+		  }
+	  }
 	}
-
 }
 
 ### show all pictures with their associated comments for a part in a table
 ### generalizable for any part type
 function show_pictures($part_type, $part_id){
-    $dir = "../phase_2/pics/".$part_type."/".$part_id;
+    $dir = "../phase_2/pics/".$part_type."/".$part_id."/";
     if(!file_exists($dir)){
-		echo "No pictures found <br>";
-		return;
+		  echo "No pictures found <br>";
+		  return;
     }
     if(file_exists($dir) && ($handle = opendir($dir))){
         echo "<table border=1>";
@@ -151,7 +146,6 @@ function add_file($type,$id,$files) {
 
 function add_pic($type,$id,$files,$notes){
     $picupload=1;
-    #echo "pic detected<br>";
     $targetdir = "../phase_2/pics/$type/$id/";
     $targetfile = $targetdir.$files['pic']['name'];
     $imageFileType = pathinfo($targetfile,PATHINFO_EXTENSION);

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
   require_once("database.php");
+  require_once("functions.php");
   $id=$_GET['id'];
   $db= new Database();
   $sql="SELECT * FROM thermal_sensor where id=$id";
@@ -68,9 +69,9 @@
           }
           echo "<h2>Pictures</h2>";
           show_pictures("thermal_sensor", $id);
+          echo "<h2>Misc Files</h2>";
+          show_files("thermal_sensor", $id);
         ?>
-
-
         <br>
       </main>
     </div>
