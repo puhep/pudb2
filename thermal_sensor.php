@@ -55,7 +55,7 @@
             "<table border=1 cellpadding=5>".
               "<tr><td>Object Type</td><td>Thermal Sensor</td></tr>".
               "<tr><td>Sensor Type</td><td>".$data['sensor_type']."</td></tr>".
-              "<tr><td>Current Chanel</td><td>".$data['cur_channel']."</td></tr>".
+              "<tr><td>Current Channel</td><td>".$data['cur_channel']."</td></tr>".
             "</table><br>";
         ?>
         <form method="get" action="thermal_sensor_edit.php">
