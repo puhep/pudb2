@@ -4,6 +4,7 @@
 * @ToDo: Make it work for any
 *******************************************/
 
+var junk = 'TESTING';
 var dbJSON;
 var dbArray;
 function sheetInfo(id) {
@@ -16,7 +17,6 @@ function sheetInfo(id) {
 }
 function JSONtoArray(response) {
   dbJSON = JSON.parse(response);
-
   dbArray = [
     dbJSON.name,
     dbJSON.location,
@@ -53,5 +53,4 @@ function JSONtoArray(response) {
     dbJSON.user_measure,
     dbJSON.lastEdit
   ];
-  console.log('dbJSON');
 }

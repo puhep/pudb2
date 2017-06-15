@@ -20,6 +20,7 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.11.0/es6-shim.min.js"></script>
     <script src="http://fb.me/react-with-addons-0.11.0.js"></script>
     <script src="http://fb.me/JSXTransformer-0.11.0.js"></script>
+    <script type="text/javascript">sheetInfo(6);</script>
 
     <div class="wrapper">
       <header>
@@ -47,6 +48,7 @@
 
     <script type="text/jsx;harmony=true">/** @jsx React.DOM */
       var localArray = dbArray;
+      console.log(junk);
       var Comment = React.createClass({
         getInitialState: function() {
           return {editing: false, textVal: ''}
@@ -119,9 +121,9 @@
       var Board = React.createClass({
         getInitialState: function() {
           // $.ajax({ url: 'react-data.php?id=3', success: test, });
-          console.log(dbArray);
+          // console.log(dbJSON.name);
           return {
-            comments: localArray
+            comments: dbArray
           }
         },
         removeComment: function(i) {
@@ -154,7 +156,7 @@
                   <td>Name</td>
                   <td>
                   <Comment key={0} index={0} field={name} updateCommentText={this.updateComment}  deleteFromBoard={this.removeComment}>
-                    {localArray[0]}
+                    junk
                   </Comment>
                   </td>
                 </tr>
@@ -162,7 +164,7 @@
                   <td>Location</td>
                   <td>
                   <Comment key={1} index={1} field={location} updateCommentText={this.updateComment}  deleteFromBoard={this.removeComment}>
-                    {localArray[1]}
+                    {dbArray[1]}
                   </Comment>
                   </td>
                 </tr>
@@ -170,7 +172,7 @@
                   <td>Date Cut</td>
                   <td>
                   <Comment key={2} index={2} field={'dateCut'} updateCommentText={this.updateComment}  deleteFromBoard={this.removeComment}>
-                    {localArray[2]}
+                    {dbArray[2]}
                   </Comment>
                   </td>
                 </tr>
@@ -178,7 +180,7 @@
                   <td>Ply</td>
                   <td>
                   <Comment key={3} index={3} field={'ply'} updateCommentText={this.updateComment}  deleteFromBoard={this.removeComment}>
-                    {localArray[3]}
+                    {dbArray[3]}
                   </Comment>
                   </td>
                 </tr>
@@ -186,7 +188,7 @@
                   <td>Mass Before Backing</td>
                   <td>
                     <Comment key={4} index={4} field={'mass_nb'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {localArray[4]}
+                      {dbArray[4]}
                     </Comment>
                   </td>
                 </tr>
@@ -194,7 +196,7 @@
                   <td>Cut By</td>
                   <td>
                     <Comment key={5} index={5} field={'user_cut'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {localArray[5]}
+                      {dbArray[5]}
                     </Comment>
                   </td>
                 </tr>
@@ -202,7 +204,7 @@
                   <td>Date put int Oven</td>
                   <td>
                     <Comment key={6} index={6} field={'dateOven'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {localArray[6]}
+                      {dbArray[6]}
                     </Comment>
                   </td>
                 </tr>
@@ -210,7 +212,7 @@
                   <td>Bagged/Oven Turned on By</td>
                   <td>
                     <Comment key={7} index={7} field={'user_bagged'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {localArray[7]}
+                      {dbArray[7]}
                     </Comment>
                   </td>
                 </tr>
@@ -218,7 +220,7 @@
                   <td>Number of Wax Coats</td>
                   <td>
                     <Comment key={8} index={8} field={'num_wax_coats'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {localArray[8]}
+                      {dbArray[8]}
                     </Comment>
                   </td>
                 </tr>
@@ -226,7 +228,7 @@
                   <td>Number of Times bag was used previously</td>
                   <td>
                     <Comment key={9} index={9} field={'bagUseTimes'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {localArray[9]}
+                      {dbArray[9]}
                     </Comment>
                   </td>
                 </tr>
@@ -234,7 +236,7 @@
                   <td>Curing Stackup</td>
                   <td>
                     <Comment key={10} index={10} field={'curing_stackup'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {localArray[10]}
+                      {dbArray[10]}
                     </Comment>
                   </td>
                 </tr>
@@ -242,7 +244,7 @@
                   <td>Time of Oven Start</td>
                   <td>
                     <Comment key={11} index={11} field={'ovenStart'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {localArray[11]}
+                      {dbArray[11]}
                     </Comment>
                   </td>
                 </tr>
@@ -250,7 +252,7 @@
                   <td>Time Reach 107</td>
                   <td>
                     <Comment key={12} index={12} field={'ovenReach107'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {localArray[12]}
+                      {dbArray[12]}
                     </Comment>
                   </td>
                 </tr>
@@ -258,7 +260,7 @@
                   <td>Checked (1) By</td>
                   <td>
                   <Comment key={13} index={13} field={'user_check1'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {localArray[13]}
+                    {dbArray[13]}
                   </Comment>
                   </td>
                 </tr>
@@ -266,7 +268,7 @@
                   <td>Time Began Ramping</td>
                   <td>
                     <Comment key={14} index={14} field={'timeRamp'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {localArray[14]}
+                      {dbArray[14]}
                     </Comment>
                   </td>
                 </tr>
@@ -274,7 +276,7 @@
                   <td>Ramped up By</td>
                   <td>
                     <Comment key={15} index={15} field={'user_ramp'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {localArray[15]}
+                      {dbArray[15]}
                     </Comment>
                   </td>
                 </tr>
@@ -282,7 +284,7 @@
                   <td>Time Reached 177</td>
                   <td>
                     <Comment key={16} index={16} field={'ovenReach177'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {localArray[16]}
+                      {dbArray[16]}
                     </Comment>
                   </td>
                 </tr>
@@ -290,7 +292,7 @@
                   <td>Checked (2) By</td>
                   <td>
                   <Comment key={17} index={17} field={'user_check2'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {localArray[17]}
+                    {dbArray[17]}
                   </Comment>
                   </td>
                 </tr>
@@ -298,7 +300,7 @@
                   <td>Time Shut off</td>
                   <td>
                   <Comment key={18} index={18} field={'timeOvenOff'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {localArray[18]}
+                    {dbArray[18]}
                   </Comment>
                   </td>
                 </tr>
@@ -306,7 +308,7 @@
                   <td>Checked (3) By</td>
                   <td>
                   <Comment key={19} index={19} field={'user_check3'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {localArray[19]}
+                    {dbArray[19]}
                   </Comment>
                   </td>
                 </tr>
@@ -314,7 +316,7 @@
                   <td>Time Removed</td>
                   <td>
                   <Comment key={20} index={20} field={'timeRemoved'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {localArray[20]}
+                    {dbArray[20]}
                   </Comment>
                   </td>
                 </tr>
@@ -322,7 +324,7 @@
                   <td>Removed By</td>
                   <td>
                   <Comment key={21} index={21} field={'user_remove'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {localArray[21]}
+                    {dbArray[21]}
                   </Comment>
                   </td>
                 </tr>
@@ -330,7 +332,7 @@
                   <td>Length Outside</td>
                   <td>
                   <Comment key={22} index={22} field={'lengthOutside'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {localArray[22]}
+                    {dbArray[22]}
                   </Comment>
                   </td>
                 </tr>
@@ -338,7 +340,7 @@
                   <td>Length Inside</td>
                   <td>
                   <Comment key={23} index={23} field={'lengthInside'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {localArray[23]}
+                    {dbArray[23]}
                   </Comment>
                   </td>
                 </tr>
@@ -346,7 +348,7 @@
                   <td>Height Outside</td>
                   <td>
                   <Comment key={24} index={24} field={'heightOutside'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {localArray[24]}
+                    {dbArray[24]}
                   </Comment>
                   </td>
                 </tr>
@@ -354,7 +356,7 @@
                   <td>Height Inside</td>
                   <td>
                   <Comment key={25} index={25} field={'heightInside'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {localArray[25]}
+                    {dbArray[25]}
                   </Comment>
                   </td>
                 </tr>
@@ -362,7 +364,7 @@
                   <td>Mass After</td>
                   <td>
                     <Comment key={26} index={26} field={'mass_after'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {localArray[26]}
+                      {dbArray[26]}
                     </Comment>
                   </td>
                 </tr>
@@ -370,7 +372,7 @@
                   <td>Edge Thicknesses 1</td>
                   <td>
                   <Comment key={27} index={27} field={'thickness1'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {localArray[27]}
+                    {dbArray[27]}
                   </Comment>
                   </td>
                 </tr>
@@ -378,7 +380,7 @@
                   <td>Edge Thickness 2</td>
                   <td>
                   <Comment key={28} index={28} field={'thickness2'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {localArray[28]}
+                    {dbArray[28]}
                   </Comment>
                   </td>
                 </tr>
@@ -386,7 +388,7 @@
                   <td>Edge Thickness 3</td>
                   <td>
                   <Comment key={29} index={29} field={'thickness3'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {localArray[29]}
+                    {dbArray[29]}
                   </Comment>
                   </td>
                 </tr>
@@ -394,7 +396,7 @@
                   <td>Edge Thickness 4</td>
                   <td>
                   <Comment key={30} index={30} field={'thickness4'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {localArray[30]}
+                    {dbArray[30]}
                   </Comment>
                   </td>
                 </tr>
@@ -402,7 +404,7 @@
                   <td>Bow</td>
                   <td>
                   <Comment key={31} index={31} field={'bow'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {localArray[31]}
+                    {dbArray[31]}
                   </Comment>
                   </td>
                 </tr>
@@ -410,7 +412,7 @@
                   <td>Measured by</td>
                   <td>
                   <Comment key={32} index={32} field={'user_measure'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {localArray[32]}
+                    {dbArray[32]}
                   </Comment>
                   </td>
                 </tr>
