@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
   require_once("database.php");
+  require_once("functions.php");
   $id=$_GET['id'];
   $db= new Database();
   $sql="SELECT * FROM thermal_sensor where id=$id";
