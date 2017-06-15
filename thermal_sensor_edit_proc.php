@@ -3,6 +3,7 @@
 #error_reporting(E_ALL | E_STRICT);
 $backmessage = "Please press back and try again.<br>";
 require_once("database.php");
+require_once("functions.php");
 
 $id = $_POST['id'];
 $db = new Database();
@@ -22,7 +23,7 @@ if ($_POST['lastEdit'] != "") {
   $sql = "UPDATE thermal_sensor SET lastEdit=\"".$_POST['lastEdit']."\" WHERE id=$id";
   $db->query($sql);
 }
-
+// print_r($_FILES);
 if ($_FILES['pic']['name'] != "") {
   add_pic("thermal_sensor",$id,$_FILES,$_POST['picnotes']);
 }
