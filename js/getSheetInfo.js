@@ -1,19 +1,30 @@
 /*******************************************
 * Calls converts sheet JSON to an array
 *
-* @ToDo: Make it work for any id
+* @ToDo: Make it work for any
 *******************************************/
 
 var dbJSON;
 var dbArray;
+/*******************************************
+*
+* function is currently not being used
+*
+* this is writen in the test-react file
+*
+* problem was the page would load before the ajax could finish calling php
+*
+*******************************************/
+function sheetInfo(id) {
   $.ajax({
-    url: '../php/getSheetData.php?id=6',
-    success: test,
-  })
-function test(response) {
+    url: 'php/getSheetData.php?id=' + id,
+    success: JSONtoArray,
+  }).fail(function() {
+    console.log('failed');
+  });
+}
+function JSONtoArray(response) {
   dbJSON = JSON.parse(response);
-  console.log(dbJSON);
-
   dbArray = [
     dbJSON.name,
     dbJSON.location,
@@ -48,6 +59,6 @@ function test(response) {
     dbJSON.thickness4,
     dbJSON.bow,
     dbJSON.user_measure,
-    dbJSON.lastEdit,
+    dbJSON.lastEdit
   ];
 }
