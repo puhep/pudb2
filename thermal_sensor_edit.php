@@ -43,7 +43,7 @@
         <p>Type: <?php echo $data['sensor_type']; ?></p>
         <form action="thermal_sensor_edit_proc.php" method="post" enctype="multipart/form-data">
           <div style="width:400px;">
-            <label for="cur_channel">Current Chanel: </label>
+            <label for="cur_channel">Current Channel: </label>
             <input placeholder= "<?php echo $data['cur_channel']; ?>" name="cur_channel" type="number" step="1" min="100" style="float:right"><br><br>
           </div>
           <h2>Notes</h2>

@@ -7,16 +7,16 @@ function show_files($part_type, $part_id){
   $dir = "../phase_2/files/".$part_type."/".$part_id;
   if(!file_exists($dir)) {
   	echo "No files found <br>";
-  	return;
+  } else {
+    if(file_exists($dir) && ($handle = opendir($dir))) {
+      while(false !== ($entry=readdir($handle))) {
+        if($entry != "." && $entry != "..") {
+          echo "<a href=\"$dir/$entry\" target=\"_blank\">$entry</a>";
+          echo "<br>";
+        }
+      }
+    }
   }
-	if(file_exists($dir) && ($handle = opendir($dir))) {
-	  while(false !== ($entry=readdir($handle))) {
-		  if($entry != "." && $entry != "..") {
-			  echo "<a href=\"$dir/$entry\" target=\"_blank\">$entry</a>";
-			  echo "<br>";
-		  }
-	  }
-	}
 }
 
 ### show all pictures with their associated comments for a part in a table
