@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
   require_once("database.php");
+  require_once("functions.php");
   $id=$_GET['id'];
   $db= new Database();
   $data=$db->db_query("SELECT * FROM mock_module where id=$id");
@@ -74,6 +75,10 @@
             echo "No notes found";
           }
         ?>
+        <h2>Pictures</h2>
+        <?php show_pictures("mock_module", $id); ?>
+        <h2>Misc Files</h2>
+        <?php show_files("mock_module", $id); ?>
         <br>
       </main>
     </div>
