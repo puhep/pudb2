@@ -44,7 +44,7 @@
       <main>
         <h1>Edit: <?php echo $name; ?></h1>
         <form action="moduleSensorEditProc.php" method="post" enctype="multipart/form-data">
-          <div style="width:300px;">
+          <div style="width:400px;">
             <label for="curThickness">Thickness (Microns): </label>
         	  <input placeholder="<?php echo $si_thickness; ?>" name ="curThickness" type="number" step="0.1" style="float:right"><br><br>
             <label for="curAdhesive">Adhesive: </label>
@@ -54,12 +54,26 @@
             <h2>Notes</h2>
             <?php echo nl2br($notes); ?>
             <br>
-            <div style="width:225px">
+            <div style="width:400px">
               <label for="notes">Additional Notes: </label>
               <textarea cols="40" rows="5" name="notes"></textarea>
               <br><br>
             </div>
     	    </div>
+          <h2>Pictures</h2>
+          <div style="width:475px;">
+            <label for="pic">Picture File:</label>
+            <input type="file" name="pic" style="float:right"><br><br>
+          </div>
+          <div style="width:400px;">
+            <label for="picnotes">Picture Notes:</label>
+            <input type="text" name="picnotes" style="float:right"><br><br>
+          </div>
+          <h2>Misc Files</h2>
+          <div style="width:475px;">
+            <label for="files[]">Misc File(s)</label>
+            <input type="file" name="files[]" id="files" multiple="multiple" style="float:right"><br><br>
+          </div>
           <?php
             echo "<input type='hidden' name='id' value='".$_GET['id']."'>";
             $time = date('m-d-Y H:i:s');
