@@ -4,9 +4,17 @@
 * @ToDo: Make it work for any
 *******************************************/
 
-var junk = 'TESTING';
 var dbJSON;
 var dbArray;
+/*******************************************
+*
+* function is currently not being used
+*
+* this is writen in the test-react file
+*
+* problem was the page would load before the ajax could finish calling php
+*
+*******************************************/
 function sheetInfo(id) {
   $.ajax({
     url: 'php/getSheetData.php?id=' + id,
