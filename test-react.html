@@ -167,13 +167,17 @@
             <div className="board">
               <table>
                 <tr>
+                  <td>Last Edit</td>
+                  <td>{dbArray[33]}</td>
+                </tr>
+                <tr>
                   <td>Object Type</td><td>Sheet</td>
                 </tr>
                 <tr>
                   <td>Name</td>
                   <td>
                   <Comment key={0} index={0} field={name} updateCommentText={this.updateComment}  deleteFromBoard={this.removeComment}>
-                    junk
+                    {dbArray[0]}
                   </Comment>
                   </td>
                 </tr>
