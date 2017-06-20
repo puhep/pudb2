@@ -70,7 +70,7 @@
           echo "<tr><td>Bagged/Oven Turned on By </td><td>".$data['user_bagged']."</td></tr>";
           echo "<tr><td>Number of Wax Coats </td><td>".$data['num_wax_coats']."</td></tr>";
           echo "<tr><td>Number of Times Bag was used Previously </td><td>".$data['bagUseTimes']."</td></tr>";
-          echo "<tr><td>Vaccum Bag Checked for Leaks</td><td>".$data['checkedLeaks']."</td></tr>";
+          echo "<tr><td>Vacuum Bag Checked for Leaks</td><td>".$data['checkedLeaks']."</td></tr>";
           echo "<tr><td>Curing stackup </td><td>".$data['curing_stackup']."</td></tr>";
           echo "<tr><td>Time of Oven Start </td><td>".$data['ovenStart']."</td></tr>";
           echo "<tr><td>Time Reached 107 </td><td>".$data['ovenReach107']."</td></td>";
