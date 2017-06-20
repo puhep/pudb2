@@ -25,6 +25,44 @@ function sheetInfo(id) {
 }
 function JSONtoArray(response) {
   dbJSON = JSON.parse(response);
+
+  keyArray = [
+    'Name',
+    'Location',
+    'Date Cut',
+    'Ply',
+    'Mass Before Backing',
+    'Cut By',
+    'Date put into Oven',
+    'Bagged/Oven Turned on By',
+    'Number of Wax Coats',
+    'Number of Times Bag was used Previously',
+    'Vacuum Bag Checked for Leaks',
+    'Curing Stackup',
+    'Time of Oven Start',
+    'Time Reached 107',
+    'Checked (1) By',
+    'Time Began Ramping',
+    'Ramped up By',
+    'Time Reached 177',
+    'Checked (2) By',
+    'Time Shut Off',
+    'Checked (3) By',
+    'Time Removed',
+    'Removed By',
+    'Length Outside',
+    'Length Inside',
+    'Height Outside',
+    'Height Inside',
+    'Mass After',
+    'Thickness 1',
+    'Thickness 2',
+    'Thickness 3',
+    'Thickness 4',
+    'Bow',
+    'Measured By'
+  ];
+
   dbArray = [
     dbJSON.name,
     dbJSON.location,
@@ -36,6 +74,7 @@ function JSONtoArray(response) {
     dbJSON.user_bagged,
     dbJSON.num_wax_coats,
     dbJSON.bagUseTimes,
+    dbJSON.checkedLeaks,
     dbJSON.curing_stackup,
     dbJSON.ovenStart,
     dbJSON.ovenReach107,
@@ -59,6 +98,5 @@ function JSONtoArray(response) {
     dbJSON.thickness4,
     dbJSON.bow,
     dbJSON.user_measure,
-    dbJSON.lastEdit
   ];
 }
