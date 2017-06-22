@@ -106,6 +106,14 @@
           }
           echo "<h2>Pictures</h2>";
           show_pictures("sheet",$id);
+          if (file_exists("../phase_2/files/sheet/$id/ThicknessContour.csv")) {
+            echo "<h2>Graphs</h2>"
+                ."<h4><a href=\"./php/sheetContour.php?id=$id\">Sheet Thickness Contour</a></h4>";
+            echo "<div>
+                    <object type=text/html data=\"http://www.physics.purdue.edu/cmsfpix////phase_2_t/php/sheetContour.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
+                    </object>
+                  </div>";
+          }
           echo "<h2>Misc Files</h2>";
           show_files("sheet",$id);
         ?>
