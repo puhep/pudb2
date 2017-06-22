@@ -4,9 +4,6 @@
   *******************/
   require_once("../database.php");
   require_once("../functions.php");
-  require_once("../jpgraph/src/jpgraph.php");
-  require_once("../jpgraph/src/jpgraph_contour.php");
-
   /*******************
   * READ FILE
   *******************/
@@ -68,7 +65,7 @@
     ];
 
     var layout = {
-      title: "Simple Contour Plot"
+      title: "Contour"
     };
 
     Plotly.newPlot("contourPlot", data, layout);
