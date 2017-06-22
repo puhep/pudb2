@@ -20,21 +20,57 @@
   $i = 0;
   while (!feof($file)) {
     $temp = fgetcsv($file);
-    $x[$i] = $temp[0];
-    $y[$i] = $temp[1];
-    $z[$i++] = $temp[2];
+    $x[$i]   = (double) $temp[0];
+    $y[$i]   = (double) $temp[1];
+    $z[$i++] = (double) $temp[2];
   }
   fclose($file); // save memory, close file
-
-  /*******************
-  * SETUP GRAPH
-  *******************/
-  $graph = new Graph(1200, 1200);
-  $graph->SetScale('intint', 0, 0, 0, 0);
-  $graph->SetMarginColor('#F9DAC6');
-
-  // Title Stuff
-  $graph->title->Set("Sheet Thickness Contour");
-  $graph->title->SetFont(FF_ARIAL,FS_BOLD,12);
-
 ?>
+
+<head>
+  <title>Sheet Contour</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+  <div id="contourPlot"></div>
+  <script type="text/javascript">
+    var x = [
+      <?php
+        for ($i = 0; $i < sizeof($x) - 2  ; $i++) {
+          echo "$x[$i], ";
+        }
+        echo "$x[$i]";
+      ?>
+    ];
+    var y = [
+      <?php
+        for ($i = 0; $i < sizeof($y) - 2; $i++) {
+          echo "$y[$i], ";
+        }
+        echo "$y[$i]";
+      ?>
+    ];
+    var z = [
+      <?php
+        for ($i = 0; $i < sizeof($z) - 2; $i++) {
+          echo "$z[$i], ";
+        }
+        echo "$z[$i]";
+      ?>
+    ];
+    var data = [
+      {
+        z: z,
+        x: x,
+        y: y,
+        type: "contour"
+      }
+    ];
+
+    var layout = {
+      title: "Simple Contour Plot"
+    };
+
+    Plotly.newPlot("contourPlot", data, layout);
+  </script>
+</body>
