@@ -70,10 +70,6 @@
         edit: function() {
           this.setState({editing: true});
         },
-        remove: function() {
-          alert('Removing Comment');
-          this.props.deleteFromBoard(this.props.index);
-        },
         save: function() {
           var val = this.state.textVal;
           this.props.updateCommentText(val, this.props.index);
@@ -137,17 +133,9 @@
 
       var Board = React.createClass({
         getInitialState: function() {
-          // $.ajax({ url: 'react-data.php?id=3', success: test, });
-          // console.log(dbJSON.name);
           return {
             comments: dbArray
           }
-        },
-        removeComment: function(i) {
-          console.log('Removing comment: ' + i);
-          var arr = this.state.comments;
-          arr.splice(i, 1);
-          this.setState({comments: arr});
         },
         updateComment: function(newText, i) {
           console.log('Updating comment');
@@ -157,9 +145,16 @@
         },
         eachComment: function (text, i) {
           return (
-            <Comment key={i} index={i} updateCommentText={this.updateComment}  deleteFromBoard={this.removeComment}>
-              {text}
-            </Comment>
+            <tr>
+              <td>
+                {keyArray[i]}
+              </td>
+              <td>
+                <Comment key={i} index={i} updateCommentText={this.updateComment}>
+                {text}
+                </Comment>
+              </td>
+            </tr>
           );
         },
         render: function() {
@@ -168,275 +163,13 @@
               <table>
                 <tr>
                   <td>Last Edit</td>
-                  <td>{dbArray[33]}</td>
+                  <td>{dbJSON.lastEdit}</td>
                 </tr>
                 <tr>
-                  <td>Object Type</td><td>Sheet</td>
+                  <td>Object Type</td>
+                  <td>Sheet</td>
                 </tr>
-                <tr>
-                  <td>Name</td>
-                  <td>
-                  <Comment key={0} index={0} field={name} updateCommentText={this.updateComment}  deleteFromBoard={this.removeComment}>
-                    {dbArray[0]}
-                  </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Location</td>
-                  <td>
-                  <Comment key={1} index={1} field={location} updateCommentText={this.updateComment}  deleteFromBoard={this.removeComment}>
-                    {dbArray[1]}
-                  </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Date Cut</td>
-                  <td>
-                  <Comment key={2} index={2} field={'dateCut'} updateCommentText={this.updateComment}  deleteFromBoard={this.removeComment}>
-                    {dbArray[2]}
-                  </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Ply</td>
-                  <td>
-                  <Comment key={3} index={3} field={'ply'} updateCommentText={this.updateComment}  deleteFromBoard={this.removeComment}>
-                    {dbArray[3]}
-                  </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Mass Before Backing</td>
-                  <td>
-                    <Comment key={4} index={4} field={'mass_nb'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {dbArray[4]}
-                    </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Cut By</td>
-                  <td>
-                    <Comment key={5} index={5} field={'user_cut'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {dbArray[5]}
-                    </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Date put int Oven</td>
-                  <td>
-                    <Comment key={6} index={6} field={'dateOven'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {dbArray[6]}
-                    </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Bagged/Oven Turned on By</td>
-                  <td>
-                    <Comment key={7} index={7} field={'user_bagged'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {dbArray[7]}
-                    </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Number of Wax Coats</td>
-                  <td>
-                    <Comment key={8} index={8} field={'num_wax_coats'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {dbArray[8]}
-                    </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Number of Times bag was used previously</td>
-                  <td>
-                    <Comment key={9} index={9} field={'bagUseTimes'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {dbArray[9]}
-                    </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Curing Stackup</td>
-                  <td>
-                    <Comment key={10} index={10} field={'curing_stackup'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {dbArray[10]}
-                    </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Time of Oven Start</td>
-                  <td>
-                    <Comment key={11} index={11} field={'ovenStart'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {dbArray[11]}
-                    </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Time Reach 107</td>
-                  <td>
-                    <Comment key={12} index={12} field={'ovenReach107'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {dbArray[12]}
-                    </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Checked (1) By</td>
-                  <td>
-                  <Comment key={13} index={13} field={'user_check1'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {dbArray[13]}
-                  </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Time Began Ramping</td>
-                  <td>
-                    <Comment key={14} index={14} field={'timeRamp'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {dbArray[14]}
-                    </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Ramped up By</td>
-                  <td>
-                    <Comment key={15} index={15} field={'user_ramp'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {dbArray[15]}
-                    </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Time Reached 177</td>
-                  <td>
-                    <Comment key={16} index={16} field={'ovenReach177'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {dbArray[16]}
-                    </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Checked (2) By</td>
-                  <td>
-                  <Comment key={17} index={17} field={'user_check2'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {dbArray[17]}
-                  </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Time Shut off</td>
-                  <td>
-                  <Comment key={18} index={18} field={'timeOvenOff'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {dbArray[18]}
-                  </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Checked (3) By</td>
-                  <td>
-                  <Comment key={19} index={19} field={'user_check3'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {dbArray[19]}
-                  </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Time Removed</td>
-                  <td>
-                  <Comment key={20} index={20} field={'timeRemoved'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {dbArray[20]}
-                  </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Removed By</td>
-                  <td>
-                  <Comment key={21} index={21} field={'user_remove'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {dbArray[21]}
-                  </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Length Outside</td>
-                  <td>
-                  <Comment key={22} index={22} field={'lengthOutside'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {dbArray[22]}
-                  </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Length Inside</td>
-                  <td>
-                  <Comment key={23} index={23} field={'lengthInside'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {dbArray[23]}
-                  </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Height Outside</td>
-                  <td>
-                  <Comment key={24} index={24} field={'heightOutside'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {dbArray[24]}
-                  </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Height Inside</td>
-                  <td>
-                  <Comment key={25} index={25} field={'heightInside'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {dbArray[25]}
-                  </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Mass After</td>
-                  <td>
-                    <Comment key={26} index={26} field={'mass_after'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                      {dbArray[26]}
-                    </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Edge Thicknesses 1</td>
-                  <td>
-                  <Comment key={27} index={27} field={'thickness1'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {dbArray[27]}
-                  </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Edge Thickness 2</td>
-                  <td>
-                  <Comment key={28} index={28} field={'thickness2'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {dbArray[28]}
-                  </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Edge Thickness 3</td>
-                  <td>
-                  <Comment key={29} index={29} field={'thickness3'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {dbArray[29]}
-                  </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Edge Thickness 4</td>
-                  <td>
-                  <Comment key={30} index={30} field={'thickness4'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {dbArray[30]}
-                  </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Bow</td>
-                  <td>
-                  <Comment key={31} index={31} field={'bow'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {dbArray[31]}
-                  </Comment>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Measured by</td>
-                  <td>
-                  <Comment key={32} index={32} field={'user_measure'} updateCommentText={this.updateComment} deleteFromBoard={this.removeComment}>
-                    {dbArray[32]}
-                  </Comment>
-                  </td>
-                </tr>
+                {this.state.comments.map(this.eachComment)}
               </table>
             </div>
 
