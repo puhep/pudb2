@@ -123,13 +123,13 @@ if($_FILES['pic']['name'] != ""){
     add_pic("test",$test_id,$_FILES,$_POST['picnotes']);
 }
 
-if (count($_FILES['tempVsTime']['name'])) {
+if ($_FILES['tempVsTime']['name'] != "") {
   addTempVsTimeFile("test",$test_id,$_FILES['tempVsTime']);
   // rename("../phase_2/files/test/$id/$_FILES['tempVsTime']['name']", "../phase_2/files/test/$id/tempVsTime.csv");
 }
 
 ### if the name of the file is not blank (i.e. a file has been slotted to upload), attempt to upload
-if(count($_FILES['files']['name'])){
+if($_FILES['files']['name'][0] != ""){
     add_file("test",$test_id,$_FILES['files']);
 }
 

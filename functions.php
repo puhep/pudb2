@@ -125,7 +125,24 @@ function addTempVsTimeFile($type, $id, $file) {
   }
   $targetFile = $directory."tempVsTime.csv";
   if (!move_uploaded_file($file['tmp_name'], $targetFile)) {
-      echo "<h2>Sorry, an error has occurred. Try again or bother Greg & Chase until they help</h2><br>";
+      echo "<h2>Sorry, an error has occurred. Try again or bother Chase until they help</h2><br>";
+  }
+}
+
+function addSheetThicknessContour($id, $file) {
+  $directory = "../phase_2/files/sheet/$id/";
+  if (!file_exists($directory)) {
+    mkdir($directory);
+    chmod($directory, 0777);
+  }
+  $targetFile = $directory.$file['name'];
+  $fileType = pathinfo($targetFile, PATHINFO_EXTENSION);
+  if ($fileType != "csv") {
+    echo "Sorry, only CSV file type is allowed currently for Sheet Contour.<br>".$backmessage;
+  }
+  $targetFile = $directory."ThicknessContour.csv";
+  if (!move_uploaded_file($file['tmp_name'], $targetFile)) {
+      echo "<h2>Sorry, an error has occurred. Try again or bother Chase until they help</h2><br>";
   }
 }
 
