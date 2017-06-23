@@ -188,6 +188,10 @@ if ($_FILES['files']['name'][0] != "") {
     add_file("sheet",$id,$_FILES['files']);
 }
 
+if ($_FILES['thicknessContour']['name'] != "") {
+  addSheetThicknessContour($id, $_FILES['thicknessContour']);
+}
+
 ### redirect to the summary page with the new information
 header("Location: sheet.php?id=$id");
 ?>

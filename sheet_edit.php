@@ -132,6 +132,11 @@
           </div>
           <h2>Misc Files</h2>
           <div style="width:475px;">
+            <label for="thicknessContour">Sheet Thickness Contour<br>CSV file type only</label>
+            <input name="thicknessContour" type="file" style="float:right">
+          </div>
+          <br><br>
+          <div style="width:475px;">
             <label for="files[]">Misc File(s): </label>
             <input name="files[]" id="files" type="file" multiple="multiple" style="float:right"><br><br>
           </div>
