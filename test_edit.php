@@ -186,6 +186,11 @@
             <input placeholder= "<?php echo $name; ?>" name="name" type="text" style="float:right"><br><br>
             <label for="coolant_temp">Coolant <br>Temp (&deg;C): </label>
             <input placeholder= "<?php echo $coolantTemp; ?>" name="coolant_temp" type="text" style="float:right"><br><br>
+            <label for="testType">Test Type</label>
+            <select name="testType" style="float:right">
+              <option value="Wing">Airex Wings</option>
+              <option value="LinGrad">Linear Gradient</option>
+            </select>
           </div>
           <h2>Object Data</h2>
           Remove Sensor: <select name="removeSensorID">
