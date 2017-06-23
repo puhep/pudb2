@@ -36,6 +36,9 @@
         </ul>
         <br><br><br><br>
       </main>
+      <footer>
+        <p>If link to email is not working send Chase an email to either nelso312@purdue.edu or chase.a.nelson@gmail.com or create a GitHub Issue.</p>
+      </footer>
     </div>
   </body>
 </html>
