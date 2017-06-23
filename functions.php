@@ -122,10 +122,11 @@ function addTempVsTimeFile($type, $id, $file) {
   $fileType = pathinfo($targetFile,PATHINFO_EXTENSION);
   if($fileType != "csv") {
     echo "Sorry, only CSV file type is allowed currently for Temp vs Time.<br>".$backmessage;
-  }
-  $targetFile = $directory."tempVsTime.csv";
-  if (!move_uploaded_file($file['tmp_name'], $targetFile)) {
+  } else {
+    $targetFile = $directory."tempVsTime.csv";
+    if (!move_uploaded_file($file['tmp_name'], $targetFile)) {
       echo "<h2>Sorry, an error has occurred. Try again or bother Chase until they help</h2><br>";
+    }
   }
 }
 
