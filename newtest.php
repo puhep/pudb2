@@ -39,12 +39,13 @@
               <?php
                 $sql = "SELECT name,id FROM support_structure ORDER BY name ASC";
                 $db->query($sql);
-                echo "<option value=\"\">Select a Support Structure</option>\n";
+                echo "<option value=\"\"></option>\n";
                 while ($db->nextRecord()) {
                   $id = $db->Record['id'];
                   $name = $db->Record['name'];
                   echo "<option value=\"$id\">".$name."</option>\n";
                 }
+                echo "<option value=\"none\">None</option>";
               ?>
             </select>
             <br><br>
@@ -52,18 +53,19 @@
               <?php
                 $sql = "SELECT name,id FROM test ORDER BY name ASC";
                 $db->query($sql);
-                echo "<option value=\"\">Select a Test</option>\n";
+                echo "<option value=\"\"></option>\n";
                 while ($db->nextRecord()) {
                   $id = $db->Record['id'];
                   $name = $db->Record['name'];
                   echo "<option value=\"$id\">".$name."</option>\n";
                 }
+                echo "<option value=\"none\">None</option>";
               ?>
             </select>
             <br><br>
             <div style="width:475px">
-              <label for="files[]">Upload Temperature-to-Time Excel File</label>
-              <input name="files[]" id="files" type="file" style="float:right">
+              <label for="tempVsTime">Temp and Time Excel File<br>CSV file type only</label>
+              <input name="tempVsTime" type="file" style="float:right">
             </div>
             <br><br>
           </div>

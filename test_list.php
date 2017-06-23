@@ -61,6 +61,22 @@
             echo "</td>";
             echo "</tr>";
           }
+          /****
+          * Display Tests that are not associated to a test
+          *****/
+          echo "<tr>"
+                ."<td>No Support Structure</td>"
+                ."<td>";
+                $sql = "SELECT name,id FROM test WHERE assoc_ss IS NULL";
+                $db->query($sql);
+                while ($db->nextRecord()) {
+                  $name = $db->Record['name'];
+                  $id = $db->Record['id'];
+                  echo "<a href=\"test.php?id=$id\">$name</a><br>";
+                }
+
+                echo "</td>"
+              ."</tr>";
           echo "</table><br>";
         ?>
         <br><br>

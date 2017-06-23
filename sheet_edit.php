@@ -63,7 +63,7 @@
             <input placeholder="<?php echo $data['bagUseTimes']; ?>" name="bagUseTimes" type="number" step="1" min="0" style="float:right"><br><br>
             <label for="checkedLeaks">Vacuum Bag Checked for Leaks</label>
             <select class="YesNo" name="checkedLeaks" style="float:right">
-              <option value="N/A"n/a</option>
+              <option value="N/A"></option>
               <option value="Yes">Yes</option>
               <option value="No">No</option>
             </select><br><br>

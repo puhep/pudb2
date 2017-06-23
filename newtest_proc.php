@@ -5,7 +5,11 @@ require_once("functions.php");
 $db = new Database();
 $ss = $_POST['support_structure'];
 $name = $_POST['name'];
-$sql="INSERT INTO test (name, assoc_ss) VALUES (\"$name\", $ss)";
+if ($ss != "none") {
+  $sql="INSERT INTO test (name, assoc_ss) VALUES (\"$name\", $ss)";
+} else if ($ss == "none") {
+  $sql = "INSERT INTO test (name) VALUES (\"$name\")";
+}
 #echo $sql;
 $db->query($sql);
 $sql = "SELECT MAX(id) FROM test";
@@ -14,8 +18,8 @@ $db->singleRecord();
 $id= $db->Record['MAX(id)'];
 $sql = "INSERT INTO notes (part_id,part_type) VALUES ($id,'test')";
 $db->query($sql);
-if($_POST['oldtest'] != ""){
-    $sql = "SELECT * FROM sensor_test where test_id=".$_POST['oldtest'];
+if($_POST['oldtest'] != "" && $_POST['old'] != "none"){
+    $sql = "SELECT * FROM sensor_test WHERE test_id=".$_POST['oldtest'];
     $data=$db->db_query($sql);
     foreach($data as $line){
         #print_r($line);
@@ -32,9 +36,8 @@ if($_POST['oldtest'] != ""){
     }
 }
 
-if (count($_FILES['files']['name'])) {
-  add_file("test",$id,$_FILES['files']);
-  rename("../phase_2/files/test/$id/$_FILES['files']['name']", "../phase_2/files/test/$id/tempVsTime.csv");
+if ($_FILES['tempVsTime']['name'] != "") {
+  addTempVsTimeFile("test",$test_id,$_FILES['tempVsTime']);
 }
     header("Location: test_edit.php?id=$id");
 
