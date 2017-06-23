@@ -61,8 +61,10 @@
               ?>
             </select>
             <br><br>
-            <label for="files[]">Upload Temperature-to-Time Excel File</label>
-            <input name="files[]" id="files" type="files" style="float:right">
+            <div style="width:475px">
+              <label for="files[]">Upload Temperature-to-Time Excel File</label>
+              <input name="files[]" id="files" type="file" style="float:right">
+            </div>
             <br><br>
           </div>
           <input class="button" type="submit" name="submit" value="Submit">
