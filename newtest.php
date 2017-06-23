@@ -63,6 +63,13 @@
               ?>
             </select>
             <br><br>
+            <div style="width:400px;">
+              <label for="testType">Test Type</label>
+              <select name="testType" style="float:right">
+                <option value="Wing">Airex Wings</option>
+                <option value="LinGrad">Linear Gradient</option>
+              </select>
+            </div>
             <div style="width:475px">
               <label for="tempVsTime">Temp and Time Excel File<br>CSV file type only</label>
               <input name="tempVsTime" type="file" style="float:right">

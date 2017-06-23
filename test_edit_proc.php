@@ -132,6 +132,11 @@ if($_FILES['files']['name'][0] != ""){
     add_file("test",$test_id,$_FILES['files']);
 }
 
+if ($_POST['testType'] != "") {
+  $sql = "UPDATE test SET testType=\"".$_POST['testType']."\" WHERE id=$test_id";
+  $db->query($sql);
+}
+
 ### redirect to the test summary page with the new information
 header("Location: test.php?id=$test_id");
 ?>

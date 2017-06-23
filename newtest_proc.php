@@ -3,12 +3,13 @@
 require_once("database.php");
 require_once("functions.php");
 $db = new Database();
-$ss = $_POST['support_structure'];
-$name = $_POST['name'];
+$ss       = $_POST['support_structure'];
+$name     = $_POST['name'];
+$testType = $_POST['testType'];
 if ($ss != "none") {
-  $sql="INSERT INTO test (name, assoc_ss) VALUES (\"$name\", $ss)";
+  $sql="INSERT INTO test (name, assoc_ss, testType) VALUES (\"$name\", $ss, \"$testType\")";
 } else if ($ss == "none") {
-  $sql = "INSERT INTO test (name) VALUES (\"$name\")";
+  $sql = "INSERT INTO test (name, testType) VALUES (\"$name\", \"$testType\")";
 }
 #echo $sql;
 $db->query($sql);

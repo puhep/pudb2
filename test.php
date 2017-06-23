@@ -5,8 +5,9 @@
   $db = new Database();
   $id=$_GET['id'];
   $data=$db->db_query("SELECT * FROM test where id=$id");
-  $data=$data[0];
-  $miscData=testData2($id,$db);
+  $data       = $data[0];
+  $testType   = $data['testType'];
+  $miscData   = testData2($id,$db);
   $sensorData = sensorTestData($id,$db);
   $heaterData = heaterTestData($id,$db);
   $moduleData = moduleTestData($id,$db);
@@ -72,7 +73,11 @@
           echo "<br>";
           show_sensors($moduleData,0,"module");
           echo "<br>";
-          echo "<a href=\"test_geometry.php?id=$id\" target=\"blank\"><img src=\"test_geometry.php?id=$id\" width=\"300\" height=\"300\" ></a>";
+          if ($testType == "" || $testType == "Wing") {
+            echo "<a href=\"test_geometry.php?id=$id\" target=\"_blank\"><img src=\"test_geometry.php?id=$id\" width=\"300\" height=\"300\"></a>";
+          } else if ($testType == "LinGrad") {
+            echo "<a href=\"./php/linearGradPlot.php?id=$id\" target=\"_blank\"><img src=\"./php/linearGradPlot.php?id=$id\" width=\"300\" height=\"200\"></a>";
+          }
           echo "<h2>Notes</h2>";
           if($notes!="") {
             echo "<p>".nl2br($notes)."</p>";
