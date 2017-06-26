@@ -94,6 +94,21 @@ if ($_POST['bow'] != "") {
     $db->query($sql);
   }
 
+  if ($_POST['avgThickness'] != "") {
+    $sql ="UPDATE sheet SET avgThickness=".$_POST['avgThickness']." WHERE id=$id";
+    $db->query($sql);
+  }
+
+  if ($_POST['minThickness'] != "") {
+    $sql ="UPDATE sheet SET minThickness=".$_POST['minThickness']." WHERE id=$id";
+    $db->query($sql);
+  }
+
+  if ($_POST['maxThickness'] != "") {
+    $sql = "UPDATE sheet SET maxThickness=".$_POST['maxThickness']." WHERE id=$id";
+    $db->query($sql);
+  }
+
 if ($_POST['ply'] != "") {
     $sql = "UPDATE sheet SET ply=".$_POST['ply']." WHERE id=$id";
     $db -> query($sql);

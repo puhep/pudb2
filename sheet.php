@@ -88,6 +88,9 @@
           echo "<tr><td>Height Outside </td><td>".$data['heightOutside']." inches</td></tr>";
           echo "<tr><td>Height Inside </td><td>".$data['heightInside']." inches</td></tr>";
           echo "<tr><td>Mass after </td><td>".$data['mass_after']." g</td></tr>";
+          echo "<tr><td>Average Thickness</td><td>".$data['avgThickness']." mm</td></tr>";
+          echo "<tr><td>Minimum Thickness</td><td>".$data['minThickness']." mm</td></tr>";
+          echo "<tr><td>Maximum Thickness</td><td>".$data['maxThickness']." mm</td></tr>";
           echo "<tr><td>Edge Thicknesses </td><td>".$thicknesses."</td></tr>";
           echo "<tr><td>Bow </td><td>".$data['bow']." mm</td></tr>";
           echo "<tr><td>Measured By </td><td>".$data['user_measure']."</td></tr>";
