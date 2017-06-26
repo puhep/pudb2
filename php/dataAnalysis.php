@@ -4,6 +4,7 @@
   ******************/
   require_once("../jpgraph/src/jpgraph.php");
   require_once("../jpgraph/src/jpgraph_scatter.php");
+  require_once("../jpgraph/src/jpgraph_error.php");
   // require_once("../jpgraph/src/jpgraph_text.inc.php");
   require_once("../database.php");
   $db = new Database();
@@ -19,22 +20,49 @@
   $avgChan = array();
   $avgX    = array();
   $avgY    = array();
+  $size    = array();
   $i = 0;
   while (!feof($file)) {
     $temp = fgetcsv($file);
     $avgChan[$i] = $temp[0];
     $avgTemp[$i] = (double) $temp[1];
     $avgTime[$i] = (double) $temp[2];
+    $size[$i]    = (double) $temp[3];
     $i++;
   }
   fclose($file);
 
+  $lastElement = sizeof($avgTemp) - 1;
+  if ($avgTemp[$lastElement] == 0 && $avgTime[$lastElement] == 0) {
+    array_pop($avgTemp);
+    array_pop($avgTime);
+    array_pop($avgChan);
+    array_pop($size);
+  }
+
+  /******************
+  * DATA ANALYSIS
+  ******************/
+  // $maxError = array();
+  // $minError = array();
+  $err = array();
+  $j = 0;
+  for ($i = 0; $i < sizeof($avgTemp); $i++) {
+    $tempError = (double)(sqrt($size[$i]) / 100 * $avgTemp[$i]);
+    // $error = $tempError * $avgTemp;
+    // $maxError[$i] = $avgTemp + $tempError;
+    // $minError[$i] = $avgTemp - $tempError;
+    $err[$j++] = $avgTemp[$i] + $tempError;
+    $err[$j++] = $avgTemp[$i] - $tempError;
+  }
+
+  // print_r($err);
 
   /******************
   * Graph Setup
   ******************/
   $graph = new Graph(1200, 1200);
-  $graph->SetScale('linlin', 0, 60, 0, 21);
+  $graph->SetScale('linlin', 0, 0, 0, 16);
   $graph->SetColor('lightblue');
   $graph->SetMarginColor('#F9DAC6');
 
@@ -68,12 +96,6 @@
   $graph->SetFrame(true,'black',1);
 
 
-  $lastElement = sizeof($avgTemp) - 1;
-  if ($avgTemp[$lastElement] == 0 && $avgTime[$lastElement] == 0) {
-    array_pop($avgTemp);
-    array_pop($avgTime);
-    array_pop($avgChan);
-  }
 
   $xaxis = array();
   for ($i = 0; $i < sizeof($avgTemp); $i++) {
@@ -98,7 +120,13 @@
     // $graph->Add($txt[$i]);
   }
 
+  $errplot = new ErrorPlot($err, $xaxis);
+  $errplot->SetColor("red");
+  $errplot->SetWeight(5);
+  $errplot->SetCenter();
+
   $graph->Add($scatter);
+  $graph->Add($errplot);
 
   $graph->Stroke();
 

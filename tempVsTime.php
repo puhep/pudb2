@@ -44,7 +44,7 @@
   fclose($file);  // Done With file
 
   // Setup Graph
-  $graph = new Graph(1200, 1200);
+  $graph = new Graph(1200, 1000);
   $graph->SetScale('linlin', 0, 60,0,0);
   $graph->SetColor('lightblue');
   $graph->SetMarginColor('#F9DAC6');
@@ -134,7 +134,7 @@
     for ($i = 0; $i < sizeof($sensor[$z]) - 1; $i++) {
       $slope = ($sensor[$z][$i][$x] - $sensor[$z][$i + 1][$x]) / ($sensor[$z][$i][$y] - $sensor[$z][$i + 1][$y]);
       $slope = abs($slope);
-      if ($slope < 0.006) { // 0.006 is the current measure if it is 'flat'
+      if ($slope < 0.004) { // 0.006 is the current measure if it is 'flat'
         if ($j == 0) {
           $startFlatX[$k] = $sensor[$z][$i][$x];
           $startFlatY[$k] = $sensor[$z][$i][$y];
@@ -165,12 +165,12 @@
     // $avg->mark->SetColor(yellow);
     // $graph->Add($avg);
     $flatStart = new ScatterPlot($startFlatX, $startFlatY); // Start of flat regions
-    $flatStart->mark->SetType(MARK_FILLEDCIRCLE);
+    $flatStart->mark->SetType(MARK_FLASH);
     $flatStart->mark->SetSize(14);
     $flatStart->mark->SetFillColor(green);
     $flatStart->mark->SetColor(green);
     $flatEnd = new ScatterPlot($endFlatX, $endFlatY); //  End of flat regions
-    $flatEnd->mark->SetType(MARK_FILLEDCIRCLE);
+    $flatEnd->mark->SetType(MARK_FLASH);
     $flatEnd->mark->SetSize(14);
     $flatEnd->mark->SetFillColor(red);
     $flatEnd->mark->SetColor(red);
