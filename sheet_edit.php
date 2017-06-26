@@ -101,6 +101,12 @@
             <input placeholder="<?php echo $data['heightInside']; ?>" name="heightInside" type="number" step="0.00001" min="0" style="float:right"><br><br>
             <label for="mass_after">Mass after (g): </label>
             <input placeholder= "<?php echo $data['mass_after']; ?>" name="mass_after" type="number" step="0.001" style="float:right"><br><br>
+            <label for="avgThickness">Average Thickness</label>
+            <input placeholder="<?php echo $data['avgThickness'] ?>" name="avgThickness" type="number" step="0.00001" min="0" style="float:right"><br><br>
+            <label for="minThickness">Minimum Thicknes</label>
+            <input placeholder="<?php echo $data['minThickness'] ?>" name="minThickness" type="number" step="0.00001" min="0" style="float:right"><br><br>
+            <label for="maxThickness">Maximum Thickness</label>
+            <input placeholder="<?php echo $data['maxThickness'] ?>" name="maxThickness" type="number" step="0.00001" min="0" style="float:right"><br><br>
             <label for="thickness1">Edge Thickness 1 (mm): </label>
             <input placeholder= "<?php echo $data['thickness1']; ?>" name="thickness1" type="number" step="0.001" style="float:right"><br><br>
             <label for="thickness2">Edge Thickness 2 (mm): </label>
