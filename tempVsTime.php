@@ -119,10 +119,12 @@
     chmod($filePath,0777);
     fwrite($file, "Sensor,");
     fwrite($file, "avgTemp,");
-    fwrite($file, "avgTime\n");
+    fwrite($file, "avgTime,");
+    fwrite($file, "size\n");
     $editFile = true;
     fclose($file);  // Close file
   }
+  $size = array();
   for ($z = 0; $z <= $sensorsNum; $z++) {
     $startFlatX = array();
     $startFlatY = array();
@@ -147,6 +149,7 @@
         $endFlatY[$k] = $sensor[$z][$i][$y];
         $avgX[$k] = $sumX / $j;
         $avgY[$k] = $sumY / $j;
+        $size[$k] = $j;
         $k++;
         $j = 0;
       } else {
@@ -185,7 +188,7 @@
       $file = fopen($filePath, "a");
       $channel = substr($sensorName[$z], 0, 5);
       for ($q = 0; $q < sizeof($avgX); $q++) {
-        $line = $channel.",".$avgX[$q].",".$avgY[$q]."\n";
+        $line = $channel.",".$avgX[$q].",".$avgY[$q].",".$size[$q]."\n";
         fwrite($file, $line);
       } // end of for loop; addes lines to end of file
       fclose($file);  //  Close file
