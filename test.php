@@ -3,8 +3,8 @@
   require_once("functions.php");
   require_once("database.php");
   $db = new Database();
-  $id=$_GET['id'];
-  $data=$db->db_query("SELECT * FROM test where id=$id");
+  $id = $_GET['id'];
+  $data = $db->db_query("SELECT * FROM test where id=$id");
   $data       = $data[0];
   $testType   = $data['testType'];
   $miscData   = testData2($id,$db);
@@ -19,6 +19,22 @@
   $db->query($sql);
   $db->singleRecord();
   $notes=$db->Record['notetext'];
+  $showDataAnalysis = false;
+  $filePath = "../phase_2/files/test/$id/dataAnalysis.csv";
+  // if (file_exists($filePath)) {
+  //   echo "hello"
+  // }
+  //   $showDataAnalysis = false;
+  //   echo "world";
+  // } else {
+  //   $file = fopen($filePath);
+  //   $i = 0;
+  //   while (!feof($file)) {
+  //     $temp = fgetcsv($file);
+  //     $i++;
+  //   }
+  //   echo "<h2>Hello</h2>";
+  // }
 ?>
 <html>
   <head>
@@ -90,8 +106,14 @@
             echo "<h2>Graphs</h2>"
                 ."<h4>Temperature over Time</h4>";
             echo "<a href=\"tempVsTime.php?id=$id\" target=\"blank\"><img src=\"tempVsTime.php?id=$id\" width=\"300\" height=\"300\" ></a>";
-            echo "<h4>Averaged Temperatures</h4>";
-            echo "<a href=\"./php/dataAnalysis.php?id=$id\" target=\"blank\"><img src=\"./php/dataAnalysis.php?id=$id\" width=\"300\" height=\"300\" ></a>";
+            $filePath = "../phase_2/files/test/$id/dataAnalysis.csv";
+            $file = fopen($filePath, "r");
+            $line1 = fgetcsv($file);
+            $line2 = fgetcsv($file);
+            if ($line2 != null) {
+              echo "<h4>Averaged Temperatures</h4>";
+              echo "<a href=\"./php/dataAnalysis.php?id=$id\" target=\"blank\"><img src=\"./php/dataAnalysis.php?id=$id\" width=\"300\" height=\"300\" ></a>";
+            }
           }
           echo "<h2>Misc Files</h2>";
           show_files("test",$id);
