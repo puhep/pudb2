@@ -112,7 +112,10 @@
             $line2 = fgetcsv($file);
             if ($line2 != null) {
               echo "<h4>Averaged Temperatures</h4>";
-              echo "<a href=\"./php/dataAnalysis.php?id=$id\" target=\"blank\"><img src=\"./php/dataAnalysis.php?id=$id\" width=\"300\" height=\"300\" ></a>";
+              echo "<div>
+                      <object type=text/html data=\"http://www.physics.purdue.edu/cmsfpix////phase_2/php/avgTemp.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
+                      </object>
+                    </div>";
             }
           }
           echo "<h2>Misc Files</h2>";
