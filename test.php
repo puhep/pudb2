@@ -111,9 +111,9 @@
             $line1 = fgetcsv($file);
             $line2 = fgetcsv($file);
             if ($line2 != null) {
-              echo "<h4>Averaged Temperatures</h4>";
+              echo "<h4><a href=\"php/avgTemp.php?id=$id\" target=\"_blank\">Averaged Temperatures</a></h4>";
               echo "<div>
-                      <object type=text/html data=\"http://www.physics.purdue.edu/cmsfpix////phase_2/php/avgTemp.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
+                      <object type=text/html data=\"php/avgTemp.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
                       </object>
                     </div>";
             }
