@@ -44,7 +44,7 @@
   fclose($file);  // Done With file
 
   // Setup Graph
-  $graph = new Graph(1200, 1000);
+  $graph = new Graph(1400, 1000);
   $graph->SetScale('linlin', 0, 60,0,0);
   $graph->SetColor('lightblue');
   $graph->SetMarginColor('#F9DAC6');
@@ -134,11 +134,12 @@
     $avgY       = array();
     $j = $k = $sumX = $sumY =  0; // Used to count how many are flat
     for ($i = 0; $i < sizeof($sensor[$z]) - 1; $i++) {
-      $slope = ($sensor[$z][$i][$x] - $sensor[$z][$i + 1][$x]) / ($sensor[$z][$i][$y] - $sensor[$z][$i + 1][$y]);
+      $slope = (double)(($sensor[$z][$i][$x] - $sensor[$z][$i + 1][$x]) / ($sensor[$z][$i][$y] - $sensor[$z][$i + 1][$y]));
       $slope = abs($slope);
-      if ($slope < 0.004) { // 0.006 is the current measure if it is 'flat'
+      if ($slope < 0.1) { // 0.006 is the current measure if it is 'flat'
         if ($j == 0) {
           $startFlatX[$k] = $sensor[$z][$i][$x];
+          // echo "<br>start::: ".$startFlatX[$k]."<br>";
           $startFlatY[$k] = $sensor[$z][$i][$y];
         }
         $j++;
@@ -146,24 +147,43 @@
         $sumY += $sensor[$z][$i][$y];
       } else if ($j > 100) {
         $endFlatX[$k] = $sensor[$z][$i][$x];
+        // echo "<br>end::: ".$endFlatX[$k]."<br>";
         $endFlatY[$k] = $sensor[$z][$i][$y];
         $avgX[$k] = $sumX / $j;
         $avgY[$k] = $sumY / $j;
         $size[$k] = $j;
         $k++;
-        echo $j."<br>";
+        // echo "<br>J::: ".$j."<br>";
         $j = 0;
       } else {
+        // echo "<br>removed<br>";
         $startFlatX[$k] = null;
         $startFlatY[$k] = null;
         $j = $sumX = $sumY = 0;
       }
     }
+    if ($startFlatX[sizeof($startFlatX)-1] == null && $startFlatY[sizeof($startFlatY)-1] == null) {
+      array_pop($startFlatX);
+      array_pop($startFlatY);
+    }
     //  Add the last point to endFlat if there is not one
     if (sizeof($startFlatX) > sizeof($endFlatX) && sizeof($startFlatY) > sizeof($endFlatY)) {
-      $endFlatX[$k] = $sensor[$z][sizeof($$sensor[$z]-2)][$x];
-      $endFlatY[$k++] = $sensor[$z][sizeof($$sensor[$z]-2)][$y];
+      $xVal = $sensor[$z][sizeof($sensor[$z])-2][$x];
+      $yVal = $sensor[$z][sizeof($sensor[$z])-2][$y];
+      if ($xYal == $startFlatX[sizeof($startFlatX)-2] && $yVal == $startFlatY[sizeof($startFlatY)-2]) {
+        array_pop($startFlatX);
+        array_pop($startFlatY);
+      } else {
+        $endFlatX[$k] = $xVal;
+        $endFlatY[$k++] = $yVal;
+      }
     }
+    // echo "X:<br>";
+    // print_r($avgX);
+    // echo "<br>Size :: ".sizeof($avgX)."<br>";
+    // echo "Y:<br>";
+    // print_r($avgY);
+    // echo "<br>Size :: ".sizeof($avgY)."<br>";
     if (sizeof($startFlatX) > 1) {
       $flatStart = new ScatterPlot($startFlatX, $startFlatY); // Start of flat regions
       $flatStart->mark->SetType(MARK_FLASH);
