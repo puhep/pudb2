@@ -90,13 +90,13 @@
     var minThick = <?php echo $min; ?>;
     var maxThick = <?php echo $max; ?>;
     $.ajax({
-      url: './updatePart.php?id='+id+'&partType=sheet&field=avgThickness&value='+avgThick,
+      url: '../php/updatePart.php?id='+id+'&partType=sheet&field=avgThickness&value='+avgThick,
     });
     $.ajax({
-      url: './updatePart.php?id='+id+'&partType=sheet&field=minThickness&value='+minThick,
+      url: '../php/updatePart.php?id='+id+'&partType=sheet&field=minThickness&value='+minThick,
     });
     $.ajax({
-      url: './updatePart.php?id='+id+'&partType=sheet&field=maxThickness&value='+maxThick,
+      url: '../php/updatePart.php?id='+id+'&partType=sheet&field=maxThickness&value='+maxThick,
     });
   </script>
 </body>

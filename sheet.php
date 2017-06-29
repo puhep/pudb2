@@ -61,9 +61,9 @@
           show_pictures("sheet",$id);
           if (file_exists("../phase_2/files/sheet/$id/ThicknessContour.csv")) {
             echo "<h2>Graphs</h2>"
-                ."<h4><a href=\"./php/sheetContour.php?id=$id\" target=\"_blank\">Sheet Thickness Contour</a></h4>";
+                ."<h4><a href=\"./graphs/sheetContour.php?id=$id\" target=\"_blank\">Sheet Thickness Contour</a></h4>";
             echo "<div>
-                    <object type=text/html data=\"php/sheetContour.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
+                    <object type=text/html data=\"graphs/sheetContour.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
                     </object>
                   </div>";
           }
