@@ -47,15 +47,6 @@
       </nav>
       <main>
         <h1><?php echo $name; ?> Summary</h1>
-        <span>Last Edited:
-          <?php
-            if ($data['lastEdit'] != "") {
-              echo $data['lastEdit'];
-            } else {
-              echo "Not yet recorded";
-            }
-          ?>
-        </span>
         <div id="container"></div>
         <form method="get" action="thermal_sensor_edit.php">
           <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
@@ -187,6 +178,10 @@
                   <tr>
                     <td>Odbject Type</td>
                     <td>Thermal Sensor</td>
+                  </tr>
+                  <tr>
+                    <td>Sensor Type</td>
+                    <td>{dbJSON.sensor_type}</td>
                   </tr>
                   {this.state.comments.map(this.eachComment)}
                 </table>
