@@ -31,7 +31,7 @@
           type: 'box',
           name: name,
         };
-        data.push(trace);
+        data.push(trace); 
       } // End of for loop
       Plotly.newPlot('avgTempPlot', data);
     }

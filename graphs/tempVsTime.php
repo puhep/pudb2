@@ -9,15 +9,15 @@
   *
   *****************************************************************************/
 
-  require_once("./jpgraph/src/jpgraph.php");
-  require_once("./jpgraph/src/jpgraph_scatter.php");
-  require_once("database.php");
+  require_once("../jpgraph/src/jpgraph.php");
+  require_once("../jpgraph/src/jpgraph_scatter.php");
+  require_once("../database.php");
 
   $id=$_GET['id'];
   ### display the temperature versus time for all sensors using the test file
 
   #echo file_get_contents("test.txt");
-  $filePath = "../phase_2/files/test/$id/tempVsTime.csv";
+  $filePath = "../../phase_2/files/test/$id/tempVsTime.csv";
   $file = fopen($filePath,"r") or die($filePath);
 //  $file = fopen("CFthermalconductivity_test1.csv","r") or die("Unable to open file!");
   $line1 = fgetcsv($file);
