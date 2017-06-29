@@ -123,7 +123,7 @@
         renderForm: function() {
           var type;
           var step = '0.0001';
-          var min = '0';
+          var min  = '0';
           switch (this.props.index) {
             case 0:
               type = 'number';
@@ -171,7 +171,7 @@
                 {keyArray[i]}
               </td>
               <td>
-                <Comment key={i} index={i} updateCommentText={this.updateComment}>
+                <Comment key={i} index={i} field={fieldArray[i]} updateCommentText={this.updateComment}>
                   {text}
                 </Comment>
               </td>
