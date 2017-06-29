@@ -6,6 +6,7 @@
 
 var dbJSON;
 var dbArray;
+var keyArray;
 /*******************************************
 *
 * function is currently not being used
@@ -15,19 +16,10 @@ var dbArray;
 * problem was the page would load before the ajax could finish calling php
 *
 *******************************************/
-function sheetInfo(id) {
-  $.ajax({
-    url: 'php/getSheetData.php?id=' + id,
-    success: JSONtoArray,
-  }).fail(function() {
-    console.log('failed');
-  });
-}
 function JSONtoArray(response) {
   dbJSON = JSON.parse(response);
 
   keyArray = [
-    'Name',
     'Location',
     'Date Cut',
     'Ply',
@@ -55,6 +47,9 @@ function JSONtoArray(response) {
     'Height Outside',
     'Height Inside',
     'Mass After',
+    'Average Thickness',
+    'Minimum Thickness',
+    'Maximum Thickness',
     'Thickness 1',
     'Thickness 2',
     'Thickness 3',
@@ -64,7 +59,6 @@ function JSONtoArray(response) {
   ];
 
   dbArray = [
-    dbJSON.name,
     dbJSON.location,
     dbJSON.dateCut,
     dbJSON.ply,
@@ -92,11 +86,53 @@ function JSONtoArray(response) {
     dbJSON.heightOutside,
     dbJSON.heightInside,
     dbJSON.mass_after,
+    dbJSON.avgThickness,
+    dbJSON.minThickness,
+    dbJSON.maxThickness,
     dbJSON.thickness1,
     dbJSON.thickness2,
     dbJSON.thickness3,
     dbJSON.thickness4,
     dbJSON.bow,
     dbJSON.user_measure,
+  ];
+
+  fieldArray = [
+    'location',
+    'dateCut',
+    'ply',
+    'mass_nb',
+    'user_cut',
+    'dateOven',
+    'user_bagged',
+    'num_wax_coats',
+    'bagUseTimes',
+    'checkedLeaks',
+    'curing_stackup',
+    'ovenStart',
+    'ovenReach107',
+    'user_check1',
+    'timeRamp',
+    'user_ramp',
+    'ovenReach177',
+    'user_check2',
+    'timeOvenOff',
+    'user_check3',
+    'timeRemoved',
+    'user_remove',
+    'lengthOutside',
+    'lengthInside',
+    'heightOutside',
+    'heightInside',
+    'mass_after',
+    'avgThickness',
+    'minThickness',
+    'maxThickness',
+    'thickness1',
+    'thickness2',
+    'thickness3',
+    'thickness4',
+    'bow',
+    'user_measure',
   ];
 }

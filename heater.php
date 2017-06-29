@@ -161,7 +161,7 @@
                   {keyArray[i]}
                 </td>
                 <td>
-                  <Comment key={i} index={i} updateCommentText={this.updateComment}>
+                  <Comment key={i} index={i} field={fieldArray[i]} updateCommentText={this.updateComment}>
                     {text}
                   </Comment>
                 </td>

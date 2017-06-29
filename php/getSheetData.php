@@ -43,6 +43,10 @@
   $return->heightOutside  = $result['heightOutside'];
   $return->heightInside   = $result['heightInside'];
   $return->bow            = $result['bow'];
+  $return->checkedLeaks   = $result['checkedLeaks'];
+  $return->avgThickness   = $result['avgThickness'];
+  $return->minThickness   = $result['minThickness'];
+  $return->maxThickness   = $result['maxThickness'];
   $json = json_encode($return);
   echo $json;
 ?>

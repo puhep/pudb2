@@ -8,18 +8,10 @@
   require_once("functions.php");
   $id=$_GET['id'];
   $db= new Database();
-  $data=$db->db_query("SELECT * FROM sheet where id=$id");
-  $data=$data[0];
-  $name=$data['name'];
   $sql = "SELECT notetext FROM notes where part_id=$id and part_type=\"sheet\"";
   $db->query($sql);
   $db->singleRecord();
   $notes=$db->Record['notetext'];
-  if($data['thickness1'] != "") {
-    $thicknesses = $data['thickness1']." mm, ".$data['thickness2']." mm, ".$data['thickness3']." mm, ".$data['thickness4']." mm";
-  } else {
-    $thicknesses = "";
-  }
 ?>
 <html>
   <head>
@@ -28,6 +20,11 @@
     <title><?php echo $name; ?> Summary</title>
   </head>
   <body>
+    <script src="./node_modules/jquery/dist/jquery.js" charset="utf-8"></script>
+    <script src="./js/getSheetInfo.js" charset="utf-8"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.11.0/es6-shim.min.js"></script>
+    <script src="http://fb.me/react-with-addons-0.11.0.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.11.0.js"></script>
     <div id="wrapper">
       <header>
         <a href="index.php">
@@ -48,54 +45,7 @@
       </nav>
       <main>
         <h1><?php echo $name; ?> Summary</h1>
-        <span>Last Edited:
-          <?php
-            if ($data['lastEdit'] != "") {
-              echo $data['lastEdit'];
-            } else {
-              echo "Not yet recorded";
-            }
-          ?>
-        </span>
-        <?php
-          echo "<table border=1 cellpadding=5>";
-          echo "<tr><td>Object Type</td><td>Sheet</td></tr>";
-          echo "<tr><td>Name</td><td>".$data['name']."</td></tr>";
-          echo "<tr><td>Location</td><td>".$data['location']."</td></tr>";
-          echo "<tr><td>Date Cut</td><td>".$data['dateCut']."</td></tr>";
-          echo "<tr><td>Ply</td><td>".$data['ply']."</td></tr>";
-          echo "<tr><td>Mass before Backing</td><td>".$data['mass_nb']." g</td></tr>";
-          echo "<tr><td>Cut By</td><td>".$data['user_cut']."</td></tr>";
-          echo "<tr><td>Date put into Oven </td><td>".$data['dateOven']."</td></tr>";
-          echo "<tr><td>Bagged/Oven Turned on By </td><td>".$data['user_bagged']."</td></tr>";
-          echo "<tr><td>Number of Wax Coats </td><td>".$data['num_wax_coats']."</td></tr>";
-          echo "<tr><td>Number of Times Bag was used Previously </td><td>".$data['bagUseTimes']."</td></tr>";
-          echo "<tr><td>Vacuum Bag Checked for Leaks</td><td>".$data['checkedLeaks']."</td></tr>";
-          echo "<tr><td>Curing stackup </td><td>".$data['curing_stackup']."</td></tr>";
-          echo "<tr><td>Time of Oven Start </td><td>".$data['ovenStart']."</td></tr>";
-          echo "<tr><td>Time Reached 107 </td><td>".$data['ovenReach107']."</td></td>";
-          echo "<tr><td>Checked (1) By </td><td>".$data['user_check1']."</td></tr>";
-          echo "<tr><td>Time Began Ramping</td><td>".$data['timeRamp']."</td></tr>";
-          echo "<tr><td>Ramped up By </td><td>".$data['user_ramp']."</td></tr>";
-          echo "<tr><td>Time Reached 177</td><td>".$data['ovenReach177']."</td></tr>";
-          echo "<tr><td>Checked (2) By </td><td>".$data['user_check2']."</td></tr>";
-          echo "<tr><td>Time Shut Off </td><td>".$data['timeOvenOff']."</td></tr>";
-          echo "<tr><td>Checked (3) By </td><td>".$data['user_check3']."</td></tr>";
-          echo "<tr><td>Time Removed </td><td>".$data['timeRemoved']."</td></tr>";
-          echo "<tr><td>Removed By </td><td>".$data['user_remove']."</td></tr>";
-          echo "<tr><td>Length Outside </td><td>".$data['lengthOutside']." inches</td></tr>";
-          echo "<tr><td>Length Inside </td><td>".$data['lengthInside']." inches</td></tr>";
-          echo "<tr><td>Height Outside </td><td>".$data['heightOutside']." inches</td></tr>";
-          echo "<tr><td>Height Inside </td><td>".$data['heightInside']." inches</td></tr>";
-          echo "<tr><td>Mass after </td><td>".$data['mass_after']." g</td></tr>";
-          echo "<tr><td>Average Thickness</td><td>".$data['avgThickness']." mm</td></tr>";
-          echo "<tr><td>Minimum Thickness</td><td>".$data['minThickness']." mm</td></tr>";
-          echo "<tr><td>Maximum Thickness</td><td>".$data['maxThickness']." mm</td></tr>";
-          echo "<tr><td>Edge Thicknesses </td><td>".$thicknesses."</td></tr>";
-          echo "<tr><td>Bow </td><td>".$data['bow']." mm</td></tr>";
-          echo "<tr><td>Measured By </td><td>".$data['user_measure']."</td></tr>";
-          echo "</table><br>";
-        ?>
+        <div id="container"></div>
         <form method="get" action="sheet_edit.php">
           <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
           <input class="button" type="submit" value="Edit Part">
@@ -123,5 +73,201 @@
         <br>
       </main>
     </div>
+    <script type="text/jsx;harmony=true">/** @jsx React.DOM */
+      var id = <?php echo $id; ?>;
+      $.ajax({
+        url: './php/getSheetData.php?id=' + id,
+        success: react,
+      });
+      function react(response) {
+        JSONtoArray(response);
+        var localArray = dbArray;
+        var Comment = React.createClass({
+          getInitialState: function() {
+            return {editing: false, textVal: ''}
+          },
+          handleChange: function(evt) {
+            this.setState({textVal: evt.target.value});
+          },
+          edit: function() {
+            this.setState({editing: true});
+          },
+          save: function() {
+            var val = this.state.textVal;
+            this.props.updateCommentText(val, this.props.index);
+            var field = this.props.field;
+            var time = new Date();
+            var h = time.getHours();
+            var m = time.getMinutes();
+            var s = time.getSeconds();
+            var dd = time.getDate();
+            var mm = time.getMonth() + 1;
+            var yyyy = time.getFullYear();
+            if (dd<10) dd='0'+dd;
+            if (mm<10) mm='0'+mm;
+            time = mm+'-'+dd+'-'+yyyy+' '+h+':'+m+':'+s;
+            $(function() {
+              $.ajax({
+                url: './php/updatePart.php?id='+id+'&partType=sheet&field='+field+'&value='+val,
+              });
+              $.ajax({
+                url: './php/updatePart.php?id='+id+'&partType=sheet&field=lastEdit&value='+time,
+              })
+            });
+            this.setState({editing: false});
+          },
+          renderNormal: function() {
+            return (
+              <div className="commentContainer">
+                <table>
+                  <tr>
+                    <td>
+                      <div className="commentText">{this.props.children}</div>
+                    </td>
+                    <td>
+                      <button onClick={this.edit} className="button-primary">Edit</button>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            );
+          },
+          renderForm: function() {
+            var type;
+            var step = '0.0001';
+            var min  = '0';
+            switch (this.props.index) {
+              /**
+              * type = text
+              */
+              case 0:
+              case 4:
+              case 6:
+              case 9:
+              case 10:
+              case 13:
+              case 15:
+              case 17:
+              case 19:
+              case 21:
+              case 35:
+                type = 'text';
+                break;
+              /**
+              * type = date
+              */
+              case 1:
+              case 5:
+                type = 'date';
+                break;
+              /**
+              * type = number
+              */
+              case 2:
+              case 7:
+              case 8:
+                type = 'number';
+                step = '1';
+                break;
+              case 3:
+              case 26:
+              case 30:
+              case 31:
+              case 32:
+              case 33:
+                type = 'number';
+                step = '0.001';
+                break;
+              case 22:
+              case 23:
+              case 24:
+              case 25:
+              case 27:
+              case 28:
+              case 29:
+              case 34:
+                type = 'number';
+                step = '0.00001'
+                break;
+              /**
+              * type = time
+              */
+              case 11:
+              case 12:
+              case 14:
+              case 16:
+              case 18:
+              case 20:
+                type = 'time';
+                break;
+              default:
+                type = 'text';
+            }
+            return (
+              <div className="commentContainer">
+                <input placeholder={this.props.children} value={this.props.textVal} onChange={this.handleChange} type={type} step={step} min={min}></input>
+                <br/>
+                <button onClick={this.save} className="button-save">Save</button>
+              </div>
+            );
+          },
+          render: function() {
+            if (this.state.editing) {
+              return this.renderForm();
+            } else {
+              return this.renderNormal();
+            }
+          },
+        });
+
+        var Board = React.createClass({
+          getInitialState: function() {
+            return {
+              comments: localArray
+            }
+          },
+          updateComment: function(newText, i) {
+            var arr = this.state.comments;
+            arr[i] = newText;
+            this.setState({comments: arr});
+          },
+          eachComment: function(text, i) {
+            return (
+              <tr>
+                <td>
+                  {keyArray[i]}
+                </td>
+                <td>
+                  <Comment key={i} index={i} field={fieldArray[i]} updateCommentText={this.updateComment}>
+                    {text}
+                  </Comment>
+                </td>
+              </tr>
+            );
+          },
+          render: function() {
+            return (
+              <div className="board">
+                <table>
+                  <tr>
+                    <td>Last Edit</td>
+                    <td>{dbJSON.lastEdit}</td>
+                  </tr>
+                  <tr>
+                    <td>Object Type</td>
+                    <td>Sheet</td>
+                  </tr>
+                  {this.state.comments.map(this.eachComment)}
+                </table>
+              </div>
+            );
+          },
+        });
+        React.renderComponent(
+          <Board />,
+          document.getElementById('container')
+        );
+      }
+    </script>
   </body>
 </html>
