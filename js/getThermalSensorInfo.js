@@ -23,5 +23,5 @@ function JSONtoArray(response) {
     'color',
     'cur_channel',
     'status'
-  ]
+  ];
 }

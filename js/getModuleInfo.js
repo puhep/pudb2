@@ -19,4 +19,10 @@ function JSONtoArray(response) {
     dbJSON.adhesive,
     dbJSON.geometry
   ];
+
+  fieldArray = [
+    'si_thickness',
+    'adhesive',
+    'geometry'
+  ];
 }
