@@ -176,7 +176,7 @@
                     <td>{dbJSON.lastEdit}</td>
                   </tr>
                   <tr>
-                    <td>Odbject Type</td>
+                    <td>Object Type</td>
                     <td>Thermal Sensor</td>
                   </tr>
                   <tr>
