@@ -92,7 +92,7 @@
           if ($testType == "" || $testType == "Wing") {
             echo "<a href=\"test_geometry.php?id=$id\" target=\"_blank\"><img src=\"test_geometry.php?id=$id\" width=\"300\" height=\"300\"></a>";
           } else if ($testType == "LinGrad") {
-            echo "<a href=\"./php/linearGradPlot.php?id=$id\" target=\"_blank\"><img src=\"./php/linearGradPlot.php?id=$id\" width=\"300\" height=\"200\"></a>";
+            echo "<a href=\"./graphs/linearGradPlot.php?id=$id\" target=\"_blank\"><img src=\"./graphs/linearGradPlot.php?id=$id\" width=\"300\" height=\"200\"></a>";
           }
           echo "<h2>Notes</h2>";
           if($notes!="") {
