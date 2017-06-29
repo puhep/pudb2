@@ -111,7 +111,7 @@
           show_pictures("sheet",$id);
           if (file_exists("../phase_2/files/sheet/$id/ThicknessContour.csv")) {
             echo "<h2>Graphs</h2>"
-                ."<h4><a href=\"./php/sheetContour.php?id=$id\">Sheet Thickness Contour</a></h4>";
+                ."<h4><a href=\"./php/sheetContour.php?id=$id\" target=\"_blank\">Sheet Thickness Contour</a></h4>";
             echo "<div>
                     <object type=text/html data=\"http://www.physics.purdue.edu/cmsfpix////phase_2/php/sheetContour.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
                     </object>

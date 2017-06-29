@@ -6,14 +6,14 @@ function JSONtoArray(response) {
   dbJSON = JSON.parse(response);
 
   keyArray = [
-    "Name",
-    "Sensor Type",
-    "Current Channel"
+    "Color",
+    "Current Channel",
+    "Status"
   ];
 
   dbArray = [
-    dbJSON.name,
-    dbJSON.sensor_type,
-    dbJSON.cur_channel
+    dbJSON.color,
+    dbJSON.cur_channel,
+    dbJSON.status
   ];
 }

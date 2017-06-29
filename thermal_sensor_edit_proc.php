@@ -19,6 +19,16 @@ if ($_POST['notes'] != "") {
 $db -> query($sql);
 }
 
+  if ($_POST['color'] != "") {
+    $sql = "UPDATE thermal_sensor SET color=\"".$_POST['color']."\" WHERE id=$id";
+    $db->query($sql);
+  }
+
+  if ($_POST['status'] != "") {
+    $sql ="UPDATE thermal_sensor SET status=\"".$_POST['status']."\" WHERE id=$id";
+    $db->query($sql);
+  }
+
 if ($_POST['lastEdit'] != "") {
   $sql = "UPDATE thermal_sensor SET lastEdit=\"".$_POST['lastEdit']."\" WHERE id=$id";
   $db->query($sql);

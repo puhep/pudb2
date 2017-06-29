@@ -61,8 +61,8 @@
   /******************
   * Graph Setup
   ******************/
-  $graph = new Graph(1200, 1200);
-  $graph->SetScale('linlin', 0, 0, 0, 16);
+  $graph = new Graph(1400, 1000);
+  $graph->SetScale('linlin', 0, 0, 0, 0);
   $graph->SetColor('lightblue');
   $graph->SetMarginColor('#F9DAC6');
 

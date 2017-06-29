@@ -46,7 +46,6 @@
     </div>
 
     <script type="text/jsx;harmony=true">/** @jsx React.DOM */
-      var test;
       var id = 6;
       $.ajax({
         url: 'php/getSheetData.php?id=' + id,
@@ -109,7 +108,7 @@
                     <button onClick={this.edit} className="button-primary">Edit</button>
                   </td>
                 </tr>
-                </table>
+              </table>
             </div>
           );
         },
@@ -172,7 +171,6 @@
                 {this.state.comments.map(this.eachComment)}
               </table>
             </div>
-
           );
         },
       });

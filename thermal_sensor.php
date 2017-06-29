@@ -21,6 +21,12 @@
     <title><?php echo $name; ?> Summary</title>
   </head>
   <body>
+    <script src="./node_modules/jquery/dist/jquery.js" charset="utf-8"></script>
+    <script src="./js/getThermalSensorInfo.js" charset="utf-8"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.11.0/es6-shim.min.js"></script>
+    <script src="http://fb.me/react-with-addons-0.11.0.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.11.0.js"></script>
+
     <div id="wrapper">
       <header>
         <a href="index.php">
@@ -50,14 +56,7 @@
             }
           ?>
         </span>
-        <?php
-          echo
-            "<table border=1 cellpadding=5>".
-              "<tr><td>Object Type</td><td>Thermal Sensor</td></tr>".
-              "<tr><td>Sensor Type</td><td>".$data['sensor_type']."</td></tr>".
-              "<tr><td>Current Channel</td><td>".$data['cur_channel']."</td></tr>".
-            "</table><br>";
-        ?>
+        <div id="container"></div>
         <form method="get" action="thermal_sensor_edit.php">
           <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
           <input class="button" type="submit" value="Edit Part">
@@ -75,5 +74,131 @@
         <br>
       </main>
     </div>
+    <script type="text/jsx;harmony=true">/** @jsx React.DOM */
+      var id = <?php echo $id; ?>;
+      $.ajax({
+        url: 'php/getThermalSensorData.php?id=' + id,
+        success: react,
+      });
+      function react(response) {
+        JSONtoArray(response);
+        var localArray = dbArray;
+        var Comment = React.createClass({
+          getInitialState: function() {
+            return {editing: false, textVal: ''}
+          },
+          handleChange: function(evt) {
+            this.setState({textVal: evt.target.value});
+          },
+          edit: function() {
+            this.setState({editing: true});
+          },
+          save: function() {
+            var val = this.state.textVal;
+            this.props.updateCommentText(val, this.props.index);
+            var field = this.props.field;
+            var time = new Date();
+            var h = time.getHours();
+            var m = time.getMinutes();
+            var s = time.getSeconds();
+            var dd = time.getDate();
+            var mm = time.getMonth() + 1;
+            var yyyy = time.getFullYear();
+            if (dd<10) dd='0'+dd;
+            if (mm<10) mm='0'+mm;
+            time = mm+'-'+dd+'-'+yyyy+' '+h+':'+m+':'+s;
+            $(function() {
+              $.ajax({
+                url: './php/updatePart.php?id='+id+'&partType=thermal_sensor&field='+field+'&value='+val,
+              });
+              $.ajax({
+                url: './php/updatePart.php?id='+id+'&partType=thermal_sensor&field=lastEdit&value='+time,
+              })
+            });
+            this.setState({editing: false});
+          },
+          renderNormal: function() {
+            return (
+              <div className="commentContainer">
+                <table>
+                  <tr>
+                    <td>
+                      <div className="commentText">{this.props.children}</div>
+                    </td>
+                    <td>
+                      <button onClick={this.edit} className="button-primary">Edit</button>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            );
+          },
+          renderForm: function() {
+            return (
+              <div className="commentContainer">
+                <input placeholder={this.props.children} value={this.props.textVal} onChange={this.handleChange}></input>
+                <br/>
+                <button onClick={this.save} className="button-save">Save</button>
+              </div>
+            );
+          },
+          render: function() {
+            if (this.state.editing) {
+              return this.renderForm();
+            } else {
+              return this.renderNormal();
+            }
+          },
+        });
+
+        var Board = React.createClass({
+          getInitialState: function() {
+            return {
+              comments: localArray
+            }
+          },
+          updateComment: function(newText, i) {
+            var arr = this.state.comments;
+            arr[i] = newText;
+            this.setState({comments: arr});
+          },
+          eachComment: function(text, i) {
+            return (
+              <tr>
+                <td>
+                  {keyArray[i]}
+                </td>
+                <td>
+                  <Comment key={i} index={i} updateCommentText={this.updateComment}>
+                    {text}
+                  </Comment>
+                </td>
+              </tr>
+            );
+          },
+          render: function() {
+            return (
+              <div className="board">
+                <table>
+                  <tr>
+                    <td>Last Edit</td>
+                    <td>{dbJSON.lastEdit}</td>
+                  </tr>
+                  <tr>
+                    <td>Odbject Type</td>
+                    <td>Thermal Sensor</td>
+                  </tr>
+                  {this.state.comments.map(this.eachComment)}
+                </table>
+              </div>
+            );
+          },
+        });
+        React.renderComponent(
+          <Board />,
+          document.getElementById('container')
+        );
+      }
+    </script>
   </body>
 </html>
