@@ -10,13 +10,17 @@
   require_once("./jpgraph/src/jpgraph_date.php");
   require_once("database.php");
   $db = new Database();
-  $sheets = $db->db_query("SELECT thickness1, thickness2, thickness3, thickness4, dateCut FROM sheet WHERE ply=8");
+  $sheets = $db->db_query("SELECT avgThickness, thickness1, thickness2, thickness3, thickness4, dateCut FROM sheet WHERE ply=8");
 
   // Graph Data
   $dataY = array();
   $dataX = array();
   for ($i = 0; $i < sizeof($sheets); $i++) {
-    $dataY[$i] = (($sheets[$i]['thickness1'] + $sheets[$i]['thickness2'] + $sheets[$i]['thickness3'] + $sheets[$i]['thickness4']) / 4) * 1000; // Avevrage Thickness times 100 to put it in microns
+    if ($sheets[$i]['avgThickness'] == "") {
+      $dataY[$i] = (($sheets[$i]['thickness1'] + $sheets[$i]['thickness2'] + $sheets[$i]['thickness3'] + $sheets[$i]['thickness4']) / 4) * 1000; // Avevrage Thickness times 100 to put it in microns
+    } else {
+      $dataY[$i] = $sheets[$i]['avgThickness'] * 1000;
+    }
     $dataX[$i] = strtotime($sheets[$i]['dateCut']); // Convert YYYY-MM-DD to Unix Timeshamp
   }
 
@@ -55,7 +59,7 @@
 
   // Setup ticks
   $graph->xaxis->scale->SetTimeAlign(DAYADJ_1); // Marks are ar the start of every day
-  $graph->xaxis->scale->ticks->Set(60*60*24*1); // ticks once every week
+  $graph->xaxis->scale->ticks->Set(60*60*24*7); // ticks once every week
   $graph->xaxis->scale->SetDateFormat('m-d-Y'); //MM-DD-YYYY format
 
 

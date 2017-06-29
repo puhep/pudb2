@@ -9,20 +9,28 @@
   require_once("./jpgraph/src/jpgraph_date.php");
   require_once("database.php");
   $db = new Database();
-  $sheets3 = $db->db_query("SELECT thickness1, thickness2, thickness3, thickness4, dateCut FROM sheet WHERE ply=3");
-  $sheets8 = $db->db_query("SELECT thickness1, thickness2, thickness3, thickness4, dateCut FROM sheet WHERE ply=8");
+  $sheets3 = $db->db_query("SELECT avgThickness, thickness1, thickness2, thickness3, thickness4, dateCut FROM sheet WHERE ply=3");
+  $sheets8 = $db->db_query("SELECT avgThickness, thickness1, thickness2, thickness3, thickness4, dateCut FROM sheet WHERE ply=8");
 
   // Graph Data
   $dataY3 = array();
   $dataX3 = array();
   for ($i = 0; $i < sizeof($sheets3); $i++) {
-    $dataY3[$i] = (($sheets3[$i]['thickness1'] + $sheets3[$i]['thickness2'] + $sheets3[$i]['thickness3'] + $sheets3[$i]['thickness4']) / 4) * 1000; // Avevrage Thickness times 100 to put it in microns
+    if ($sheets3[$i]['avgThickness'] == "") {
+      $dataY3[$i] = (($sheets3[$i]['thickness1'] + $sheets3[$i]['thickness2'] + $sheets3[$i]['thickness3'] + $sheets3[$i]['thickness4']) / 4) * 1000; // Avevrage Thickness times 100 to put it in microns
+    } else {
+      $dataY3[$i] = $sheets3[$i]['avgThickness'] * 1000;
+    }
     $dataX3[$i] = strtotime($sheets3[$i]['dateCut']); // Convert YYYY-MM-DD to Unix Timeshamp
   }
   $dataY8 = array();
   $dataX8 = array();
   for ($i = 0; $i < sizeof($sheets8); $i++){
-    $dataY8[$i] = (($sheets8[$i]['thickness1'] + $sheets8[$i]['thickness2'] + $sheets8[$i]['thickness3'] + $sheets8[$i]['thickness4']) / 4) * 1000; // Avevrage Thickness times 100 to put it in microns
+    if ($sheets8[$i]['avgThickness'] == null) {
+      $dataY8[$i] = (($sheets8[$i]['thickness1'] + $sheets8[$i]['thickness2'] + $sheets8[$i]['thickness3'] + $sheets8[$i]['thickness4']) / 4) * 1000; // Avevrage Thickness times 100 to put it in microns
+    } else {
+      $dataY8[$i] = $sheets8[$i]['avgThickness'] * 1000;
+    }
     $dataX8[$i] = strtotime($sheets8[$i]['dateCut']); // Convert YYYY-MM-DD to Unix Timeshamp
   }
 
