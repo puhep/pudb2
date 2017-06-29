@@ -125,9 +125,24 @@
             );
           },
           renderForm: function() {
+            var type;
+            var step = '0.0001';
+            var min  = '0';
+            switch (this.props.index) {
+              case 0:
+              case 2:
+                type = 'text';
+                break;
+              case 1:
+                type = 'number';
+                step = '1';
+                break;
+              default:
+                type = 'text';
+            }
             return (
               <div className="commentContainer">
-                <input placeholder={this.props.children} value={this.props.textVal} onChange={this.handleChange}></input>
+                <input placeholder={this.props.children} value={this.props.textVal} onChange={this.handleChange} type={type} step={step} min={min}></input>
                 <br/>
                 <button onClick={this.save} className="button-save">Save</button>
               </div>
@@ -176,7 +191,7 @@
                     <td>{dbJSON.lastEdit}</td>
                   </tr>
                   <tr>
-                    <td>Odbject Type</td>
+                    <td>Object Type</td>
                     <td>Thermal Sensor</td>
                   </tr>
                   <tr>
