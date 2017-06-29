@@ -79,12 +79,9 @@
       $.ajax({
         url: 'php/getThermalSensorData.php?id=' + id,
         success: react,
-      }).fail(function() {
-        console.log('failed');
       });
       function react(response) {
         JSONtoArray(response);
-        console.log(dbArray);
         var localArray = dbArray;
         var Comment = React.createClass({
           getInitialState: function() {
@@ -92,7 +89,6 @@
           },
           handleChange: function(evt) {
             this.setState({textVal: evt.target.value});
-            console.log(this.state.textVal);
           },
           edit: function() {
             this.setState({editing: true});
@@ -114,9 +110,6 @@
             $(function() {
               $.ajax({
                 url: './php/updatePart.php?id='+id+'&partType=thermal_sensor&field='+field+'&value='+val,
-                success: function() {
-                  console.log('part updated');
-                },
               });
               $.ajax({
                 url: './php/updatePart.php?id='+id+'&partType=thermal_sensor&field=lastEdit&value='+time,
@@ -165,7 +158,6 @@
             }
           },
           updateComment: function(newText, i) {
-            console.log('Updating Comment');
             var arr = this.state.comments;
             arr[i] = newText;
             this.setState({comments: arr});
