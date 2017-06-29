@@ -24,4 +24,13 @@ function JSONtoArray(response) {
     dbJSON.wings_ply,
     dbJSON.airex_stack
   ];
+
+  fieldArray = [
+    'mass',
+    'pipe_material',
+    'pipe_wall_thickness',
+    'foam_type',
+    'wings_ply',
+    'airex_stack'
+  ];
 }

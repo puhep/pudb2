@@ -26,6 +26,7 @@
 
 <head>
   <title>Sheet Contour</title>
+  <script src="../node_modules/jquery/dist/jquery.js" charset="utf-8"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
@@ -69,5 +70,33 @@
     };
 
     Plotly.newPlot("contourPlot", data, layout);
+
+    <?php
+      $sum = $z[0];
+      $min = $z[0];
+      $max = $z[0];
+      for ($i = 1; $i < sizeof($z)-1; $i++) {
+        $sum += $z[$i];
+        if ($min > $z[$i]) {
+          $min = $z[$i];
+        } else if ($max < $z[$i]) {
+          $max = $z[$i];
+        }
+      }
+      $avg = $sum / ($i-1);
+    ?>
+    var id = <?php echo $id; ?>;
+    var avgThick = <?php echo $avg; ?>;
+    var minThick = <?php echo $min; ?>;
+    var maxThick = <?php echo $max; ?>;
+    $.ajax({
+      url: './updatePart.php?id='+id+'&partType=sheet&field=avgThickness&value='+avgThick,
+    });
+    $.ajax({
+      url: './updatePart.php?id='+id+'&partType=sheet&field=minThickness&value='+minThick,
+    });
+    $.ajax({
+      url: './updatePart.php?id='+id+'&partType=sheet&field=maxThickness&value='+maxThick,
+    });
   </script>
 </body>

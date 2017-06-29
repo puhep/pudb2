@@ -63,7 +63,7 @@
             echo "<h2>Graphs</h2>"
                 ."<h4><a href=\"./php/sheetContour.php?id=$id\" target=\"_blank\">Sheet Thickness Contour</a></h4>";
             echo "<div>
-                    <object type=text/html data=\"http://www.physics.purdue.edu/cmsfpix////phase_2/php/sheetContour.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
+                    <object type=text/html data=\"php/sheetContour.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
                     </object>
                   </div>";
           }
@@ -91,6 +91,9 @@
           },
           edit: function() {
             this.setState({editing: true});
+          },
+          cancel: function() {
+            this.setState({editing: false});
           },
           save: function() {
             var val = this.state.textVal;
@@ -208,6 +211,7 @@
                 <input placeholder={this.props.children} value={this.props.textVal} onChange={this.handleChange} type={type} step={step} min={min}></input>
                 <br/>
                 <button onClick={this.save} className="button-save">Save</button>
+                <button onClick={this.cancel} className="button-cancel">Cancel</button>
               </div>
             );
           },
