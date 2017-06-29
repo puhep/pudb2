@@ -105,15 +105,15 @@
           if (file_exists("../phase_2/files/test/$id/tempVsTime.csv")){
             echo "<h2>Graphs</h2>"
                 ."<h4>Temperature over Time</h4>";
-            echo "<a href=\"tempVsTime.php?id=$id\" target=\"blank\"><img src=\"tempVsTime.php?id=$id\" width=\"300\" height=\"300\" ></a>";
+            echo "<a href=\"./graphs/tempVsTime.php?id=$id\" target=\"blank\"><img src=\"./graphs/tempVsTime.php?id=$id\" width=\"300\" height=\"300\" ></a>";
             $filePath = "../phase_2/files/test/$id/dataAnalysis.csv";
             $file = fopen($filePath, "r");
             $line1 = fgetcsv($file);
             $line2 = fgetcsv($file);
             if ($line2 != null) {
-              echo "<h4><a href=\"php/avgTemp.php?id=$id\" target=\"_blank\">Averaged Temperatures</a></h4>";
+              echo "<h4><a href=\"./graphs/avgTemp.php?id=$id\" target=\"_blank\">Averaged Temperatures</a></h4>";
               echo "<div>
-                      <object type=text/html data=\"php/avgTemp.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
+                      <object type=text/html data=\"./graphs/avgTemp.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
                       </object>
                     </div>";
             }
