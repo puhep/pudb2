@@ -18,4 +18,10 @@ function JSONtoArray(response) {
     dbJSON.cur_channel,
     dbJSON.status
   ];
+
+  fieldArray = [
+    'color',
+    'cur_channel',
+    'status'
+  ]
 }
