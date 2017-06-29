@@ -1,9 +1,9 @@
 <?php
   ### display the geometry of a test's sensors using a plot
-  require_once("./jpgraph/src/jpgraph.php");
-  require_once("./jpgraph/src/jpgraph_scatter.php");
-  require_once("database.php");
-  require_once("functions.php");
+  require_once("../jpgraph/src/jpgraph.php");
+  require_once("../jpgraph/src/jpgraph_scatter.php");
+  require_once("../database.php");
+  require_once("../functions.php");
   $db = new Database();
   $id=$_GET['id'];
 
