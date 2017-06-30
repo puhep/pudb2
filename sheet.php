@@ -261,6 +261,10 @@
                     <td>Object Type</td>
                     <td>Sheet</td>
                   </tr>
+                  <tr>
+                    <td>Name</td>
+                    <td>{dbJSON.name}</td>
+                  </tr>
                   {this.state.comments.map(this.eachComment)}
                 </table>
               </div>
