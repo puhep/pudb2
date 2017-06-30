@@ -80,6 +80,9 @@
         edit: function() {
           this.setState({editing: true});
         },
+        cancel: function() {
+          this.setState({editing: false});
+        },
         save: function() {
           var val = this.state.textVal;
           this.props.updateCommentText(val, this.props.index);
@@ -141,6 +144,7 @@
               <input placeholder={this.props.children} value={this.props.textVal} onChange={this.handleChange} type={type} step={step} min={min}></input>
               <br/>
               <button onClick={this.save} className="button-save">Save</button>
+              <button onClick={this.cancel} className="button-cancel">Cancel</button>
             </div>
           );
         },
