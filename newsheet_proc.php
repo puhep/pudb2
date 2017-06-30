@@ -138,6 +138,22 @@
       $sql = "UPDATE sheet SET user_remove=\"".$_POST['user_remove']."\" WHERE id=$id";
       $db -> query($sql);
   }
+  if ($_POST['avgThickness'] != "") {
+    $sql = "UPDATE sheet SET avgThickness=\"".$_POST['avgThickness']."\" WHERE id=$id";
+    $db->query($sql);
+  }
+  if ($_POST['minThickness'] != "") {
+    $sql = "UPDATE sheet SET minThickness=\"".$_POST['minThickness']."\" WHERE id=$id";
+    $db->query($sql);
+  }
+  if ($_POST['maxThickness'] != "") {
+    $sql = "UPDATE sheet SET maxThickness=\"".$_POST['maxThickness']."\" WHERE id=$id";
+    $db->query($sql);
+  }
+  if ($_POST['checkedLeaks'] != "") {
+    $sql = "UPDATE sheet SET checkedLeaks=\"".$_POST['checkedLeaks']."\" WHERE id=$id";
+    $db->query($sql);
+  }
   if ($_POST['thickness1'] != ""){
       $sql = "UPDATE sheet SET thickness1=".$_POST['thickness1']." WHERE id=$id";
       $db -> query($sql);
@@ -171,12 +187,16 @@
   }
 
   ### if the name of the file is not blank (i.e. a file has been slotted to upload), attempt to upload
-  if (count($_FILES['files']['name'])) {
+  if ($_FILES['files']['name'][0] != "") {
       /*echo "file found?<br>";
       print_r($_FILES['files']);
       echo "<br><br>";
       echo count($_FILES['files']['name']);*/
       add_file("sheet",$id,$_FILES['files']);
+  }
+
+  if ($_FILES['thicknessContour']['name'] != "") {
+    addSheetThicknessContour($id, $_FILES['thicknessContour']);
   }
 
   ### redirect to the summary page with the new information
