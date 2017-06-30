@@ -1,16 +1,16 @@
 <?php
 /***
   *
-  * Graphs the average thickness of sheets of ply 3 with respect to date
+  * Graphs the average thickness of sheets of ply 8 with respect to date
   *
   */
 
-  require_once("./jpgraph/src/jpgraph.php");
-  require_once("./jpgraph/src/jpgraph_scatter.php");
-  require_once("./jpgraph/src/jpgraph_date.php");
-  require_once("database.php");
+  require_once("../jpgraph/src/jpgraph.php");
+  require_once("../jpgraph/src/jpgraph_scatter.php");
+  require_once("../jpgraph/src/jpgraph_date.php");
+  require_once("../database.php");
   $db = new Database();
-  $sheets = $db->db_query("SELECT avgThickness, thickness1, thickness2, thickness3, thickness4, dateCut FROM sheet WHERE ply=3");
+  $sheets = $db->db_query("SELECT avgThickness, thickness1, thickness2, thickness3, thickness4, dateCut FROM sheet WHERE ply=8");
 
   // Graph Data
   $dataY = array();
@@ -38,7 +38,7 @@
   $high += 250;
 
   $max = $min = $dataX[0];
-  for ($i = 0; $i < sizeof($dataX); $i++) {
+  for ($i = 1; $i < sizeof($dataX); $i++) {
     if ($min > $dataX[$i]) {
       $min = $dataX[$i];
     } elseif ($max < $dataX[$i]) {
@@ -93,7 +93,7 @@
   $scatter = new ScatterPlot($dataY, $dataX);
   $scatter->mark->SetType(MARK_FILLEDCIRCLE);
   $scatter->mark->SetSize(14);
-  $scatter->mark->SetFillColor(red);
+  $scatter->mark->SetFillColor(blue);
 
   $graph->Add($scatter);
   $graph->Stroke();

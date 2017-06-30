@@ -4,10 +4,10 @@
   * Graphs the average thickness of sheets3 of both 3 and 8 ply with respect to date
   *
   */
-  require_once("./jpgraph/src/jpgraph.php");
-  require_once("./jpgraph/src/jpgraph_scatter.php");
-  require_once("./jpgraph/src/jpgraph_date.php");
-  require_once("database.php");
+  require_once("../jpgraph/src/jpgraph.php");
+  require_once("../jpgraph/src/jpgraph_scatter.php");
+  require_once("../jpgraph/src/jpgraph_date.php");
+  require_once("../database.php");
   $db = new Database();
   $sheets3 = $db->db_query("SELECT avgThickness, thickness1, thickness2, thickness3, thickness4, dateCut FROM sheet WHERE ply=3");
   $sheets8 = $db->db_query("SELECT avgThickness, thickness1, thickness2, thickness3, thickness4, dateCut FROM sheet WHERE ply=8");
