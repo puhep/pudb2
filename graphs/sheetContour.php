@@ -7,6 +7,7 @@
   /*******************
   * READ FILE
   *******************/
+  $db = new Database();
   $id = $_GET['id'];
   $filePath = "../../phase_2/files/sheet/$id/ThicknessContour.csv";
   $file = fopen($filePath, "r") or die("<h1>Some thing went wrong.</h1><h2>Could not find file.</h2>");
@@ -89,14 +90,23 @@
     var avgThick = <?php echo $avg; ?>;
     var minThick = <?php echo $min; ?>;
     var maxThick = <?php echo $max; ?>;
-    $.ajax({
-      url: '../php/updatePart.php?id='+id+'&partType=sheet&field=avgThickness&value='+avgThick,
-    });
-    $.ajax({
-      url: '../php/updatePart.php?id='+id+'&partType=sheet&field=minThickness&value='+minThick,
-    });
-    $.ajax({
-      url: '../php/updatePart.php?id='+id+'&partType=sheet&field=maxThickness&value='+maxThick,
-    });
+    <?php
+      $sql = "SELECT avgThickness FROM sheet WHERE id=$id";
+      $data = $db->db_query($sql);
+      $data = $data[0];
+      $avgThick = $data['avgThickness'];
+    ?>
+    var avg = <?php echo $avgThick; ?>;
+    if (avg == null) {
+      $.ajax({
+        url: '../php/updatePart.php?id='+id+'&partType=sheet&field=avgThickness&value='+avgThick,
+      });
+      $.ajax({
+        url: '../php/updatePart.php?id='+id+'&partType=sheet&field=minThickness&value='+minThick,
+      });
+      $.ajax({
+        url: '../php/updatePart.php?id='+id+'&partType=sheet&field=maxThickness&value='+maxThick,
+      });
+    }
   </script>
 </body>
