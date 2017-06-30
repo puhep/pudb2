@@ -11,16 +11,17 @@
   $id = $_GET['id'];
   $filePath = "../../phase_2/files/sheet/$id/ThicknessContour.csv";
   $file = fopen($filePath, "r") or die("<h1>Some thing went wrong.</h1><h2>Could not find file.</h2>");
-  $line1 = fgetcsv($file);
   $x = array();
   $y = array();
   $z = array();
   $i = 0;
   while (!feof($file)) {
     $temp = fgetcsv($file);
-    $x[$i]   = (double) $temp[0];
-    $y[$i]   = (double) $temp[1];
-    $z[$i++] = (double) $temp[2];
+    if ((double)$temp[0] > 15 && (double)$temp[0] < 300 && (double)$temp[1] > 15 && (double)$temp[1] < 300) {
+      $x[$i]   = (double) $temp[0];
+      $y[$i]   = (double) $temp[1];
+      $z[$i++] = (double) $temp[2];
+    }
   }
   fclose($file); // save memory, close file
 ?>
@@ -84,7 +85,7 @@
           $max = $z[$i];
         }
       }
-      $avg = $sum / ($i-1);
+      $avg = $sum / $i;
     ?>
     var id = <?php echo $id; ?>;
     var avgThick = <?php echo $avg; ?>;
@@ -97,7 +98,7 @@
       $avgThick = $data['avgThickness'];
     ?>
     var avg = <?php echo $avgThick; ?>;
-    if (avg == null) {
+    if (avg != "") {
       $.ajax({
         url: '../php/updatePart.php?id='+id+'&partType=sheet&field=avgThickness&value='+avgThick,
       });
