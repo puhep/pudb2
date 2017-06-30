@@ -32,6 +32,7 @@
   $sensor = array_fill(0, $numSensors, array_fill(0,$noOfLines-1,array_fill(0, 2, 0)));
   $x = 1;
   $y = 0;
+  $max = 0;
   while (!feof($file)) {
     $temp = fgetcsv($file);
     for ($i = 1; $i < $numSensors*2; $i += 2) {
@@ -39,14 +40,18 @@
       $entry = $temp[0]-1;
       $sensor[$sensorsNum][$entry][$x] = $temp[$i];
       $sensor[$sensorsNum][$entry][$y] = $temp[$i+1];
+      if ($temp[$i] > $max) {
+        $max = $temp[$i];
+      }
     }
   }
+  $max += 10;
   fclose($file);  // Done With file
 
   // Setup Graph
   $graph = new Graph(1400, 1000);
-  $graph->SetScale('linlin', 0, 60,0,0);
-  $graph->SetColor('lightblue');
+  $graph->SetScale('linlin', 0, $max,0,0);
+//  $graph->SetColor('lightblue');
   $graph->SetMarginColor('#F9DAC6');
 
   // Setup Title
