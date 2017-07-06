@@ -28,7 +28,6 @@
   #echo file_get_contents("test.txt");
   $filePath = "../../phase_2/files/test/$id/tempVsTime.csv";
   $file = fopen($filePath,"r") or die($filePath);
-//  $file = fopen("CFthermalconductivity_test1.csv","r") or die("Unable to open file!");
   $line1 = fgetcsv($file);
   $numSensors = (count($line1)-1)/2;
   $sensorName = array();
@@ -132,18 +131,17 @@
   /*****************
   * Some analysis
   *****************/
-  $filePath = "../phase_2/files/test/$id/dataAnalysis.csv";
-  $editFile = false;  //  This is used later to decide if we need to edit the file
-  if (!file_exists($filePath)) {  // If file doesn't exists, create it and add some lines
-    $file = fopen($filePath, "w");
-    chmod($filePath,0777);
-    fwrite($file, "Sensor,");
-    fwrite($file, "avgTemp,");
-    fwrite($file, "avgTime,");
-    fwrite($file, "size\n");
-    $editFile = true;
-    fclose($file);  // Close file
-  }
+  $filePath = "../../phase_2/files/test/$id/dataAnalysis.csv";
+  // Create a new file everytime the page is loaded. Incase of change
+  // Not the right thing to do but it works.
+  $file = fopen($filePath, "w");
+  chmod($filePath,0777);
+  fwrite($file, "Sensor,");
+  fwrite($file, "avgTemp,");
+  fwrite($file, "avgTime,");
+  fwrite($file, "size\n");
+  fclose($file);  // Close file
+  // }
   $size = array();
   for ($z = 0; $z <= $sensorsNum; $z++) {
     $startFlatX = array();
@@ -222,16 +220,21 @@
     /**********************************
     * CREATE FILE FOR MORE ANALYSIS
     **********************************/
-    if ($editFile) { // If file does not exists
-      $file = fopen($filePath, "a");
-      $channel = substr($sensorName[$z], 0, 5);
-      for ($q = 0; $q < sizeof($avgX); $q++) {
-        $line = $channel.",".$avgX[$q].",".$avgY[$q].",".$size[$q]."\n";
-        fwrite($file, $line);
-      } // end of for loop; addes lines to end of file
-      fclose($file);  //  Close file
-    } // end of if
+    $file = fopen($filePath, "a");
+    for ($q = 0; $q < sizeof($avgX); $q++) {
+      $channel = substr($sensorName[$q], 0, 5);
+      $temp    = substr($sensorName[$q], 2, 3);
+      for ($j = 0; $j < sizeof($result); $j++) {
+        if ($temp == $result[$j]['sensorChannel']) {
+          $channel = $result[$j]['sensorName']." - ".$channel;
+        }
+      }
+      $line = $channel.",".$avgX[$q].",".$avgY[$q].",".$size[$q]."\n";
+      fwrite($file, $line);
+    } // end of for loop; addes lines to end of file
+    fclose($file);  //  Close file
   } // end of for loop; goes thur all sensors
 
   $graph->Stroke(); //  Show the graph
+
 ?>
