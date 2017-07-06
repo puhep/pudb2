@@ -1,6 +1,5 @@
 <?php
   require_once("../database.php");
-  require_once("../functions.php");
   $id = $_GET['id'];
   $filePath = "../../phase_2/files/test/$id/dataAnalysis.csv";
   $file = fopen($filePath, "r");
