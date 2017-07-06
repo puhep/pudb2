@@ -26,17 +26,17 @@
       </nav>
       <main>
         <h2>Sheet Thickness Vs Date of Curing</h2>
-        <h4>Both 3 and 8 Ply</h4>
+        <h4><a href="./graphs/sheetThicknessVsDate.php" target="_blank">Both 3 and 8 Ply</a></h4>
         <div>
           <object type=text/html data="./graphs/sheetThicknessVsDate.php" width="800px" height="470px" style="overflow:auto;">
           </object>
         </div>
-        <h4>3 Ply Sheets</h4>
+        <h4><a href="./graphs/sheetThicknessVsDate3.php" target="_blank">3 Ply Sheets</a></h4>
         <div>
           <object type=text/html data="./graphs/sheetThicknessVsDate3.php" width="800px" height="470px" style="overflow:auto;">
           </object>
         </div>
-        <h4>8 Ply Sheets</h4>
+        <h4><a href="./graphs/sheetThicknessVsDate8.php" target="_blank">8 Ply Sheets</a></h4>
         <div>
           <object type=text/html data="./graphs/sheetThicknessVsDate8.php" width="800px" height="470px" style="overflow:auto;">
           </object>

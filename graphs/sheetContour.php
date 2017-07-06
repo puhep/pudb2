@@ -87,18 +87,23 @@
       }
       $avg = $sum / $i;
     ?>
+
     var id = <?php echo $id; ?>;
     var avgThick = <?php echo $avg; ?>;
     var minThick = <?php echo $min; ?>;
     var maxThick = <?php echo $max; ?>;
+    var avg = null;
     <?php
       $sql = "SELECT avgThickness FROM sheet WHERE id=$id";
       $data = $db->db_query($sql);
       $data = $data[0];
       $avgThick = $data['avgThickness'];
+      if ($avgThick != "") {
+        echo "avg = ".$avgThick.";";
+      }
     ?>
-    var avg = <?php echo $avgThick; ?>;
-    if (avg != "") {
+    
+    if (avg == null) {
       $.ajax({
         url: '../php/updatePart.php?id='+id+'&partType=sheet&field=avgThickness&value='+avgThick,
       });

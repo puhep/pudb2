@@ -6,7 +6,6 @@ function JSONtoArray(response) {
   dbJSON = JSON.parse(response);
 
   keyArray = [
-    "Name",
     "Mass",
     "Pipe Material",
     "Pipe Wall Thickness",
@@ -16,8 +15,7 @@ function JSONtoArray(response) {
   ];
 
   dbArray = [
-    dbJSON.name;
-    dbJSON.mass;
+    dbJSON.mass,
     dbJSON.pipe_material,
     dbJSON.pipe_wall_thickness,
     dbJSON.foam_type,
