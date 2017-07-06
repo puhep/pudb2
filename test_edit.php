@@ -91,14 +91,14 @@
     	      <div id="position">
               <br><br>
               <label for="xpos">X Position (cm): </label>
-              <input type='number' name='xpos' min='0' max='15' step='0.001' style='float:right'>
+              <input type="number" name="xpos" min="0" max="15" step="0.001" style="float:right">
               <br><br>
               <label for="ypos">Y Position (cm): </label>
-              <input type='number' name='ypos' min='0' max='15' step='0.001' style='float:right'>
+              <input type="number" name="ypos" min="0" max="15" step="0.001" style="float:right">
     	      </div>
             <br>
             <label for="channel">Channel: </label>
-            <input type="number" name="channel" min='0' step='1' id="channel" style="float:right">
+            <input type="number" name="channel" min="100" step="1" id="channel" style="float:right">
             <br><br>
             <div style="font-size: .7em; font-style: italic;">
               <p>Note: If the channel is blank, the default channel will be used.</p>
