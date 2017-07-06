@@ -131,9 +131,9 @@
   /*****************
   * Some analysis
   *****************/
-  $filePath = "../../phase_2/files/test/$id/dataAnalysis.csv";
   // Create a new file everytime the page is loaded. Incase of change
   // Not the right thing to do but it works.
+  $filePath = "../../phase_2/files/test/$id/dataAnalysis.csv";
   $file = fopen($filePath, "w");
   chmod($filePath,0777);
   fwrite($file, "Sensor,");
@@ -141,7 +141,6 @@
   fwrite($file, "avgTime,");
   fwrite($file, "size\n");
   fclose($file);  // Close file
-  // }
   $size = array();
   for ($z = 0; $z <= $sensorsNum; $z++) {
     $startFlatX = array();
@@ -196,12 +195,6 @@
         $endFlatY[$k++] = $yVal;
       }
     }
-    // echo "X:<br>";
-    // print_r($avgX);
-    // echo "<br>Size :: ".sizeof($avgX)."<br>";
-    // echo "Y:<br>";
-    // print_r($avgY);
-    // echo "<br>Size :: ".sizeof($avgY)."<br>";
     if (sizeof($startFlatX) > 1) {
       $flatStart = new ScatterPlot($startFlatX, $startFlatY); // Start of flat regions
       $flatStart->mark->SetType(MARK_FLASH);
