@@ -100,7 +100,7 @@ function show_sensors($data, $edit=0, $type="sensor"){
             if($type=="sensor"){
                 echo "<td>";
                 if($row['sensorChannel'] == "" and $row['curChannel'] != ""){ $row['sensorChannel'] = $row['curChannel']." (Default)"; }
-                echo "<input placeholder=\"".$row['sensorChannel']."\" name=\"channel[$i]\" type=\"number\" >";
+                echo "<input placeholder=\"".$row['sensorChannel']."\" name=\"channel[$i]\" type=\"number\" min=\"100\" step=\"1\" >";
                 echo "</td>";
                 echo "</tr>"; }
             if($type=="sensor"){ $nameType = "thermal"; }
