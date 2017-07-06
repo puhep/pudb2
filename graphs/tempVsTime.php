@@ -12,8 +12,17 @@
   require_once("../jpgraph/src/jpgraph.php");
   require_once("../jpgraph/src/jpgraph_scatter.php");
   require_once("../database.php");
-
+  $db = new Database();
   $id=$_GET['id'];
+
+  // Query the database to get the sensor names and channel
+  $sql = "SELECT s.name as sensorName, st.channel as sensorChannel
+            FROM test t
+            LEFT JOIN sensor_test st ON st.test_id=t.id
+            LEFT JOIN thermal_sensor s ON st.thermal_id=s.id
+            WHERE t.id=".$id;
+  $result = $db->db_query($sql);
+
   ### display the temperature versus time for all sensors using the test file
 
   #echo file_get_contents("test.txt");
@@ -97,10 +106,16 @@
     $scatter[$i] = new ScatterPlot($dataY, $dataX);
     $scatter[$i]->mark->SetType(MARK_FILLEDCIRCLE);
     $scatter[$i]->mark->SetSize(2);
-    $color = sprintf('#%06X', mt_rand(0, 0xFFFFFF));
+    $color = sprintf('#%06X', mt_rand(0, 0xFFFFFF));  // Random Color - HEX
     $scatter[$i]->mark->SetFillColor($color);
     $scatter[$i]->mark->SetColor($color);
     $channel = substr($sensorName[$i], 0, 5);
+    $temp    = substr($sensorName[$i], 2, 3);
+    for ($j = 0; $j < sizeof($result); $j++) {
+      if ($temp == $result[$j]['sensorChannel']) {
+        $channel = $result[$j]['sensorName']." - ".$channel;
+      }
+    }
     $scatter[$i]->SetLegend($channel);
     // echo $sensorsName[$i]."<br>";
     // Add the scatterplot to the graph
