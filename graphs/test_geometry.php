@@ -49,7 +49,7 @@
   $g->SetMarginColor('#F9DAC6');
 
   // Setup Title
-  $g->title->Set("Test ".$data[0]['tname']." Geometry");
+  $g->title->Set("Geometry");
   $g->title->SetFont(FF_FONT2,FS_BOLD);
   $g->title->SetColor("#191919");
 

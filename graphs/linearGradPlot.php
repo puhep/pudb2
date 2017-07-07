@@ -13,7 +13,7 @@
 
   $i=0;
   foreach($sensorData as $line){
-    if($line['sensorXPos'] !='' and $line['sensorYPos'] !=''){
+    if($line['sensorXPos'] != '' and $line['sensorYPos'] != ''){
       $sx[$i]=$line['sensorXPos'];
       $sy[$i]=$line['sensorYPos'];
       $sname[$i]=$line['sensorName'];
@@ -22,7 +22,7 @@
   }
   $i=0;
   foreach($heaterData as $line){
-    if($line['heaterXPos'] !='' and $line['heaterYPos'] !=''){
+    if($line['heaterXPos'] != '' and $line['heaterYPos'] != ''){
       $heater=1;
       $hx[$i]=$line['heaterXPos'];
       $hy[$i]=$line['heaterYPos'];
@@ -32,7 +32,7 @@
   }
   $i=0;
   foreach($moduleData as $line){
-    if($line['moduleXPos'] !='' and $line['moduleYPos'] !=''){
+    if($line['moduleXPos'] != '' and $line['moduleYPos'] != ''){
       $module=1;
       $mx[$i]=$line['moduleXPos'];
       $my[$i]=$line['moduleYPos'];
@@ -49,7 +49,7 @@
   $g->SetMarginColor('#F9DAC6');
 
   // Setup Title
-  $g->title->Set("Test ".$data[0]['tname']." Geometry");
+  $g->title->Set("Geometry");
   $g->title->SetFont(FF_FONT2,FS_BOLD);
   $g->title->SetColor("#191919");
 
