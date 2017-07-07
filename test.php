@@ -21,20 +21,6 @@
   $notes=$db->Record['notetext'];
   $showDataAnalysis = false;
   $filePath = "../phase_2/files/test/$id/dataAnalysis.csv";
-  // if (file_exists($filePath)) {
-  //   echo "hello"
-  // }
-  //   $showDataAnalysis = false;
-  //   echo "world";
-  // } else {
-  //   $file = fopen($filePath);
-  //   $i = 0;
-  //   while (!feof($file)) {
-  //     $temp = fgetcsv($file);
-  //     $i++;
-  //   }
-  //   echo "<h2>Hello</h2>";
-  // }
 ?>
 <html>
   <head>
@@ -107,8 +93,11 @@
           show_pictures("test",$id);
           if (file_exists("../phase_2/files/test/$id/tempVsTime.csv")){
             echo "<h2>Graphs</h2>"
-                ."<h4>Temperature over Time</h4>";
-            echo "<a href=\"./graphs/tempVsTime.php?id=$id\" target=\"blank\"><img src=\"./graphs/tempVsTime.php?id=$id\" width=\"300\" height=\"300\" ></a>";
+                ."<h4><a href=\"./graphs/tempVsTime.php?id=$id\" target=\"_blank\">Temperature over Time</a></h4>";
+                echo "<div>
+                        <object type=text/html data=\"./graphs/tempVsTime.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
+                        </object>
+                      </div>";
             $filePath = "../phase_2/files/test/$id/dataAnalysis.csv";
             $file = fopen($filePath, "r");
             $line1 = fgetcsv($file);
