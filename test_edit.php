@@ -191,6 +191,7 @@
               <option value=""></option>
               <option value="Wing">Airex Wings</option>
               <option value="LinGrad">Linear Gradient</option>
+              <option value="AlumCase">Aluminum Casing</option>
             </select>
           </div>
           <h2>Object Data</h2>
