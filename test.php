@@ -89,10 +89,13 @@
           echo "<br>";
           show_sensors($moduleData,0,"module");
           echo "<br>";
+          echo "<h2>Geometry</h2>";
           if ($testType == "" || $testType == "Wing") {
             echo "<a href=\"./graphs/test_geometry.php?id=$id\" target=\"_blank\"><img src=\"./graphs/test_geometry.php?id=$id\" width=\"300\" height=\"300\"></a>";
           } else if ($testType == "LinGrad") {
             echo "<a href=\"./graphs/linearGradPlot.php?id=$id\" target=\"_blank\"><img src=\"./graphs/linearGradPlot.php?id=$id\" width=\"300\" height=\"200\"></a>";
+          } else if ($testType == "AlumCase") {
+            echo "<a href=\"./graphs/aluminumCasingPlot.php?id=$id\" target=\"_blank\"><img src=\"./graphs/aluminumCasingPlot.php?id=$id\" width=\"300\" height=\"200\"></a>";
           }
           echo "<h2>Notes</h2>";
           if($notes!="") {
