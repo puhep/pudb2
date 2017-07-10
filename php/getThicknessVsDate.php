@@ -47,5 +47,4 @@
   $return->name8 = $dataName8;
   $json = json_encode($return);
   echo $json;
-
 ?>

@@ -6,13 +6,12 @@
 <body>
   <div id="thicknessPlot"></div>
   <script type="text/javascript">
-    var id = <?php echo $_GET['id']; ?>
     $.ajax({
-      url: '../php/getThicknessVsDate.php?id=' + id,
+      url: '../php/getThicknessVsDate.php',
       success: createPlot
     });
     function createPlot(response) {
-      graphData = JSON.prase(response);
+      graphData = JSON.parse(response);
       var ply3 = {
         x: graphData.x3,
         y: graphData.y3,
