@@ -31,16 +31,6 @@
           <object type=text/html data="./graphs/sheetThicknessVsDate.php" width="800px" height="470px" style="overflow:auto;">
           </object>
         </div>
-        <h4><a href="./graphs/sheetThicknessVsDate3.php" target="_blank">3 Ply Sheets</a></h4>
-        <div>
-          <object type=text/html data="./graphs/sheetThicknessVsDate3.php" width="800px" height="470px" style="overflow:auto;">
-          </object>
-        </div>
-        <h4><a href="./graphs/sheetThicknessVsDate8.php" target="_blank">8 Ply Sheets</a></h4>
-        <div>
-          <object type=text/html data="./graphs/sheetThicknessVsDate8.php" width="800px" height="470px" style="overflow:auto;">
-          </object>
-        </div>
       </main>
     </div>
   </body>
