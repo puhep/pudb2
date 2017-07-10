@@ -66,6 +66,11 @@
                     <object type=text/html data=\"graphs/sheetContour.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
                     </object>
                   </div>";
+            echo "<h4><a href=\"./graphs/sheetMesh.php?id=$id\" target=\"_blank\">Sheet Mesh</a></h4>";
+            echo "<div>
+                    <object type=text/html data=\"./graphs/sheetMesh.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
+                    </object>
+                  </div>";
           }
           echo "<h2>Misc Files</h2>";
           show_files("sheet",$id);

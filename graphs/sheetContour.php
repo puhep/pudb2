@@ -102,7 +102,7 @@
         echo "avg = ".$avgThick.";";
       }
     ?>
-    
+
     if (avg == null) {
       $.ajax({
         url: '../php/updatePart.php?id='+id+'&partType=sheet&field=avgThickness&value='+avgThick,
