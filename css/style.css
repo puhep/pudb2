@@ -127,6 +127,11 @@ nav a:hover:not(.active) {
   transform: translateY(4px);
 }
 
+.commentText {
+  font-size: 105%;
+  font-weight: 300;
+}
+
 header {
   text-align: center;
   padding-top: 8px;
@@ -154,7 +159,7 @@ footer {
 
 #wrapper {
   margin: 0 auto;
-  width: 80%;
+  width: 73%;
   min-width: 940px;
   background-color: #FFC30B;
   color: #000066;
