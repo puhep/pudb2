@@ -1,7 +1,3 @@
-<!--
- @ToDo: Check issue #22 on GitHub
--->
-
 <!DOCTYPE html>
 <?php
   require_once("database.php");
@@ -12,6 +8,10 @@
   $db->query($sql);
   $db->singleRecord();
   $notes=$db->Record['notetext'];
+  $sql = "SELECT name FROM sheet WHERE id=$id";
+  $result = $db->db_query($sql);
+  $result = $result[0];
+  $name   = $result['name'];
 ?>
 <html>
   <head>

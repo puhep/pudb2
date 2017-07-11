@@ -8,6 +8,9 @@
   $db->query($sql);
   $db->singleRecord();
   $notes=$db->Record['notetext'];
+  $sql = "SELECT name FROM mock_module WHERE id=$id";
+  $data = $db->db_query($sql);
+  $name = $data[0]['name'];
 ?>
 <html>
   <head>
