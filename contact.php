@@ -32,7 +32,6 @@
         <h2>E-Mail</h2>
         <ul>
           <li><a href="mailto:nelso312@purdue.edu?Subject=CMS%20FPix%20Message" target="_top">Send E-Mail to Chase Nelson</a></li>
-          <li><a href="mailto:gwdneeser705@gmail.com?Subject=CMS%20FPix%20Message" target="_top">Send E-Mail to Greg Neeser</a></li>
         </ul>
         <br><br><br><br>
       </main>
