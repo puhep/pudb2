@@ -52,6 +52,81 @@ nav a:hover:not(.active) {
   transform: translateY(4px);
 }
 
+.button-primary {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #bb11d7;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 6px #999;
+}
+
+.button-primary:hover {
+  background-color: #910da7;
+}
+
+.button-primary:active {
+  background-color: #910da7;
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+}
+
+.button-save {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #0dc88b;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 6px #999;
+}
+
+.button-save:hover {
+  background-color: #098c62;
+}
+
+.button-save:active {
+  background-color: #098c62;
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+}
+
+.button-cancel {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #C80D4A;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 6px #999;
+}
+
+.button-cancel:hover {
+  background-color: #8c0933;
+}
+
+.button-cancel:active {
+  background-color: #8c0933;
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+}
+
 header {
   text-align: center;
   padding-top: 8px;
