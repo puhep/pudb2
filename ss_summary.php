@@ -4,12 +4,11 @@
   require_once("functions.php");
   $id=$_GET['id'];
   $db=new Database();
-  $sql="SELECT * FROM support_structure where id=$id";
+  $sql="SELECT name FROM support_structure WHERE id=$id";
   $db->query($sql);
   $db->singleRecord();
-  $data=$db->Record;
-  $name=$data['name'];
-
+  $data = $db->Record;
+  $name = $data['name'];
   $sql = "SELECT notetext FROM notes where part_id=$id and part_type=\"support_structure\"";
   $db->query($sql);
   $db->singleRecord();

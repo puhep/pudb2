@@ -2,11 +2,10 @@
 <?php
   require_once("database.php");
   require_once("functions.php");
-  $id=$_GET['id'];
-  $db= new Database();
-  $data=$db->db_query("SELECT * FROM heater where id=$id");
-  $data=$data[0];
-  $name=$data['name'];
+  $id = $_GET['id'];
+  $db = new Database();
+  $data = $db->db_query("SELECT name FROM heater where id=$id");
+  $name = $data[0]['name'];
 
   $sql="SELECT notetext FROM notes WHERE part_id=$id AND part_type=\"heater\"";
   $db->query($sql);

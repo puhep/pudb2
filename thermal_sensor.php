@@ -2,17 +2,16 @@
 <?php
   require_once("database.php");
   require_once("functions.php");
-  $id=$_GET['id'];
-  $db= new Database();
-  $sql="SELECT * FROM thermal_sensor where id=$id";
-  $data=$db->db_query($sql);
-  $data=$data[0];
-  $name=$data['name'];
+  $id = $_GET['id'];
+  $db = new Database();
+  $sql ="SELECT name FROM thermal_sensor where id=$id";
+  $data = $db->db_query($sql);
+  $name = $data[0]['name'];
 
-  $sql="SELECT notetext FROM notes where part_id=$id and part_type=\"thermal_sensor\"";
+  $sql = "SELECT notetext FROM notes where part_id=$id and part_type=\"thermal_sensor\"";
   $db->query($sql);
   $db->singleRecord();
-  $notes=$db->Record['notetext'];
+  $notes = $db->Record['notetext'];
 ?>
 <html>
   <head>
