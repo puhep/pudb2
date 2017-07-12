@@ -17,7 +17,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.min.css">
     <title>Add Sensor to <?php echo $data[0]['tname']; ?></title>
   </head>
   <body>

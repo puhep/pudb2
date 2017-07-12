@@ -19,7 +19,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.min.css">
     <title> Edit <?php echo $name; ?></title>
   </head>
   <body>
