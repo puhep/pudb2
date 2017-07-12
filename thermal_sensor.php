@@ -30,7 +30,7 @@
       <header>
         <a href="index.php">
           <img src="../phase_2/pics/pu_logo.jpg" width="200" height="100" alt="Purude University Logo">
-          <img src="../phase_2/pics/CMS_logo_col.gif" width="100" height="100" alt="CMS Logo">
+          <img src="../phase_2/pics/CMS_logo_col.png" width="100" height="100" alt="CMS Logo">
         </a>
       </header>
       <nav>
