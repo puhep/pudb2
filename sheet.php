@@ -16,7 +16,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.min.css">
     <title><?php echo $name; ?> Summary</title>
   </head>
   <body>

@@ -7,7 +7,7 @@ Currently, we have support structures, thermal sensors, heaters, mock modules, a
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.min.css">
     <title>Part List</title>
   </head>
   <body>
