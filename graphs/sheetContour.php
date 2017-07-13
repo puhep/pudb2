@@ -9,7 +9,7 @@
     var id = <?php echo $_GET['id']; ?>;
     $.ajax({
       url: "../php/getSheetContour.php?id=" + id,
-      succes: createPlot
+      success: createPlot
     });
     function createPlot(response) {
       graphData = JSON.parse(response);
