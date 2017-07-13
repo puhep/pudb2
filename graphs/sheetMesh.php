@@ -1,10 +1,10 @@
 <head>
   <title>Sheet Mesh</title>
-  <script src="../node_modules/jquery/dist/jquery.js" charset="utf-8"></script>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
   <div id="meshPlot"><!-- Placeholder for plot --></div>
+  <script src="../node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script type="text/javascript">
     var id = <?php echo $_GET['id']; ?>;
     $.ajax({

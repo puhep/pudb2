@@ -1,10 +1,10 @@
 <head>
   <title>Temperature Vs Time</title>
-  <script src="../node_modules/jquery/dist/jquery.js"></script>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
   <div id="tempVsTimePlot"></div>
+  <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <script type="text/javascript">
     var id = <?php echo $_GET['id']; ?>;
     var data = [];
