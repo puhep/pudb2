@@ -18,8 +18,10 @@
         var y = [];
         var x = [];
         for (j = 0; j < graphData.size; j++) {
-          x.push(graphData.sensor[i][j][0]);
-          y.push(graphData.sensor[i][j][1]);
+          if (graphData.sensor[i][j][1] < 160) {
+            x.push(graphData.sensor[i][j][0]);
+            y.push(graphData.sensor[i][j][1]);
+          }
         } // End of for loop; entries
         var name = graphData.text[i];
         var trace = {
