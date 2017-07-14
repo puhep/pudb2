@@ -47,6 +47,7 @@
   $return->avgThickness   = $result['avgThickness'];
   $return->minThickness   = $result['minThickness'];
   $return->maxThickness   = $result['maxThickness'];
+  $return->curLocation    = $result['curLocation'];
   $json = json_encode($return);
   echo $json;
 ?>

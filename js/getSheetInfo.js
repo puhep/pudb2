@@ -1,26 +1,16 @@
 /*******************************************
 * Calls converts sheet JSON to an array
-*
-* @ToDo: Make it work for any
 *******************************************/
 
 var dbJSON;
 var dbArray;
 var keyArray;
-/*******************************************
-*
-* function is currently not being used
-*
-* this is writen in the test-react file
-*
-* problem was the page would load before the ajax could finish calling php
-*
-*******************************************/
 function JSONtoArray(response) {
   dbJSON = JSON.parse(response);
 
   keyArray = [
-    'Location',
+    'Location Produced',
+    'Current Location',
     'Date Cut',
     'Ply',
     'Mass Before Backing',
@@ -60,6 +50,7 @@ function JSONtoArray(response) {
 
   dbArray = [
     dbJSON.location,
+    dbJSON.curLocation,
     dbJSON.dateCut,
     dbJSON.ply,
     dbJSON.mass_nb,
@@ -99,6 +90,7 @@ function JSONtoArray(response) {
 
   fieldArray = [
     'location',
+    'curLocation',
     'dateCut',
     'ply',
     'mass_nb',
