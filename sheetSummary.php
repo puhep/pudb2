@@ -25,8 +25,7 @@
         <a href="contact.php">Contact/Issues</a>
       </nav>
       <main>
-        <h2>Sheet Thickness Vs Date of Curing</h2>
-        <h4><a href="./graphs/sheetThicknessVsDate.php" target="_blank">Both 3 and 8 Ply</a></h4>
+        <h2><a href="./graphs/sheetThicknessVsDate.php" target="_blank">Sheet Thickness Vs Date of Curing</a></h2>
         <div>
           <object type=text/html data="./graphs/sheetThicknessVsDate.php" width="800px" height="470px" style="overflow:auto;">
           </object>
