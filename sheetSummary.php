@@ -25,11 +25,13 @@
         <a href="contact.php">Contact/Issues</a>
       </nav>
       <main>
-        <h2><a href="./graphs/sheetThicknessVsDate.php" target="_blank">Sheet Thickness Vs Date of Curing</a></h2>
+        <h2><a href="./graphs/sheetThicknessVsDate.php" target="_blank">Sheet Thickness VS Date of Curing</a></h2>
         <div>
           <object type=text/html data="./graphs/sheetThicknessVsDate.php" width="800px" height="470px" style="overflow:auto;">
           </object>
         </div>
+          <h2><a href="./graphs/sheetMassVsDate.php" target="_blank">Sheet Mass VS Date of Curing</a></h2>
+          <div><object data="./graphs/sheetMassVsDate.php" type="text/html" width="800px" height="470px" style="overflow:auto;"></object></div>
       </main>
     </div>
   </body>
