@@ -1,3 +1,15 @@
+/********
+*
+* This holds functions to create all the graphs.
+*
+* TO USE:
+* Set the method you want to call as your success method for an AJAX callback.
+*
+********/
+
+/**
+* Creates a temp vs time graph
+*/
 function TempVsTime(response) {
   var data = [];
   graphData = JSON.parse(response);
@@ -36,6 +48,9 @@ function TempVsTime(response) {
   };
   Plotly.newPlot('tempVsTimePlot', data, layout);
 }
+/**
+* Creates an average temperature graph
+*/
 function avgTemp(response) {
   dbJSON = JSON.parse(response);
   var data = [];
@@ -58,6 +73,9 @@ function avgTemp(response) {
   };
   Plotly.newPlot('avgTempPlot', data, layout);
 }
+/**
+* Creates a contour of a sheet
+*/
 function sheetContour(response) {
   graphData = JSON.parse(response);
   var data = [
@@ -74,6 +92,9 @@ function sheetContour(response) {
   // Display plot
   Plotly.newPlot("contourPlot", data, layout);
 }
+/**
+* Creates a 3D mesh of a sheet
+*/
 function sheetMesh(response) {
   graphData = JSON.parse(response);
   var data = [
@@ -93,6 +114,9 @@ function sheetMesh(response) {
 
   Plotly.newPlot("meshPlot", data, layout);
 }
+/**
+* Creates a scatter plot of sheet thicknesses over time
+*/
 function thickVsDate(response) {
   graphData = JSON.parse(response);
   var ply3 = {
@@ -128,6 +152,9 @@ function thickVsDate(response) {
   var data = [ply3, ply8];
   Plotly.newPlot('thicknessPlot', data, layout);
 }
+/**
+* Creates a scatter plot of sheet masses over time
+*/
 function massVsDate(response) {
   graphData = JSON.parse(response);
   var ply3 = {

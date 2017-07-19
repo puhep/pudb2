@@ -1,4 +1,15 @@
 <?php
+  /********
+  *
+  * This class is need to access the database.
+  *
+  * Most files should have it included.
+  *
+  * Most Common Methos:
+  *   db_query,
+  *   query
+  *
+  ********/
   class Database {
     var $Host       = "fibonacci.physics.purdue.edu"; 		// Hostname of our MySQL server.
     var $Database   = "cmsfpix2";			// Logical database name on that server.
@@ -15,7 +26,7 @@
     //-------------------------------------------
     //    Connects to the database
     //-------------------------------------------
-    function connect(){
+    function connect() {
       if(0 == $this->Link_ID)
         $this->Link_ID=mysql_connect($this->Host, $this->User, $this->Password);
       if(!$this->Link_ID)
