@@ -64,7 +64,9 @@
     	    ?>
           <input class="button" type="submit" value="Edit Test">
         </form>
-
+        <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script src="./js/graph.min.js" charset="utf-8"></script>
         <?php
           echo "<p>Support Structure: <a href='ss_summary.php?id=".$ssID."'>$ssName</a></p>";
           echo "<p>Coolant Temperature: ".$coolantTemp."&deg;C</p>";
@@ -94,20 +96,29 @@
           if (file_exists("../phase_2/files/test/$id/tempVsTime.csv")){
             echo "<h2>Graphs</h2>"
                 ."<h4><a href=\"./graphs/tempVsTime.php?id=$id\" target=\"_blank\">Temperature over Time</a></h4>";
-                echo "<div>
-                        <object type=text/html data=\"./graphs/tempVsTime.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
-                        </object>
-                      </div>";
+                echo "<div id=\"tempVsTimePlot\"></div>";
+                echo "<script type=\"text/javascript\">
+                        var id = ".$id.";
+                        var data = [];
+                        $.ajax({
+                          url: './php/getTempVsTimeData.php?id=' + id,
+                          success: TempVsTime
+                        });
+                      </script>";
             $filePath = "../phase_2/files/test/$id/dataAnalysis.csv";
             $file = fopen($filePath, "r");
             $line1 = fgetcsv($file);
             $line2 = fgetcsv($file);
             if ($line2 != null) {
               echo "<h4><a href=\"./graphs/avgTemp.php?id=$id\" target=\"_blank\">Averaged Temperatures</a></h4>";
-              echo "<div>
-                      <object type=text/html data=\"./graphs/avgTemp.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
-                      </object>
-                    </div>";
+              echo "<div id=\"avgTempPlot\"></div>";
+              echo "<script type=\"text/javascript\">
+                      var id = ".$id.";
+                      $.ajax({
+                        url: './php/getAvgTempData.php?id=' + id,
+                        success: avgTemp
+                      });
+                    </script>";
             }
           }
           echo "<h2>Misc Files</h2>";
