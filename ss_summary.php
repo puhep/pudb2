@@ -2,9 +2,9 @@
 <?php
   require_once("database.php");
   require_once("functions.php");
-  $id=$_GET['id'];
-  $db=new Database();
-  $sql="SELECT name FROM support_structure WHERE id=$id";
+  $id = $_GET['id'];
+  $db = new Database();
+  $sql = "SELECT name FROM support_structure WHERE id=$id";
   $db->query($sql);
   $db->singleRecord();
   $data = $db->Record;
@@ -60,7 +60,6 @@
             echo "<ul>";
             foreach ($tests as $row) {
               echo "<li><a href='test.php?id=".$row['id']."' >".$row['name']."</a></li>";
-              #echo $row['name']."<br>";
             }
             echo "</ul>";
           } else {
