@@ -1,3 +1,6 @@
+<!--
+  Homepage for the CMS FPIX Phase 2 R&D website
+-->
 <!DOCTYPE html>
 <html>
   <head>
@@ -47,10 +50,3 @@
     </div>
   </body>
 </html>
-
-
-
-<!--
-     This is the sql database password
-0MKshqtRV6Y
--->
