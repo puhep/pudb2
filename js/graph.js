@@ -147,7 +147,7 @@ function thickVsDate(response) {
     xaxis: {
       showgrid: false,
     },
-    title: 'Sheet Thickness Vs Date'
+    title: 'Sheet Thickness VS Date'
   };
   var data = [ply3, ply8];
   Plotly.newPlot('thicknessPlot', data, layout);

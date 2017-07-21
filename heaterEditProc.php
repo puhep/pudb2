@@ -1,4 +1,11 @@
 <?php
+  /******************
+  *
+  * This page checks to see what fields have been changed and then calls the database to update them.
+  *
+  * A faster way might be to add to a string and call then database once, instead of check, call, chech again...
+  *
+  ******************/
   $backmessage="Please press back and try again.<br>";
   require_once("database.php");
   require_once("functions.php");
@@ -26,6 +33,6 @@
     add_file("heater", $id, $_FILES['files']);
   }
 
-  ### Redirect to the mock module summary page with the new information
+  // Redirect to the summary page with the new information
   header("Location: heater.php?id=$id");
 ?>

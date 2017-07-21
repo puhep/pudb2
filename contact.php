@@ -27,11 +27,11 @@
       <main>
         <h2>Send Issue</h2>
         <ul>
-          <li><a href="https://github.com/puhep/pudb2/issues">GitHub Issues Page</a></li>
+          <li><a href="https://github.com/puhep/pudb2/issues">GitHub Issues Page</a></li><!-- Link to the GitHub issue page -->
         </ul>
         <h2>E-Mail</h2>
         <ul>
-          <li><a href="mailto:nelso312@purdue.edu?Subject=CMS%20FPix%20Message" target="_top">Send E-Mail to Chase Nelson</a></li>
+          <li><a href="mailto:nelso312@purdue.edu?Subject=CMS%20FPix%20Message" target="_top">Send E-Mail to Chase Nelson</a></li><!-- Send Chase an email -->
         </ul>
         <br><br><br><br><br>
       </main>
