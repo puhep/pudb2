@@ -26,13 +26,24 @@
       </nav>
       <main>
         <h2><a href="./graphs/sheetThicknessVsDate.php" target="_blank">Sheet Thickness VS Date of Curing</a></h2>
-        <div>
-          <object type=text/html data="./graphs/sheetThicknessVsDate.php" width="800px" height="470px" style="overflow:auto;">
-          </object>
+        <div id="thicknessPlot">
         </div>
           <h2><a href="./graphs/sheetMassVsDate.php" target="_blank">Sheet Mass VS Date of Curing</a></h2>
-          <div><object data="./graphs/sheetMassVsDate.php" type="text/html" width="800px" height="470px" style="overflow:auto;"></object></div>
+          <div id="massPlot"></div>
       </main>
     </div>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="./js/graph.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        $.ajax({
+          url: './php/getThicknessVsDate.php',
+          success: thickVsDate
+        });
+        $.ajax({
+          url: './php/getMassVsDate.php',
+          success: massVsDate
+        })
+    </script>
   </body>
 </html>
