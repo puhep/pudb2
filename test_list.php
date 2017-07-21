@@ -1,7 +1,5 @@
 <!--
-  This page lists all tests, indexed by their associated support structure.
-  Support Structure 1 is not a physical structure used by the group
-  Rather, it is my/our testing ground
+  This page lists all tests, indexed by their associated support structure, or rather lack there of.
 -->
 <!DOCTYPE html>
 <html>
