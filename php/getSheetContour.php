@@ -17,11 +17,9 @@
   $i = 0;
   while (!feof($file)) {
     $temp = fgetcsv($file);
-    if ((double)$temp[0] > 15 && (double)$temp[0] < 300 && (double)$temp[1] > 15 && (double)$temp[1] < 300) {
-      $x[$i]   = (double) $temp[0];
-      $y[$i]   = (double) $temp[1];
-      $z[$i++] = (double) $temp[2];
-    }
+    $x[$i]   = (double) $temp[0];
+    $y[$i]   = (double) $temp[1];
+    $z[$i++] = (double) $temp[2]; 
   }
   fclose($file); // save memory, close file
 
