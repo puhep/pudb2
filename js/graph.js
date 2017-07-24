@@ -87,13 +87,7 @@ function sheetContour(response) {
     }
   ];
   var layout = {
-    title: "Contour",
-    xaxis: {
-      range: [5, 360]
-    },
-    yaxis: {
-      range: [5, 360]
-    },
+    title: "Contour"
   };
   // Display plot
   Plotly.newPlot("contourPlot", data, layout);
