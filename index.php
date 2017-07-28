@@ -46,6 +46,7 @@
       </main>
       <footer>
         <p>This site uses HTML5. Please use Google Chrome, Mozilla Firefox, Safari, or IE9 (or greater).</p>
+        <p>This site uses JavaScript. Make sure that it is not disabled.</p>
       </footer>
     </div>
   </body>
