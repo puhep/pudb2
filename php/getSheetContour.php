@@ -11,20 +11,52 @@
   $id = $_GET['id'];
   $filePath = "../../phase_2/files/sheet/$id/ThicknessContour.csv";
   $file = fopen($filePath, "r") or die("<h1>Some thing went wrong.</h1><h2>Could not find file.</h2>");
+  // Temp is not temperature but temporary
+  $xTemp = array();
+  $yTemp = array();
+  $zTemp = array();
+  $i = 0;
+  // reads the file and and puts the x, y, and z values into the temp array
+  while (!feof($file)) {
+    $temp = fgetcsv($file);
+    $xTemp[$i]   = (double) $temp[0];
+    $yTemp[$i]   = (double) $temp[1];
+    $zTemp[$i++] = (double) $temp[2];
+  }
+
+  fclose($file); // save memory, close file
+  
+  // min and max values
+  $maxX = $xTemp[0];
+  $minX = $xTemp[0];
+  $maxY = $yTemp[0];
+  $minY = $yTemp[0];
+  // Traverse the array and find the largest/smallest x and y values
+  for ($i = 1; $i < sizeof($xTemp) - 1; $i++) {
+    if ($maxX < $xTemp[$i]) {
+      $maxX = $xTemp[$i];
+    } else if ($minX > $xTemp[$i]) {
+      $minX = $xTemp[$i];
+    }
+    if ($maxY < $yTemp[$i]) {
+      $maxY = $yTemp[$i];
+    } else if ($minY > $yTemp[$i]) {
+      $minY = $yTemp[$i];
+    }
+  }
+  // permanent array of x, y, and z positions
   $x = array();
   $y = array();
   $z = array();
-  $i = 0;
-  while (!feof($file)) {
-    $temp = fgetcsv($file);
-    if ((double)$temp[0] > 4 && (double)$temp[0] < 351 && (double)$temp[1] > 4 && (double)$temp[1] < 351) {
-      $x[$i]   = (double) $temp[0];
-      $y[$i]   = (double) $temp[1];
-      $z[$i++] = (double) $temp[2];
+  $j = 0; // Temp position of permanent array
+  // Traverse the temp arrays and any value at the min or the max don't add to the permanent array
+  for ($i = 0; $i < sizeof($xTemp); $i++) {
+    if ($xTemp[$i] > $minX + 1 && $xTemp[$i] < $maxX - 1 && $yTemp[$i] > $minY + 1 && $yTemp[$i] < $maxY - 1) {
+      $x[$j] = $xTemp[$i];
+      $y[$j] = $yTemp[$i];
+      $z[$j++] = $zTemp[$i];
     }
   }
-  fclose($file); // save memory, close file
-
   /******************
   * UPDATE THICKNESS
   ******************/
