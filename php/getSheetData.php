@@ -48,6 +48,8 @@
   $return->minThickness   = $result['minThickness'];
   $return->maxThickness   = $result['maxThickness'];
   $return->curLocation    = $result['curLocation'];
+  $return->cfType         = $result['cfType'];
+  $return->cfQuality      = $result['cfQuality'];
   $json = json_encode($return);
   echo $json;
 ?>
