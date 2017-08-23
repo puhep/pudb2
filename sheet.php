@@ -74,7 +74,7 @@
       </main>
     </div>
     <script src="./node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
-    <script src="./js/getSheetInfo.min.js" charset="utf-8"></script>
+    <script src="./js/getSheetInfo.js" charset="utf-8"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.11.0/es6-shim.min.js"></script>
     <script src="http://fb.me/react-with-addons-0.11.0.min.js"></script>
     <script src="http://fb.me/JSXTransformer-0.11.0.js"></script>
@@ -154,12 +154,14 @@
               case 7:
               case 10:
               case 11:
-              case 14:
+              case 12:
+              case 13:
               case 16:
               case 18:
               case 20:
               case 22:
-              case 36:
+              case 24:
+              case 38:
                 type = 'text';
                 break;
               /**
@@ -179,34 +181,34 @@
                 step = '1';
                 break;
               case 4:
-              case 27:
-              case 31:
-              case 32:
+              case 29:
               case 33:
               case 34:
+              case 35:
+              case 36:
                 type = 'number';
                 step = '0.001';
                 break;
-              case 23:
-              case 24:
               case 25:
               case 26:
+              case 27:
               case 28:
-              case 29:
               case 30:
-              case 35:
+              case 31:
+              case 32:
+              case 37:
                 type = 'number';
                 step = '0.00001'
                 break;
               /**
               * type = time
               */
-              case 12:
-              case 13:
+              case 14:
               case 15:
               case 17:
               case 19:
               case 21:
+              case 23:
                 type = 'time';
                 break;
               default:
