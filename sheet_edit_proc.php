@@ -138,6 +138,16 @@
     $db -> query($sql);
   }
 
+  if ($_POST['cfType'] != "") {
+    $sql = "UPDATE sheet SET cfType =\"".$_POST['cfType']."\" WHERE id=$id";
+    $db->query($sql);
+  }
+
+  if ($_POST['cfQuality'] != "") {
+    $sql = "UPDATE sheet SET cfQuality =\"".$_POST['cfQuality']."\" WHERE id=$id";
+    $db->query($sql);
+  }
+
   if ($_POST['user_cut'] != "") {
     $sql = "UPDATE sheet SET user_cut=\"".$_POST['user_cut']."\" WHERE id=$id";
     $db -> query($sql);

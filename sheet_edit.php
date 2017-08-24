@@ -69,6 +69,10 @@
             </select><br><br>
             <label for="curing_stackup">Curing stackup: </label>
             <input placeholder= "<?php echo $data['curing_stackup']; ?>" name="curing_stackup" type="text" style="float:right"><br><br>
+            <label for="cfType">Carbon Fiber Type:</label>
+            <input placeholder="<?php echo $data['cfType']; ?>" name="cfType" type="text" style="float:right"><br><br>
+            <label for="cfQuality">Carbon Fiber Quality:</label>
+            <input placeholder="<?php echo $data['cfQuality']; ?>" name="cfQuality" type="text" style="float:right"><br><br>
             <label for="ovenStart">Time of Oven Start: </label>
             <input placeholder="<?php echo $data['ovenStart']; ?>" name="ovenStart" type="time" style="float:right"><br><br>
             <label for="ovenReach107">Time Reached 107: </label>
