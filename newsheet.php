@@ -61,6 +61,10 @@
             </select><br><br>
             <label for="curing_stackup">Curing stackup: </label>
             <input name="curing_stackup" type="text" style="float:right"><br><br>
+            <label for="cfType">Carbon Fiber Type</label>
+            <input name="cfType" type="text" style="float:right"><br><br>
+            <label for="cfQuality">Carbon Fiber Quality</label>
+            <input name="cfQuality" type="text" style="float:right"><br><br>
             <label for="ovenStart">Time of Oven Start: </label>
             <input name="ovenStart" type="time" style="float:right"><br><br>
             <label for="ovenReach107">Time Reached 107: </label>
