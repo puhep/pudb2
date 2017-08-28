@@ -129,12 +129,12 @@
             var type;
             var step = '0.0001';
             var min  = '0';
-            switch (this.props.index) {
-              case 0:
-              case 2:
+            switch (fieldArray[this.props.index]) {
+              case 'color':
+              case 'status':
                 type = 'text';
                 break;
-              case 1:
+              case 'cur_channel':
                 type = 'number';
                 step = '1';
                 break;
