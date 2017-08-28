@@ -147,6 +147,11 @@
           </div>
           <br><br>
           <div style="width:475px;">
+            <label for="bowContour">Sheet Bow Contour<br>CSV file type only</label>
+            <input name="bowContour" type="file" style="float:right">
+          </div>
+          <br><br>
+          <div style="width:475px;">
             <label for="files[]">Misc File(s): </label>
             <input name="files[]" id="files" type="file" multiple="multiple" style="float:right"><br><br>
           </div>

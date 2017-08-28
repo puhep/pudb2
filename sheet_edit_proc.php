@@ -234,6 +234,10 @@
     addSheetThicknessContour($id, $_FILES['thicknessContour']);
   }
 
+  if ($_FILES['bowContour']['name'] != "") {
+    addSheetBowContour($id, $_FILES['bowContour']);
+  }
+
   // Redirect to the summary page with the new information
   header("Location: sheet.php?id=$id");
 ?>

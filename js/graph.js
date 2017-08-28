@@ -93,6 +93,24 @@ function sheetContour(response) {
   Plotly.newPlot("contourPlot", data, layout);
 }
 /**
+* Creates a bow contour of a sheet
+*/
+function SheetBowContour(response) {
+  graphData = JSON.parse(response);
+  var data = [
+    {
+      x: graphData.x,
+      y: graphData.y,
+      z: graphData.z,
+      type: "contour"
+    }
+  ];
+  var layout = {
+    title: "Bow"
+  };
+  Plotly.newPlot("bowPlot", data, layout);
+}
+/**
 * Creates a 3D mesh of a sheet
 */
 function sheetMesh(response) {
