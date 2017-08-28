@@ -131,11 +131,11 @@
           var step = '0.0001';
           var min  = '0';
           switch (this.props.index) {
-            case 0:
+            case 'si_thickness':
               type = 'number';
               break;
-            case 1:
-            case 2:
+            case 'adhesive':
+            case 'geometry':
               type = 'text';
               break;
             default:

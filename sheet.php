@@ -153,71 +153,71 @@
             var type;
             var step = '0.0001';
             var min  = '0';
-            switch (this.props.index) {
+            switch (fieldArray[this.props.index]) {
               /**
               * type = text
               */
-              case 0:
-              case 1:
-              case 5:
-              case 7:
-              case 10:
-              case 11:
-              case 12:
-              case 13:
-              case 16:
-              case 18:
-              case 20:
-              case 22:
-              case 24:
-              case 38:
+              case 'location':
+              case 'curLocation':
+              case 'user_cut':
+              case 'user_bagged':
+              case 'checkedLeaks':
+              case 'curing_stackup':
+              case 'cfType':
+              case 'cfQuality':
+              case 'user_check1':
+              case 'user_ramp':
+              case 'user_check2':
+              case 'user_check3':
+              case 'user_remove':
+              case 'user_measure':
                 type = 'text';
                 break;
               /**
               * type = date
               */
-              case 2:
-              case 6:
+              case 'dateCut':
+              case 'dateOven':
                 type = 'date';
                 break;
               /**
               * type = number
               */
-              case 3:
-              case 8:
-              case 9:
+              case 'ply':
+              case 'num_wax_coats':
+              case 'bagUseTimes':
                 type = 'number';
                 step = '1';
                 break;
-              case 4:
-              case 29:
-              case 33:
-              case 34:
-              case 35:
-              case 36:
+              case 'mass_nb':
+              case 'mass_after':
+              case 'thickness1':
+              case 'thickness2':
+              case 'thickness3':
+              case 'thickness4':
                 type = 'number';
                 step = '0.001';
                 break;
-              case 25:
-              case 26:
-              case 27:
-              case 28:
-              case 30:
-              case 31:
-              case 32:
-              case 37:
+              case 'lengthOutside':
+              case 'lengthInside':
+              case 'heightOutside':
+              case 'heightInside':
+              case 'avgThickness':
+              case 'minThickness':
+              case 'maxThickness':
+              case 'bow':
                 type = 'number';
                 step = '0.00001'
                 break;
               /**
               * type = time
               */
-              case 14:
-              case 15:
-              case 17:
-              case 19:
-              case 21:
-              case 23:
+              case 'ovenStart':
+              case 'ovenReach107':
+              case 'timeRamp':
+              case 'ovenReach177':
+              case 'timeOvenOff':
+              case 'timeRemoved':
                 type = 'time';
                 break;
               default:
