@@ -54,9 +54,11 @@
           }
           echo "<h2>Pictures</h2>";
           show_pictures("sheet",$id);
+          if (file_exists("../phase_2/files/sheet/$id/ThicknessContour.csv") || file_exists("../phase_2/files/sheet/$id/BowContour.csv")) {
+            echo "<h2>Graphs</h2>";
+          }
           if (file_exists("../phase_2/files/sheet/$id/ThicknessContour.csv")) {
-            echo "<h2>Graphs</h2>"
-                ."<h4><a href=\"./graphs/sheetContour.php?id=$id\" target=\"_blank\">Sheet Thickness Contour</a></h4>";
+            echo "<h4><a href=\"./graphs/sheetContour.php?id=$id\" target=\"_blank\">Sheet Thickness Contour</a></h4>";
             echo "<div>
                     <object type=text/html data=\"graphs/sheetContour.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
                     </object>
@@ -64,6 +66,13 @@
             echo "<h4><a href=\"./graphs/sheetMesh.php?id=$id\" target=\"_blank\">Sheet Mesh</a></h4>";
             echo "<div>
                     <object type=text/html data=\"./graphs/sheetMesh.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
+                    </object>
+                  </div>";
+          }
+          if (file_exists("../phase_2/files/sheet/$id/BowContour.csv")) {
+            echo "<h4><a href=\"./graphs/bowContour.php?id=$id\" target=\"_blank\">Sheet Bow Contour</a></h4>";
+            echo "<div>
+                    <object type=\"text/html\" data=\"graphs/bowContour.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto\">
                     </object>
                   </div>";
           }

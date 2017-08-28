@@ -143,7 +143,24 @@ function addSheetThicknessContour($id, $file) {
   }
   $targetFile = $directory."ThicknessContour.csv";
   if (!move_uploaded_file($file['tmp_name'], $targetFile)) {
-      echo "<h2>Sorry, an error has occurred. Try again or bother Chase until they help</h2><br>";
+      echo "<h2>Sorry, an error has occurred. Try again or bother Chase until he helps.</h2><br>";
+  }
+}
+
+function addSheetBowContour($id, $file) {
+  $directory = "../phase_2/files/sheet/$id/";
+  if (!file_exists($directory)) {
+    mkdir($directory);
+    chmod($directory, 0777);
+  }
+  $targetFile = $directory.$file['name'];
+  $fileType = pathinfo($targetFile, PATHINFO_EXTENSION);
+  if ($fileType != "csv") {
+    echo "Sorry, only CSV file type is allowed currently for Sheet Contour.<br>".$backmessage;
+  }
+  $targetFile = $directory."BowContour.csv";
+  if (!move_uploaded_file($file['tmp_name'], $targetFile)) {
+      echo "<h2>Sorry, an error has occurred. Try again or bother Chase until he helps.</h2><br>";
   }
 }
 
