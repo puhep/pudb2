@@ -1,5 +1,5 @@
 <head>
-  <title>Sheet Bow</title>
+  <title>Sheet Bow Contour</title>
 </head>
 <body>
   <div id="bowPlot"><!-- Placeholder for plot --></div>
