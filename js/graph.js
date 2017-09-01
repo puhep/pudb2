@@ -133,6 +133,26 @@ function sheetMesh(response) {
   Plotly.newPlot("meshPlot", data, layout);
 }
 /**
+* Creates a 3d mesh of a sheet's bow
+*/
+function SheetBowMesh(response) {
+  graphData = JSON.parse(response);
+  var data = [
+    {
+      x: graphData.x,
+      y: graphData.y,
+      z: graphData.z,
+      type: 'mesh3d',
+      opacity: 0.9,
+      color: 'rgb(171,154,164)'
+    }
+  ];
+  var layout = {
+    title: "Bow Mesh",
+  };
+  Plotly.newPlot("bowMeshPlot", data, layout);
+}
+/**
 * Creates a scatter plot of sheet thicknesses over time
 */
 function thickVsDate(response) {
