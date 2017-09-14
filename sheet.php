@@ -58,16 +58,23 @@
             echo "<h2>Graphs</h2>";
           }
           if (file_exists("../phase_2/files/sheet/$id/ThicknessContour.csv")) {
-            echo "<h4><a href=\"./graphs/sheetContour.php?id=$id\" target=\"_blank\">Sheet Thickness Contour</a></h4>";
-            echo "<div>
-                    <object type=text/html data=\"graphs/sheetContour.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
-                    </object>
-                  </div>";
-            echo "<h4><a href=\"./graphs/sheetMesh.php?id=$id\" target=\"_blank\">Sheet Mesh</a></h4>";
-            echo "<div>
-                    <object type=text/html data=\"./graphs/sheetMesh.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
-                    </object>
-                  </div>";
+            if (file_exists("../phase_2/pics/sheet/$id/ThicknessContour.png")) { // If the Pictur created from the root script exists
+              echo "<h4>Sheet Thickness Contour</h4>";
+              echo "<div>
+                      <img src=\"../phase_2/pics/sheet/$id/ThicknessContour.png\" width=\"200\" height=\"200\">
+                    </div>";
+            } else { // else use the plotly graph
+              echo "<h4><a href=\"./graphs/sheetContour.php?id=$id\" target=\"_blank\">Sheet Thickness Contour</a></h4>";
+              echo "<div>
+                      <object type=text/html data=\"graphs/sheetContour.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
+                      </object>
+                    </div>";
+              echo "<h4><a href=\"./graphs/sheetMesh.php?id=$id\" target=\"_blank\">Sheet Mesh</a></h4>";
+              echo "<div>
+                      <object type=text/html data=\"./graphs/sheetMesh.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
+                      </object>
+                    </div>";
+            }
           }
           if (file_exists("../phase_2/files/sheet/$id/BowContour.csv")) {
             echo "<h4><a href=\"./graphs/bowContour.php?id=$id\" target=\"_blank\">Sheet Bow Contour</a></h4>";
