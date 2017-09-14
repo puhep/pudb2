@@ -37,11 +37,11 @@ Currently, we have support structures, thermal sensors, heaters, mock modules, a
           $db = new Database();
 
           ### query the database for all relevant information regarding the part types
-          $ss=$db->db_query("SELECT * FROM support_structure");
-          $ts = $db->db_query("SELECT * FROM thermal_sensor");
-          $heaters=$db->db_query("SELECT * FROM heater");
-          $modules=$db->db_query("SELECT * FROM mock_module");
-          $sheets=$db->db_query("SELECT * FROM sheet");
+          $ss=$db->db_query("SELECT id, name FROM support_structure");
+          $ts = $db->db_query("SELECT id, name FROM thermal_sensor");
+          $heaters=$db->db_query("SELECT id, name FROM heater");
+          $modules=$db->db_query("SELECT id, name FROM mock_module");
+          $sheets=$db->db_query("SELECT id, name FROM sheet");
 
           ### display the part links in nested tables. The outer table is borderless, so it's not visible.
           echo "<table border=0 cellpadding=10 val=aligntop>";
