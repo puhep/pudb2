@@ -25,7 +25,7 @@
   }
 
   fclose($file); // save memory, close file
-  
+
   // min and max values
   $maxX = $xTemp[0];
   $minX = $xTemp[0];
@@ -77,22 +77,23 @@
   $data = $db->db_query($sql);
   $data = $data[0];
   $avgThick = $data['avgThickness'];
-  if ($avgThick == "") {  // If thickness is not yet set
-    $sql = "UPDATE sheet SET avgThickness=\"$avg\" WHERE id=$id";
-    $db->query($sql);
-    $sql = "UPDATE sheet SET minThickness=\"$min\" WHERE id=$id";
-    $db->query($sql);
-    $sql = "UPDATE sheet SET maxThickness=\"$max\" WHERE id=$id";
-    $db->query($sql);
-  }
+  $sql = "UPDATE sheet SET avgThickness=\"$avg\" WHERE id=$id";
+  $db->query($sql);
+  $sql = "UPDATE sheet SET minThickness=\"$min\" WHERE id=$id";
+  $db->query($sql);
+  $sql = "UPDATE sheet SET maxThickness=\"$max\" WHERE id=$id";
+  $db->query($sql);
 
   /******************
   * RETURN
   ******************/
   $return = new stdClass;
-  $return->x = $x;
-  $return->y = $y;
-  $return->z = $z;
+  $return->x = $xTemp;
+  $return->y = $yTemp;
+  $return->z = $zTemp;
+  $return->avg = $avg;
+  $return->min = $min;
+  $return->max = $max;
   $json = json_encode($return);
   echo $json;
 ?>
