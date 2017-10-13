@@ -33,6 +33,7 @@
         <input class="button" type=button onClick="location.href='part_list.php'" value='Part List'>
         <h2>Part Submission</h2>
         <input class="button" type=button onClick="location.href='newsheet.php'" value='Add Sheet'>
+        <input class="button" type=button onClick="location.href='newMiscPart.php'" value='Add Misc Part'>
         <h2>Testing Information</h2>
         <input class="button" type=button onClick="location.href='test_list.php'" value='Test List'>
         <input class="button" type=button onClick="location.href='newtest.php'" value='New Test'>
