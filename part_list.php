@@ -37,11 +37,12 @@ Currently, we have support structures, thermal sensors, heaters, mock modules, a
           $db = new Database();
 
           ### query the database for all relevant information regarding the part types
-          $ss=$db->db_query("SELECT id, name FROM support_structure");
-          $ts = $db->db_query("SELECT id, name FROM thermal_sensor");
-          $heaters=$db->db_query("SELECT id, name FROM heater");
-          $modules=$db->db_query("SELECT id, name FROM mock_module");
-          $sheets=$db->db_query("SELECT id, name FROM sheet");
+          $ss        = $db->db_query("SELECT id, name FROM support_structure");
+          $ts        = $db->db_query("SELECT id, name FROM thermal_sensor");
+          $heaters   = $db->db_query("SELECT id, name FROM heater");
+          $modules   = $db->db_query("SELECT id, name FROM mock_module");
+          $sheets    = $db->db_query("SELECT id, name FROM sheet");
+          $miscParts = $db->db_query("SELECT id, name FROM miscPart");
 
           ### display the part links in nested tables. The outer table is borderless, so it's not visible.
           echo "<table border=0 cellpadding=10 val=aligntop>";
@@ -91,6 +92,17 @@ Currently, we have support structures, thermal sensors, heaters, mock modules, a
           foreach ($sheets as $sheet) {
             echo "<tr><td>";
             echo "<a href=\"sheet.php?id=$sheet[0]\">$sheet[1]</a>";
+            echo "</td></tr>";
+          }
+          echo "</table><br>";
+          echo "</td>";
+
+          echo "<td>";
+          echo "<table border=1>";
+          echo "<th>Misc Parts</th>";
+          foreach ($miscParts as $miscPart) {
+            echo "<tr><td>";
+            echo "<a href=\"miscPart.php?id=$miscPart[0]\">$miscPart[1]</a>";
             echo "</td></tr>";
           }
           echo "</table><br>";
