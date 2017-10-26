@@ -20,6 +20,17 @@
     <title><?php echo $name; ?> Summary</title>
   </head>
   <body>
+    <script src="./node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
+    <script type="text/javascript">
+    var id = <?php echo $id; ?>;
+    $.ajax({
+      url: './SheetContour/makeGraph.php?id=' + id,
+      success: function(resp) {
+        temp = JSON.parse(resp);
+        console.log(temp);
+      }
+    })
+    </script>
     <div id="wrapper">
       <header>
         <a href="index.php">
@@ -45,6 +56,7 @@
           <?php echo "<input type='hidden' name='id' value='".$_GET['id']."'>"; ?>
           <input class="button" type="submit" value="Edit Part">
         </form>
+
         <?php
           echo "<h2>Notes</h2>";
           if ($notes!="") {
@@ -83,7 +95,7 @@
         <br>
       </main>
     </div>
-    <script src="./node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
+
     <script src="./js/getSheetInfo.min.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.11.0/es6-shim.min.js"></script>
     <script src="https://fb.me/react-with-addons-0.11.0.min.js"></script>
@@ -94,13 +106,6 @@
         url: './php/getSheetData.php?id=' + id,
         success: react,
       });
-      $.ajax({
-        url: './SheetContour/makeGraph.php?id=' + id,
-        success: function(resp) {
-          temp = JSON.parse(resp);
-          console.log(temp);
-        }
-      })
       function react(response) {
         JSONtoArray(response);
         console.log(dbJSON.test);
