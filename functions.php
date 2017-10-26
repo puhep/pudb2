@@ -27,28 +27,31 @@ function show_pictures($part_type, $part_id){
 		  echo "No pictures found <br>";
 		  return;
     }
+    $tableStr = "";
     if(file_exists($dir) && ($handle = opendir($dir))){
-        echo "<table border=1>";
+        $tableStr = "<table border=1>";
         while(false !== ($entry=(readdir($handle)))){
-            if($entry != "." && $entry != ".." && substr($entry,-3) !="txt"){
+        if($entry != "." && $entry != ".." && substr($entry,-3) !="txt" && $entry != "contourPlot.png"){
                 $str = rawurlencode($entry);
-                echo "<tr>";
-                echo "<td>";
-                echo "<a href=$dir/$str target=\"blank\"> <img src=\"$dir/$entry\" width=\"200\" height=\"200\"></a>";
-                echo "</td>";
-                echo "<td>";
+                $tableStr = $tableStr . "<tr>";
+                $tableStr = $tableStr . "<td>";
+                $tableStr = $tableStr . "<a href=$dir/$str target=\"blank\"> <img src=\"$dir/$entry\" width=\"200\" height=\"200\"></a>";
+                $tableStr = $tableStr . "</td>";
+                $tableStr = $tableStr . "<td>";
                 $txt = $dir."/".substr($entry,0,-3)."txt";
                 if(file_exists($txt)){
                     $fp = fopen($txt, 'r');
-                    echo nl2br(fread($fp, filesize($txt)));
+                    $tableStr = $tableStr . nl2br(fread($fp, filesize($txt)));
                     fclose($fp);
                 }
                 #echo "picture text here";
-                echo "</td>";
-                echo "</tr>";
+                $tableStr = $tableStr . "</td>";
+                $tableStr = $tableStr . "</tr>";
             }
         }
-        echo "</table>";
+        $tableStr = $tableStr . "</table>";
+        if ($tableStr == "<table border=1></table>") $tableStr = "No pictures found <br>";
+        echo $tableStr;
     }
 }
 ### show the sensors for a test in a table. On the edit page, make the fields
