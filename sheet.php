@@ -58,22 +58,11 @@
             echo "<h2>Graphs</h2>";
           }
           if (file_exists("../phase_2/files/sheet/$id/ThicknessContour.csv")) {
-            if (file_exists("../phase_2/pics/sheet/$id/ThicknessContour.png")) { // If the Pictur created from the root script exists
+            if (file_exists("../phase_2/pics/sheet/$id/contourPlot.png")) { // If the Pictur created from the root script exists
               echo "<h4>Sheet Thickness Contour</h4>";
-              echo "<div>
-                      <img src=\"../phase_2/pics/sheet/$id/ThicknessContour.png\" width=\"200\" height=\"200\">
-                    </div>";
-            } else { // else use the plotly graph
-              echo "<h4><a href=\"./graphs/sheetContour.php?id=$id\" target=\"_blank\">Sheet Thickness Contour</a></h4>";
-              echo "<div>
-                      <object type=text/html data=\"graphs/sheetContour.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
-                      </object>
-                    </div>";
-              echo "<h4><a href=\"./graphs/sheetMesh.php?id=$id\" target=\"_blank\">Sheet Mesh</a></h4>";
-              echo "<div>
-                      <object type=text/html data=\"./graphs/sheetMesh.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto;\">
-                      </object>
-                    </div>";
+              echo "<div><a href=\"../phase_2/pics/sheet/$id/contourPlot.png\" target=\"_blank\">
+                      <img src=\"../phase_2/pics/sheet/$id/contourPlot.png\" width=\"400\" height=\"400\">
+                    </a></div>";
             }
           }
           if (file_exists("../phase_2/files/sheet/$id/BowContour.csv")) {
@@ -96,17 +85,25 @@
     </div>
     <script src="./node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="./js/getSheetInfo.min.js" charset="utf-8"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.11.0/es6-shim.min.js"></script>
-    <script src="http://fb.me/react-with-addons-0.11.0.min.js"></script>
-    <script src="http://fb.me/JSXTransformer-0.11.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.11.0/es6-shim.min.js"></script>
+    <script src="https://fb.me/react-with-addons-0.11.0.min.js"></script>
+    <script src="https://fb.me/JSXTransformer-0.11.0.js"></script>
     <script type="text/jsx;harmony=true">/** @jsx React.DOM */
       var id = <?php echo $id; ?>;
       $.ajax({
         url: './php/getSheetData.php?id=' + id,
         success: react,
       });
+      $.ajax({
+        url: './SheetContour/makeGraph.php?id=' + id,
+        success: function(resp) {
+          temp = JSON.parse(resp);
+          console.log(temp);
+        }
+      })
       function react(response) {
         JSONtoArray(response);
+        console.log(dbJSON.test);
         var localArray = dbArray;
         var Comment = React.createClass({
           getInitialState: function() {
