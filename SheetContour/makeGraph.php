@@ -4,11 +4,12 @@
   $out = "../../phase_2/pics/sheet/$id";
   $test = "none";
   $res = "";
-  if (!file_exists($out)) { 
+  if (!file_exists($out)) {
     mkdir($out);
     chmod($out, 0777);
   }
-  if (file_exists($dir)) {
+
+  if (file_exists($dir) && $file_exists($out."/ContourPlot.png")) {
     $test = system("./ContourPlot ".$id, $res);
   }
   $return = new stdClass;
