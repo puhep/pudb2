@@ -61,9 +61,9 @@
     </div>
     <script src="./node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
     <script src="./js/getHeaterInfo.min.js" charset="utf-8"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.11.0/es6-shim.min.js"></script>
-    <script src="http://fb.me/react-with-addons-0.11.0.min.js"></script>
-    <script src="http://fb.me/JSXTransformer-0.11.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.11.0/es6-shim.min.js"></script>
+    <script src="https://fb.me/react-with-addons-0.11.0.min.js"></script>
+    <script src="https://fb.me/JSXTransformer-0.11.0.js"></script>
     <script type="text/jsx;harmony=true">/** @jsx React.DOM */
       var id = <?php echo $id; ?>;
       $.ajax({
