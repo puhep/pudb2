@@ -29,7 +29,7 @@
         temp = JSON.parse(resp);
         console.log(temp);
       }
-    })
+    });
     </script>
     <div id="wrapper">
       <header>
@@ -78,16 +78,12 @@
             }
           }
           if (file_exists("../phase_2/files/sheet/$id/BowContour.csv")) {
-            echo "<h4><a href=\"./graphs/bowContour.php?id=$id\" target=\"_blank\">Sheet Bow Contour</a></h4>";
-            echo "<div>
-                    <object type=\"text/html\" data=\"graphs/bowContour.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto\">
-                    </object>
-                  </div>";
-            echo "<h4><a href=\"./graphs/bowMesh.php?id=$id\" target=\"_blank\">Sheet Bow Mesh</a></h4>";
-            echo "<div>
-                    <object type=\"text/html\" data=\"graphs/bowMesh.php?id=$id\" width=\"800px\" height=\"470px\" style=\"overflow:auto\">
-                    </object>
-                  </div>";
+            if (file_exists("../phase_2/pics/sheet/$id/bowPlot.png")) { // If the picture create from the root script exists
+              echo "<h4>Sheet Bow Contour</h4>";
+              echo "<div><a href=\"../phase_2/pics/sheet/$id/bowPlot.png\" target=\"_blank\">
+                      <img src=\"../phase_2/pics/sheet/$id/bowPlot.png\" width=\"400\" height=\"400\">
+                    </a></div>";
+            }
           }
           echo "<h2>Misc Files</h2>";
           show_files("sheet",$id);
