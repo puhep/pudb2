@@ -20,9 +20,9 @@ void parseLine(std::string line, std::string delimiter, std::vector<float> *v) {
   }
 }
 
-void ContourPlot(string id) {
+void ContourPlot(string id, string inFilename, string desc, string outFilename) {
   // Open CSV file to read
-  std::string inFile="../../phase_2/files/sheet/" + id + "/ThicknessContour.csv";
+  std::string inFile="../../phase_2/files/sheet/" + id + "/" + inFilename;
   ifstream file(inFile.c_str());
   string line;
 
@@ -37,7 +37,9 @@ void ContourPlot(string id) {
   }
 
   // Pretty up the TGraph2D
-  g->SetTitle(("Thickness Contour Plot; x (mm); y (mm); #mum"));
+//  g->SetTitle((desc+"; x (mm); y (mm); #mum").c_str());
+  g->SetTitle((desc+"; x (mm); y (mm); #mum").c_str());
+
   g->GetZaxis()->SetTitleOffset(1.5);
   TStyle *style=new TStyle();
   style->SetCanvasBorderMode(0);
@@ -55,18 +57,17 @@ void ContourPlot(string id) {
   // Draw and save the plot
   TCanvas *c=new TCanvas("c", "c", 700, 700);
   g->Draw("colz cont4");
-  std::string outFile="../../phase_2/pics/sheet/" + id + "/contourPlot.png";
+  std::string outFile="../../phase_2/pics/sheet/" + id + "/" + outFilename;
   c->SaveAs(outFile.c_str());
 }
 
 int main(int argc, char *argv[]) {
-  if (argc>=1) {
-    string id=argv[1];
-    // string inFilename=argv[2];
-    // string outFilename=argv[3];
-    // string descriptor=argv[2];
-
-    ContourPlot(id);
+  if (argc>=5) {
+    string id          = argv[1]; // sheet id
+    string inFilename  = argv[2];
+    string desc        = argv[3]; // title of graph
+    string outFilename = argv[4]; // output file name
+    ContourPlot(id,inFilename, desc, outFilename);
   } else {
     std::cout<<"At least three arguments, filedir, inFilename, outFilename, expected by ContourPlot. Did not get that."<<std::endl;
   }

@@ -31,7 +31,7 @@ function show_pictures($part_type, $part_id){
     if(file_exists($dir) && ($handle = opendir($dir))){
         $tableStr = "<table border=1>";
         while(false !== ($entry=(readdir($handle)))){
-        if($entry != "." && $entry != ".." && substr($entry,-3) !="txt" && $entry != "contourPlot.png"){
+        if($entry != "." && $entry != ".." && substr($entry,-3) !="txt" && $entry != "contourPlot.png" && $entry != "bowPlot.png"){
                 $str = rawurlencode($entry);
                 $tableStr = $tableStr . "<tr>";
                 $tableStr = $tableStr . "<td>";
