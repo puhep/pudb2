@@ -46,7 +46,7 @@
             <label for="location">Location: </label>
             <input placeholder= "<?php echo $data['location']; ?>" name="location" type="text" style="float:right"><br><br>
             <label for="dateCut">Date Cut: </label>
-            <input placeholder= "<?php echo $data['dateCut']; ?>" name="dateCut" type="date" style="float:right"><br><br>
+            <input placeholder= "<?php echo $data['dateCut']; ?>" name="dateCut" type="date" id="datepicker" style="float:right"><br><br>
             <label for="user_cut">Cut by: </label>
             <input placeholder= "<?php echo $data['user_cut']; ?>" name="user_cut" type="text" style="float:right"><br><br>
             <label for="ply">Ply: </label>
@@ -169,5 +169,14 @@
         </form>
       </main>
     </div>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+    <script src="./node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>x
+    <script type="text/javascript">
+      $(function() {
+        $('input[type="date"]').datepicker();
+      })
+    </script>
   </body>
 </html>
