@@ -1,7 +1,7 @@
 <?php
   $id = $_GET['id'];
   $dir1 = "../../phase_2/files/sheet/$id/ThicknessContour.csv";
-  $dir2 = "../../phase_2/files/shee/$id/BowContour.csv";
+  $dir2 = "../../phase_2/files/sheet/$id/BowContour.csv";
   $out = "../../phase_2/pics/sheet/$id";
   $test  = "none";
   $test1 = "none";
