@@ -27,8 +27,12 @@
       url: './SheetContour/makeGraph.php?id=' + id,
       success: function(resp) {
         temp = JSON.parse(resp);
+        console.log("hello");
         console.log(temp);
       }
+    });
+    $.ajax({
+      url: './php/getSheetContour.php?id=' + id,
     });
     </script>
     <div id="wrapper">
