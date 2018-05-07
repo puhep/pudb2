@@ -31,6 +31,7 @@
 
   // If the name of the picture is not blank (i.e. a picture has been slotted to upload), perform several checks and upload
   if ($_FILES['pic']['name'] != "") {
+    print_r ($_FILES);
     add_pic("miscPart", $id, $_FILES, $_POST['picnotes']);
   }
 
@@ -38,7 +39,7 @@
   if ($_FILES['files']['name'][0] != "") {
     add_file("miscPart", $id, $_FILES['files']);
   }
-
+  
   // Redirect to the summary page with the new information
   header("Location: miscPart.php?id=$id");
 ?>
