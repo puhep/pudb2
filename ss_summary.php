@@ -80,7 +80,7 @@
       </main>
     </div>
     <script src="./node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
-    <script src="./js/getSuppStructInfo.min.js" charset="utf-8"></script>
+    <script src="./js/getSuppStructInfo.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.11.0/es6-shim.min.js"></script>
     <script src="https://fb.me/react-with-addons-0.11.0.min.js"></script>
     <script src="https://fb.me/JSXTransformer-0.11.0.js"></script>
