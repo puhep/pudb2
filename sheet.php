@@ -27,7 +27,6 @@
       url: './SheetContour/makeGraph.php?id=' + id,
       success: function(resp) {
         temp = JSON.parse(resp);
-        console.log("hello");
         console.log(temp);
       }
     });
@@ -96,7 +95,7 @@
       </main>
     </div>
 
-    <script src="./js/getSheetInfo.min.js" charset="utf-8"></script>
+    <script src="./js/getSheetInfo.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.11.0/es6-shim.min.js"></script>
     <script src="https://fb.me/react-with-addons-0.11.0.min.js"></script>
     <script src="https://fb.me/JSXTransformer-0.11.0.js"></script>
