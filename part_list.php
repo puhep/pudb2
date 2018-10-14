@@ -31,10 +31,6 @@ Currently, we have support structures, thermal sensors, heaters, mock modules, a
       </nav>
       <main>
         <h1>Part List</h1>
-        <h4>
-          <input class="button" type=button onClick="location.href='newsheet.php'" value='Add Sheet'>
-          <input class="button" type=button onClick="location.href='newMiscPart.php'" value='Add Misc Part'>
-        </h4>
         <?php
           require_once("database.php");
           $db = new Database();
@@ -97,6 +93,7 @@ Currently, we have support structures, thermal sensors, heaters, mock modules, a
             echo "<a href=\"sheet.php?id=$sheet[0]\">$sheet[1]</a>";
             echo "</td></tr>";
           }
+          echo "<tr><td><input class=\"button\" type=button onClick=\"location.href='newsheet.php'\" value='Add Sheet'></td></tr>";
           echo "</table><br>";
           echo "</td>";
 
@@ -108,6 +105,7 @@ Currently, we have support structures, thermal sensors, heaters, mock modules, a
             echo "<a href=\"miscPart.php?id=$miscPart[0]\">$miscPart[1]</a>";
             echo "</td></tr>";
           }
+          echo "<tr><td><input class=\"button\" type=button onClick=\"location.href='newMiscPart.php'\" value='Add Misc Part'></td></tr>";
           echo "</table><br>";
           echo "</td>";
           echo "</tr>";
