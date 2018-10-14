@@ -186,7 +186,7 @@ function add_pic($type,$id,$files,$notes){
   $picupload=1;
   $targetdir = "../phase_2/pics/$type/$id/";
   $targetfile = $targetdir.$files['pic']['name'];
-  $imageFileType = pathinfo($targetfile,PATHINFO_EXTENSION);
+  $imageFileType = strtolower(pathinfo($targetfile,PATHINFO_EXTENSION));
 ### if the directory for the test does not exist, create it and make it editable
   if(!file_exists($targetdir)){
     if (!mkdir($targetdir, 0777)) {
