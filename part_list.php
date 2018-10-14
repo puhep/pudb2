@@ -31,7 +31,10 @@ Currently, we have support structures, thermal sensors, heaters, mock modules, a
       </nav>
       <main>
         <h1>Part List</h1>
-
+        <h4>
+          <input class="button" type=button onClick="location.href='newsheet.php'" value='Add Sheet'>
+          <input class="button" type=button onClick="location.href='newMiscPart.php'" value='Add Misc Part'>
+        </h4>
         <?php
           require_once("database.php");
           $db = new Database();
