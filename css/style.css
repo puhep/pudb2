@@ -173,6 +173,12 @@ main a {
   color: #3C2C05;
 }
 
+
+.largeCell {
+  vertical-align: middle;
+  padding: 10px;
+}
+
 /*
 #F7DFC4
 #063DDC
