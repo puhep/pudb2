@@ -22,6 +22,11 @@ function show_files($part_type, $part_id){
 ### show all pictures with their associated comments for a part in a table
 ### generalizable for any part type
 function show_pictures($part_type, $part_id){
+  $db = new Database();
+  $sql = "SELECT pictureName, noteText, dateCreated FROM picture_note WHERE partID=$part_id AND partType=\"$part_type\";";
+  $result = $db->db_query($sql);
+  print_r($result[0]);
+
   $dir = "../phase_2/pics/".$part_type."/".$part_id."/";
   if(!file_exists($dir)){
     echo "No pictures found <br>";
@@ -38,12 +43,17 @@ function show_pictures($part_type, $part_id){
         $tableStr = $tableStr . "<a href=$dir/$str target=\"blank\"> <img src=\"$dir/$entry\" width=\"200\" height=\"200\"></a>";
         $tableStr = $tableStr . "</td>";
         $tableStr = $tableStr . "<td>";
-        $txt = $dir."/".substr($entry,0,-3)."txt";
-        if(file_exists($txt)){
-          $fp = fopen($txt, 'r');
-          $tableStr = $tableStr . nl2br(fread($fp, filesize($txt)));
-          fclose($fp);
+        foreach ($result as &$value) {
+          if ($value[pictureName] == $entry) {
+            $tableStr = $tableStr . $value[dateCreated] . "<hr>" . $value[noteText];
+          }
         }
+        // $txt = $dir."/".substr($entry,0,-3)."txt";
+        // if(file_exists($txt)){
+        //   $fp = fopen($txt, 'r');
+        //   $tableStr = $tableStr . nl2br(fread($fp, filesize($txt)));
+        //   fclose($fp);
+        // }
 #echo "picture text here";
         $tableStr = $tableStr . "</td>";
         $tableStr = $tableStr . "</tr>";
@@ -194,7 +204,7 @@ function add_pic($type,$id,$files,$notes){
       print_r(error_get_last());
     }
     chmod($targetdir,0777);
-  } 
+  }
 ### don't allow duplicate uploads
   if(file_exists($targetfile)){
     echo "Sorry, file already exists.<br>".$backmessage;
