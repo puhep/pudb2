@@ -25,7 +25,6 @@ function show_pictures($part_type, $part_id){
   $db = new Database();
   $sql = "SELECT pictureName, noteText, dateCreated FROM picture_note WHERE partID=$part_id AND partType=\"$part_type\";";
   $result = $db->db_query($sql);
-  print_r($result[0]);
 
   $dir = "../phase_2/pics/".$part_type."/".$part_id."/";
   if(!file_exists($dir)){
