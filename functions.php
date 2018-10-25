@@ -216,13 +216,19 @@ function add_pic($type,$id,$files,$notes){
   }
 ### if none of the errors have been detected, proceed with the upload
   if($picupload==1){
-#echo "ok to upload";
+    // Move the picture into the correct directory
     move_uploaded_file($files['pic']['tmp_name'], $targetfile);
-    $fp = fopen(substr($targetfile,0,-3)."txt","w");
+
+    // Get the time
     $date = date("m-d-y H:i:s");
-#echo $date;
-    fwrite($fp,$date." ".$notes."\n");
-    fclose($fp);
+
+    // Create SQL statement
+    $sql = "INSERT INTO picture_note(partID, partType, pictureName, noteText, dateCreated)";
+    $sql = $sql . "VALUES ($id, \"$type\", \"".$files['pic']['name']."\", \"$notes\", \"$date\");";
+
+    // Upload to database
+    $db = new Database();
+    $res = $db->query($sql);
   }
 }
 
