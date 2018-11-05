@@ -51,8 +51,8 @@ function show_pictures($part_type, $part_id){
             $fileName = $value[pictureName];
           }
         }
-        $tableStr = $tableStr . "<td><button onclick=\"editnote($noteID, '$part_type', '$noteText')\">Edit Note</button></td>";
-        $tableStr = $tableStr . "<td><button onclick=\"deletenote($noteID, '$part_type', '$part_id', '$fileName')\">Remove Picture</button></td>";
+        $tableStr = $tableStr . "<td><button class=\"button-primary\" onclick=\"editnote($noteID, '$part_type', '$noteText')\">Edit Note</button></td>";
+        $tableStr = $tableStr . "<td><button class=\"button-danger\" onclick=\"deletenote($noteID, '$part_type', '$part_id', '$fileName')\">Remove Picture</button></td>";
         // $txt = $dir."/".substr($entry,0,-3)."txt";
         // if(file_exists($txt)){
         //   $fp = fopen($txt, 'r');
