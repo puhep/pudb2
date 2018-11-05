@@ -23,7 +23,7 @@ function show_files($part_type, $part_id){
 ### generalizable for any part type
 function show_pictures($part_type, $part_id){
   $db = new Database();
-  $sql = "SELECT pictureName, noteText, dateCreated FROM picture_note WHERE partID=$part_id AND partType=\"$part_type\";";
+  $sql = "SELECT id, pictureName, noteText, dateCreated FROM picture_note WHERE partID=$part_id AND partType=\"$part_type\";";
   $result = $db->db_query($sql);
 
   $dir = "../phase_2/pics/".$part_type."/".$part_id."/";
@@ -37,6 +37,7 @@ function show_pictures($part_type, $part_id){
     while(false !== ($entry=(readdir($handle)))){
       if($entry != "." && $entry != ".." && substr($entry,-3) !="txt" && $entry != "contourPlot.png" && $entry != "bowPlot.png"){
         $str = rawurlencode($entry);
+        $noteID = "";
         $tableStr = $tableStr . "<tr>";
         $tableStr = $tableStr . "<td>";
         $tableStr = $tableStr . "<a href=$dir/$str target=\"blank\"> <img src=\"$dir/$entry\" width=\"200\" height=\"200\"></a>";
@@ -45,8 +46,13 @@ function show_pictures($part_type, $part_id){
         foreach ($result as &$value) {
           if ($value[pictureName] == $entry) {
             $tableStr = $tableStr . $value[dateCreated] . "<hr>" . $value[noteText];
+            $noteID = $value[id];
+            $noteText = $value[noteText];
+            $fileName = $value[pictureName];
           }
         }
+        $tableStr = $tableStr . "<td><button onclick=\"editnote($noteID, '$part_type', '$noteText')\">Edit Note</button></td>";
+        $tableStr = $tableStr . "<td><button onclick=\"deletenote($noteID, '$part_type', '$part_id', '$fileName')\">Remove Picture</button></td>";
         // $txt = $dir."/".substr($entry,0,-3)."txt";
         // if(file_exists($txt)){
         //   $fp = fopen($txt, 'r');

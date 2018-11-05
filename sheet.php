@@ -18,6 +18,7 @@
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="css/style.min.css">
     <title><?php echo $name; ?> Summary</title>
+    <script src="js/pictureNote.js"></script>
   </head>
   <body>
     <script src="./node_modules/jquery/dist/jquery.min.js" charset="utf-8"></script>
