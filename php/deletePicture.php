@@ -23,10 +23,4 @@
    ***********************/
   $db->query($sql);
 
-  /*****************************
-   * Delete file from server
-   ****************************/
-  $fileLoc = "../../phase_2/pics/$partType/$partID/$fileName";
-  $fileLoc = str_replace("\"", "", $fileLoc);
-  $del = unlink($fileLoc);
 ?>
