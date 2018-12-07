@@ -50,36 +50,36 @@ function show_pictures($part_type, $part_id){
       $tableStr = $tableStr . "<td><button class=\"button-danger\" onclick=\"deletenote($noteID, '$part_type', '$part_id', '$fileName')\">Remove Picture</button></td>";
       $tableStr = $tableStr . "</td></tr>";
     }
-//     while(false !== ($entry=(readdir($handle)))){
-//       if($entry != "." && $entry != ".." && substr($entry,-3) !="txt" && $entry != "contourPlot.png" && $entry != "bowPlot.png"){
-//         $str = rawurlencode($entry);
-//         $noteID = "";
-//         $tableStr = $tableStr . "<tr>";
-//         $tableStr = $tableStr . "<td>";
-//         $tableStr = $tableStr . "<a href=$dir/$str target=\"blank\"> <img src=\"$dir/$entry\" width=\"200\" height=\"200\"></a>";
-//         $tableStr = $tableStr . "</td>";
-//         $tableStr = $tableStr . "<td>";
-//         foreach ($result as &$value) {
-//           if ($value[pictureName] == $entry) {
-//             $tableStr = $tableStr . $value[dateCreated] . "<hr>" . $value[noteText];
-//             $noteID = $value[id];
-//             $noteText = $value[noteText];
-//             $fileName = $value[pictureName];
-//           }
-//         }
-//         $tableStr = $tableStr . "<td><button class=\"button-primary\" onclick=\"editnote($noteID, '$part_type', '$noteText')\">Edit Note</button></td>";
-//         $tableStr = $tableStr . "<td><button class=\"button-danger\" onclick=\"deletenote($noteID, '$part_type', '$part_id', '$fileName')\">Remove Picture</button></td>";
-//         // $txt = $dir."/".substr($entry,0,-3)."txt";
-//         // if(file_exists($txt)){
-//         //   $fp = fopen($txt, 'r');
-//         //   $tableStr = $tableStr . nl2br(fread($fp, filesize($txt)));
-//         //   fclose($fp);
-//         // }
-// #echo "picture text here";
-//         $tableStr = $tableStr . "</td>";
-//         $tableStr = $tableStr . "</tr>";
-//       }
-//     }
+    //     while(false !== ($entry=(readdir($handle)))){
+    //       if($entry != "." && $entry != ".." && substr($entry,-3) !="txt" && $entry != "contourPlot.png" && $entry != "bowPlot.png"){
+    //         $str = rawurlencode($entry);
+    //         $noteID = "";
+    //         $tableStr = $tableStr . "<tr>";
+    //         $tableStr = $tableStr . "<td>";
+    //         $tableStr = $tableStr . "<a href=$dir/$str target=\"blank\"> <img src=\"$dir/$entry\" width=\"200\" height=\"200\"></a>";
+    //         $tableStr = $tableStr . "</td>";
+    //         $tableStr = $tableStr . "<td>";
+    //         foreach ($result as &$value) {
+    //           if ($value[pictureName] == $entry) {
+    //             $tableStr = $tableStr . $value[dateCreated] . "<hr>" . $value[noteText];
+    //             $noteID = $value[id];
+    //             $noteText = $value[noteText];
+    //             $fileName = $value[pictureName];
+    //           }
+    //         }
+    //         $tableStr = $tableStr . "<td><button class=\"button-primary\" onclick=\"editnote($noteID, '$part_type', '$noteText')\">Edit Note</button></td>";
+    //         $tableStr = $tableStr . "<td><button class=\"button-danger\" onclick=\"deletenote($noteID, '$part_type', '$part_id', '$fileName')\">Remove Picture</button></td>";
+    //         // $txt = $dir."/".substr($entry,0,-3)."txt";
+    //         // if(file_exists($txt)){
+    //         //   $fp = fopen($txt, 'r');
+    //         //   $tableStr = $tableStr . nl2br(fread($fp, filesize($txt)));
+    //         //   fclose($fp);
+    //         // }
+    // #echo "picture text here";
+    //         $tableStr = $tableStr . "</td>";
+    //         $tableStr = $tableStr . "</tr>";
+    //       }
+    //     }
     $tableStr = $tableStr . "</table>";
     if ($tableStr == "<table border=1></table>") $tableStr = "No pictures found <br>";
     echo $tableStr;
@@ -208,49 +208,41 @@ function add_file($type,$id,$files) {
   for ($i = 0; $i < sizeof($files['name']); $i++) {
     $targetFile = $targetDir.$files['name'][$i];
     if (!move_uploaded_file($files['tmp_name'][$i], $targetFile)) { // If file fails to upload send error message
-      echo "<h2>Sorry, an error has occurred. Try again or bother Greg & Chase until they help</h2><br>";
+      echo "<h2>Sorry, an error has occurred. Try again or bother Chase until he helps.</h2><br>";
     }
   }
 }
 
 function add_pic($type,$id,$files,$notes){
-  $picupload=1;
-  $targetdir = "../phase_2/pics/$type/$id/";
-  $targetfile = $targetdir.$files['pic']['name'];
-  $imageFileType = strtolower(pathinfo($targetfile,PATHINFO_EXTENSION));
-### if the directory for the test does not exist, create it and make it editable
-  if(!file_exists($targetdir)){
-    if (!mkdir($targetdir, 0777)) {
-      echo 'Failed to create folder...<br>';
-      print_r(error_get_last());
+  $targetDir = "../phase_2/pics/$type/$id/";
+  if (!file_exists($targetDir)) {
+    mkdir($targetDir);
+    chmod($targetDir, 0777);
+  }
+  for ($i = 0; $i < sizeof($files['name']); $i++) {
+    $targetFile = $targetDir . $files['name'][$i];
+    $imageFileType = strtolower(pathinfo($targetFile,PATHINFO_EXTENSION));
+
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
+      echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<br>".$backmessage;
+      break;
     }
-    chmod($targetdir,0777);
-  }
-### don't allow duplicate uploads
-  if(file_exists($targetfile)){
-    echo "Sorry, file already exists.<br>".$backmessage;
-    $picupload = 0;
-  }
-### only picture type files are allowed
-  if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ) {
-    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.<br>".$backmessage;
-    $picupload = 0;
-  }
-### if none of the errors have been detected, proceed with the upload
-  if($picupload==1){
-    // Move the picture into the correct directory
-    move_uploaded_file($files['pic']['tmp_name'], $targetfile);
 
-    // Get the time
-    $date = date("m-d-y H:i:s");
+    if (!move_uploaded_file($files['tmp_name'][$i], $targetFile)) {
+      echo "<h2>Sorry, an error has occurred. Try again or boter Chase until he helps.</h2><br>";
+      break;
+    } else {
+      // Get the time
+      $date = date("m-d-y H:i:s");
 
-    // Create SQL statement
-    $sql = "INSERT INTO picture_note(partID, partType, pictureName, noteText, dateCreated)";
-    $sql = $sql . "VALUES ($id, \"$type\", \"".$files['pic']['name']."\", \"$notes\", \"$date\");";
+      // Create SQL statement
+      $sql = "INSERT INTO picture_note(partID, partType, pictureName, noteText, dateCreated)";
+      $sql = $sql . "VALUES ($id, \"$type\", \"".$files['name'][$i]."\", \"$notes\", \"$date\");";
 
-    // Upload to database
-    $db = new Database();
-    $res = $db->query($sql);
+      // Upload to database
+      $db = new Database();
+      $res = $db->query($sql);
+    }
   }
 }
 

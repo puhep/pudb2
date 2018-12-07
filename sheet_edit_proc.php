@@ -220,8 +220,9 @@
   }
 
   // If the name of the picture is not blank (i.e. a picture has been slotted to upload), perform several checks and upload
-  if ($_FILES['pic']['name'] != "") {
-    add_pic("sheet",$id,$_FILES,$_POST['picnotes']);
+  if ($_FILES['pics']['name'][0] != "") {
+    //print_r($_FILES['pics']);
+    add_pic("sheet",$id,$_FILES['pics'],$_POST['picnotes']);
   }
 
   // If the name of the file is not blank (i.e. a file has been slotted to upload), attempt to upload

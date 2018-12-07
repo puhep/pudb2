@@ -134,7 +134,7 @@
           <h2>Pictures</h2>
           <div style="width:475px;">
             <label for="pic">Picture File: </label>
-            <input name="pic" type="file" style="float:right"><br><br>
+            <input name="pics[]" id="pics" type="file" multiple="multiple" style="float:right"><br><br>
           </div>
           <div style="width:400px;">
             <label for="picnotes">Picture Notes: </label>
